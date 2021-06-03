@@ -98,6 +98,8 @@ Here is a simple example:
 }
 ```
 
+**Provider** field refers to name for your APNS or FCM keys. Read [Key Concepts: Provider](/content/concepts/provider) section for details. 
+
 #### Using the SDK
 
 ```js

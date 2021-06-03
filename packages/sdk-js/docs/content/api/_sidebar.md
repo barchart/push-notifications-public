@@ -8,5 +8,7 @@
 <!-- sdk_close -->
 <!-- api_open -->
 * [API Reference](/content/api_reference)
+	* [Components](/content/api/components)
+	* [Paths](/content/api/paths)
 <!-- api_close -->
 * [Release Notes](/content/release_notes)
