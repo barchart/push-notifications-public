@@ -1,6 +1,6 @@
 {
   "name": "@barchart/push-notifications-client-js",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "JavaScript SDK for Barchart's ENS",
   "contributors": [
     {
@@ -10,7 +10,9 @@
   ],
   "scripts": {
     "lint": "eslint --fix --config=.eslintrc './**/*.js'",
-    "postversion": "lerna publish from-package"
+    "deploy:documentation": "gulp deploy-documentation",
+    "postversion": "gulp deploy-documentation",
+    "version": "gulp embed-version && gulp build"
   },
   "repository": {
     "type": "git",

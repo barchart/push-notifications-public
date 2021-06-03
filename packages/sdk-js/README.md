@@ -6,15 +6,17 @@ This **JavaScript SDK** provides API to interact with **ENS** — a simple servi
 
 ### Documentation
 
-TODO LINK TO DOC
+Complete documentation for this SDK can be accessed here:
+
+* [https://docs.barchart.com/push-notification-client-js/](https://docs.barchart.com/push-notification-client-js/)
 
 ### Example Applications
 
-TODO
+Example applications for this SDK can be accessed [here](./example).
 
 ### Package Managers
 
-This library has been published as a _public_ package to NPM as [@barchart/ens-client-js](https://www.npmjs.com/package/@barchart/ens-client-js).
+This library has been published as a _public_ package to NPM as [@barchart/push-notifications-client-js](https://www.npmjs.com/package/@barchart/push-notifications-client-js).
 
 ### License
 

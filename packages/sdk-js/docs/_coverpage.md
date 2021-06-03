@@ -1,4 +1,4 @@
-# @barchart/push-notifications-client-js <small>1.0.0</small>
+# @barchart/push-notifications-client-js <small>0.0.0</small>
 
 > JavaScript SDK for Barchart&#x27;s ENS
 
