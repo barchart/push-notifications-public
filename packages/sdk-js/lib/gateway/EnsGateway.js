@@ -75,7 +75,7 @@ module.exports = (() => {
 				.withHost(host)
 				.withPort(port)
 				.withPathBuilder((pb) =>
-					pb.withLiteralParameter('version', 'v1')
+					pb.withLiteralParameter('version', 'v2')
 						.withLiteralParameter('register', 'register')
 				)
 				.withBody()
@@ -90,7 +90,7 @@ module.exports = (() => {
 				.withHost(host)
 				.withPort(port)
 				.withPathBuilder((pb) =>
-					pb.withLiteralParameter('version', 'v1')
+					pb.withLiteralParameter('version', 'v2')
 						.withLiteralParameter('unregister', 'unregister')
 				)
 				.withBody()
