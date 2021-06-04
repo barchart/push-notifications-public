@@ -54,7 +54,7 @@ Since the _staging_ environment is intended for testing and evaluation purposes 
 
 When you're ready to move to production, you'll need to generate a [public/private key pair](https://en.wikipedia.org/wiki/Public-key_cryptography) (see below).
 
-* Hostname:```push-notifications-prod.aws.barchart.com```
+* Hostname:```push-notifications.aws.barchart.com```
 * Port: ```443```
 * Algorithm: Agreed upon when your account is configured
 * Secret: Agreed upon when your account is configured
