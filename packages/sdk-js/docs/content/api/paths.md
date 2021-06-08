@@ -440,6 +440,7 @@
     
 | Name | Type | Required | Nullable | Description |
 | ---- | ---- | -------- | -------- | ----------- |
+| id | <code>String</code> | false | false |  |
 | apns | [<code>Array&lt;APNSResponse&gt;</code>](/content/api/components?id=schemasAPNSResponse) |  | false |  |
 | fcm | [<code>Array&lt;FCMResponse&gt;</code>](/content/api/components?id=schemasFCMResponse) |  | false |  |
 
@@ -447,6 +448,7 @@
 
 ```json
 {
+  "id": "497f6eca-6276-4993-bfeb-53cbbbba6f08",
   "apns": [
     {
       "StatusCode": 200,
@@ -492,6 +494,55 @@
 * * *
 
 **Status Code**: 500 - [ErrorResponse](/content/api/components?id=responseserrorresponse)
+
+* * *
+
+## GET /v2/service/read 
+
+> Returns the service version, name, environment, and description
+
+**Summary**: Returns service data
+
+#### Request Body
+**One of:**
+
+- [SendByUser](/content/api/components?id&#x3D;schemassendbyuser)
+
+- [SendByDevice](/content/api/components?id&#x3D;schemassendbydevice)
+
+- [SendByBundle](/content/api/components?id&#x3D;schemassendbybundle)
+
+
+#### Responses
+
+**Status Code**: 200
+
+> Device has been registered.
+
+**Content Type**: <code>application/json</code>
+
+**Response Type:** <code>Object</code>
+    
+| Name | Type | Required | Nullable | Description |
+| ---- | ---- | -------- | -------- | ----------- |
+| service | <code>Object</code> |  | false |  |
+| service.name | <code>String</code> | false | false | Service name |
+| service.environment | <code>String</code> | false | false | Current environment |
+| service.version | <code>String</code> | false | false | Current version of the service |
+| service.description | <code>String</code> | false | false | Description of the service |
+
+**Example**:
+
+```json
+{
+  "service": {
+    "name": "serverless-push-gateway",
+    "environment": "prod",
+    "version": "v1.0.0",
+    "description": "ENS service for push notifications"
+  }
+}
+```
 
 * * *
 

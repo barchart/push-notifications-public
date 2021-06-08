@@ -57,3 +57,4 @@
 * [POST /v2/register](/content/api/paths?id=post-v2register)
 * [POST /v2/unregister](/content/api/paths?id=post-v2unregister)
 * [POST /v2/send](/content/api/paths?id=post-v2send)
+* [GET /v2/service/read](/content/api/paths?id=get-v2serviceread)

@@ -785,6 +785,9 @@ paths:
               schema:
                 type: object
                 properties:
+                  id: 
+                    type: string
+                    format: uuid
                   apns:
                     type: array
                     items:
@@ -799,3 +802,45 @@ paths:
           $ref: '#/components/responses/ErrorResponse'
         '500':
           $ref: '#/components/responses/ErrorResponse'
+          
+  /v2/service/read:
+    get:
+      summary: Returns service data
+      description: Returns the service version, name, environment, and description 
+      tags:
+        - v2
+      requestBody:
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: '#/components/schemas/SendByUser'
+                - $ref: '#/components/schemas/SendByDevice'
+                - $ref: '#/components/schemas/SendByBundle'
+      responses:
+        '200':
+          description: Device has been registered.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  service:
+                    type: object
+                    properties: 
+                      name:
+                        type: string
+                        description: Service name
+                        example: 'serverless-push-gateway'
+                      environment:
+                        type: string
+                        description: Current environment
+                        example: "prod"
+                      version:
+                        type: string
+                        description: Current version of the service
+                        example: "v1.0.0"
+                      description:
+                        type: string
+                        description: Description of the service
+                        example: "ENS service for push notifications"
