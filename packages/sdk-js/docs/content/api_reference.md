@@ -1,6 +1,6 @@
 # API Reference
 
-## Push Notifications: Android (FCM) and iOS (APNs) 0.0.0 {docsify-ignore}
+## Push Notifications: Android (FCM) and iOS (APNs) 2.0.0 {docsify-ignore}
     
 > Lambda that register and stores device, token and app ids in dynamo DB.
 
@@ -42,6 +42,7 @@
 * [SendByBundle](/content/api/components?id=schemasSendByBundle)
 * [FCMResponse](/content/api/components?id=schemasFCMResponse)
 * [APNSResponse](/content/api/components?id=schemasAPNSResponse)
+* [Device](/content/api/components?id=schemasDevice)
 
 ### Security 
 

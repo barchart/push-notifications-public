@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: 'Push Notifications: Android (FCM) and iOS (APNs)'
-  version: '0.0.0'
+  version: '2.0.0'
   description: 'Lambda that register and stores device, token and app ids in dynamo DB.'
   contact:
     name: Push Notifications Support
@@ -377,6 +377,7 @@ components:
 
     APNSResponse:
       type: object
+      description: 'An APNS response object'
       properties:
         StatusCode:
           type: number
@@ -389,7 +390,57 @@ components:
           example: 'D17EF06E-3DCF-E5EE-BBD5-31B4B75CAD63'
         Timestamp:
           type: string
-          example: '0001-01-01T00:00:00Z'
+          example: '0001-01-01T00:00:00Z'  
+    
+    Device:
+      type: object
+      description: 'Device data'
+      properties:
+        user:
+          type: object
+          properties:
+            id:
+              type: string
+              example: '00000000'
+            context:
+              type: string
+              example: 'barchart'
+            unique:
+              type: string
+              example: 'barchart|00000000'
+        provider:
+          type: object
+          properties: 
+            secret:
+              type: string
+              example: 'barchart'
+        type:
+          type: string
+          example: 'APNS'
+        apns:
+          type: object
+          properties: 
+            device:
+              type: string
+              example: '78ca4b1930f9464f22ad8bb6a6b83d735273fcb4a588108bacadd2fb878149f0'
+            bundle:
+              type: string
+              example: 'com.barchart.ens'
+        fcm:
+          type: object
+          properties: 
+            iid: 
+              type: string
+              example: 'fOxNSJtbSAKKgUDrwDOrHH'
+            token:
+              type: string
+              example: 'fOxNSJtbSAKKgUDrwDOrHH:APA91bFm_oZ_DA8SvvR1VND1PNpAaa4BNEps0PISF4sRWEBq2nLATLiTO63E3JnBIZ9arwFQmUquft_tr24BKHT2w5rgdy8SeZuubE-UUQNrTEbB00ObeT1N5P-2_XPq75Xzu758MaPK'
+            package:
+              type: string
+              example: 'com.barchart.ens'
+        timestamp:
+          type: number
+          example: 1626688692651
 
   responses:
     ErrorResponse:
@@ -684,7 +735,7 @@ paths:
   /v2/register:
     post:
       summary: Register Device
-      description: Register an device for notifications with APNS or FCM.
+      description: Register a device for notifications with APNS or FCM.
       tags:
         - v2
       security:
@@ -714,8 +765,8 @@ paths:
 
   /v2/unregister:
     post:
-      summary: Register Device
-      description: Register an device for notifications with APNS or FCM.
+      summary: Unregister Device
+      description: Unregister a device from receiving push notifications.
       tags:
         - v2
       security:
@@ -763,8 +814,8 @@ paths:
 
   /v2/send:
     post:
-      summary: Register Device
-      description: Register an device for notifications with APNS or FCM.
+      summary: Send a push notification
+      description: Sends a push notification to devices using APNS and FCM.
       tags:
         - v2
       security:
@@ -779,7 +830,7 @@ paths:
                 - $ref: '#/components/schemas/SendByBundle'
       responses:
         '200':
-          description: Device has been registered.
+          description: A notification has been sent.
           content:
             application/json:
               schema:
@@ -791,11 +842,29 @@ paths:
                   apns:
                     type: array
                     items:
-                      $ref: '#/components/schemas/APNSResponse'
+                      type: object
+                      properties:
+                        status: 
+                          type: string
+                          description: 'Status of the notification'
+                          example: 'Successful'
+                        device:
+                          $ref: '#/components/schemas/Device'
+                        details:
+                          $ref: '#/components/schemas/APNSResponse'
                   fcm:
                     type: array
                     items:
-                      $ref: '#/components/schemas/FCMResponse'
+                      type: object
+                      properties:
+                        status:
+                          type: string
+                          description: 'Status of the notification'
+                          example: 'Successful'
+                        device:
+                          $ref: '#/components/schemas/Device'
+                        details:
+                          $ref: '#/components/schemas/FCMResponse'
         '400':
           $ref: '#/components/responses/ErrorResponse'
         '403':
@@ -809,14 +878,6 @@ paths:
       description: Returns the service version, name, environment, and description 
       tags:
         - v2
-      requestBody:
-        content:
-          application/json:
-            schema:
-              oneOf:
-                - $ref: '#/components/schemas/SendByUser'
-                - $ref: '#/components/schemas/SendByDevice'
-                - $ref: '#/components/schemas/SendByBundle'
       responses:
         '200':
           description: Device has been registered.

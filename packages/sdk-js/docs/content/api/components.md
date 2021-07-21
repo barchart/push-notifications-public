@@ -486,6 +486,55 @@
 
 * * *
 
+### Device :id=schemasdevice
+**Type**: <code>Object</code>
+    
+| Name | Type | Required | Nullable | Description |
+| ---- | ---- | -------- | -------- | ----------- |
+| user | <code>Object</code> |  | false |  |
+| user.id | <code>String</code> | false | false |  |
+| user.context | <code>String</code> | false | false |  |
+| user.unique | <code>String</code> | false | false |  |
+| provider | <code>Object</code> |  | false |  |
+| provider.secret | <code>String</code> | false | false |  |
+| type | <code>String</code> | false | false |  |
+| apns | <code>Object</code> |  | false |  |
+| apns.device | <code>String</code> | false | false |  |
+| apns.bundle | <code>String</code> | false | false |  |
+| fcm | <code>Object</code> |  | false |  |
+| fcm.iid | <code>String</code> | false | false |  |
+| fcm.token | <code>String</code> | false | false |  |
+| fcm.package | <code>String</code> | false | false |  |
+| timestamp | <code>Number</code> | false | false |  |
+
+**Example**:
+
+```json
+{
+  "user": {
+    "id": "00000000",
+    "context": "barchart",
+    "unique": "barchart|00000000"
+  },
+  "provider": {
+    "secret": "barchart"
+  },
+  "type": "APNS",
+  "apns": {
+    "device": "78ca4b1930f9464f22ad8bb6a6b83d735273fcb4a588108bacadd2fb878149f0",
+    "bundle": "com.barchart.ens"
+  },
+  "fcm": {
+    "iid": "fOxNSJtbSAKKgUDrwDOrHH",
+    "token": "fOxNSJtbSAKKgUDrwDOrHH:APA91bFm_oZ_DA8SvvR1VND1PNpAaa4BNEps0PISF4sRWEBq2nLATLiTO63E3JnBIZ9arwFQmUquft_tr24BKHT2w5rgdy8SeZuubE-UUQNrTEbB00ObeT1N5P-2_XPq75Xzu758MaPK",
+    "package": "com.barchart.ens"
+  },
+  "timestamp": 1626688692651
+}
+```
+
+* * *
+
 ## Security
 
 ### JWT :id=securityjwt

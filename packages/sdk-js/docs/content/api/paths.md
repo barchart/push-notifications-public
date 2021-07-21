@@ -138,7 +138,33 @@
 
 **Content Type**: <code>application/json</code>
 
-**Response Type:** [<code>Array&lt;FCMResponse&gt;</code>](/content/api/components?id=schemasFCMResponse)
+**Response Type:** [<code>FCMResponse</code>](/content/api/components?id=schemasFCMResponse)
+
+**Example**:
+
+```
+{
+  "StatusCode": 200,
+  "Response": {
+    "multicast_id": 8758031548066235000,
+    "success": 1,
+    "failure": 0,
+    "canonical_ids": 0,
+    "results": [
+      {
+        "message_id": "0:1587579700287156%a62f20e7a62f20e7",
+        "registration_id": "",
+        "error": "string"
+      }
+    ],
+    "failed_registration_ids": [
+      "string"
+    ],
+    "message_id": 0,
+    "error": "string"
+  }
+}
+```
 
 * * *
 
@@ -301,7 +327,7 @@
 
 ## POST /v2/register 
 
-> Register an device for notifications with APNS or FCM.
+> Register a device for notifications with APNS or FCM.
 
 **Summary**: Register Device
 
@@ -344,9 +370,9 @@
 
 ## POST /v2/unregister 
 
-> Register an device for notifications with APNS or FCM.
+> Unregister a device from receiving push notifications.
 
-**Summary**: Register Device
+**Summary**: Unregister Device
 
 **Security**: 
 [JWT](/content/api/components?id=securityJWT)
@@ -412,9 +438,9 @@
 
 ## POST /v2/send 
 
-> Register an device for notifications with APNS or FCM.
+> Sends a push notification to devices using APNS and FCM.
 
-**Summary**: Register Device
+**Summary**: Send a push notification
 
 **Security**: 
 [JWT](/content/api/components?id=securityJWT)
@@ -432,7 +458,7 @@
 
 **Status Code**: 200
 
-> Device has been registered.
+> A notification has been sent.
 
 **Content Type**: <code>application/json</code>
 
@@ -441,8 +467,14 @@
 | Name | Type | Required | Nullable | Description |
 | ---- | ---- | -------- | -------- | ----------- |
 | id | <code>String</code> | false | false |  |
-| apns | [<code>Array&lt;APNSResponse&gt;</code>](/content/api/components?id=schemasAPNSResponse) |  | false |  |
-| fcm | [<code>Array&lt;FCMResponse&gt;</code>](/content/api/components?id=schemasFCMResponse) |  | false |  |
+| apns | <code>Array&lt;object&gt;</code> | false | false |  |
+| apns[i].status | <code>String</code> | false | false | Status of the notification |
+| apns[i].device | [<code>Device</code>](/content/api/components?id=schemasDevice) |  | false |  |
+| apns[i].details | [<code>APNSResponse</code>](/content/api/components?id=schemasAPNSResponse) |  | false |  |
+| fcm | <code>Array&lt;object&gt;</code> | false | false |  |
+| fcm[i].status | <code>String</code> | false | false | Status of the notification |
+| fcm[i].device | [<code>Device</code>](/content/api/components?id=schemasDevice) |  | false |  |
+| fcm[i].details | [<code>FCMResponse</code>](/content/api/components?id=schemasFCMResponse) |  | false |  |
 
 **Example**:
 
@@ -451,32 +483,80 @@
   "id": "497f6eca-6276-4993-bfeb-53cbbbba6f08",
   "apns": [
     {
-      "StatusCode": 200,
-      "Reson": "",
-      "ApnsID": "D17EF06E-3DCF-E5EE-BBD5-31B4B75CAD63",
-      "Timestamp": "0001-01-01T00:00:00Z"
+      "status": "Successful",
+      "device": {
+        "user": {
+          "id": "00000000",
+          "context": "barchart",
+          "unique": "barchart|00000000"
+        },
+        "provider": {
+          "secret": "barchart"
+        },
+        "type": "APNS",
+        "apns": {
+          "device": "78ca4b1930f9464f22ad8bb6a6b83d735273fcb4a588108bacadd2fb878149f0",
+          "bundle": "com.barchart.ens"
+        },
+        "fcm": {
+          "iid": "fOxNSJtbSAKKgUDrwDOrHH",
+          "token": "fOxNSJtbSAKKgUDrwDOrHH:APA91bFm_oZ_DA8SvvR1VND1PNpAaa4BNEps0PISF4sRWEBq2nLATLiTO63E3JnBIZ9arwFQmUquft_tr24BKHT2w5rgdy8SeZuubE-UUQNrTEbB00ObeT1N5P-2_XPq75Xzu758MaPK",
+          "package": "com.barchart.ens"
+        },
+        "timestamp": 1626688692651
+      },
+      "details": {
+        "StatusCode": 200,
+        "Reson": "",
+        "ApnsID": "D17EF06E-3DCF-E5EE-BBD5-31B4B75CAD63",
+        "Timestamp": "0001-01-01T00:00:00Z"
+      }
     }
   ],
   "fcm": [
     {
-      "StatusCode": 200,
-      "Response": {
-        "multicast_id": 8758031548066235000,
-        "success": 1,
-        "failure": 0,
-        "canonical_ids": 0,
-        "results": [
-          {
-            "message_id": "0:1587579700287156%a62f20e7a62f20e7",
-            "registration_id": "",
-            "error": "string"
-          }
-        ],
-        "failed_registration_ids": [
-          "string"
-        ],
-        "message_id": 0,
-        "error": "string"
+      "status": "Successful",
+      "device": {
+        "user": {
+          "id": "00000000",
+          "context": "barchart",
+          "unique": "barchart|00000000"
+        },
+        "provider": {
+          "secret": "barchart"
+        },
+        "type": "APNS",
+        "apns": {
+          "device": "78ca4b1930f9464f22ad8bb6a6b83d735273fcb4a588108bacadd2fb878149f0",
+          "bundle": "com.barchart.ens"
+        },
+        "fcm": {
+          "iid": "fOxNSJtbSAKKgUDrwDOrHH",
+          "token": "fOxNSJtbSAKKgUDrwDOrHH:APA91bFm_oZ_DA8SvvR1VND1PNpAaa4BNEps0PISF4sRWEBq2nLATLiTO63E3JnBIZ9arwFQmUquft_tr24BKHT2w5rgdy8SeZuubE-UUQNrTEbB00ObeT1N5P-2_XPq75Xzu758MaPK",
+          "package": "com.barchart.ens"
+        },
+        "timestamp": 1626688692651
+      },
+      "details": {
+        "StatusCode": 200,
+        "Response": {
+          "multicast_id": 8758031548066235000,
+          "success": 1,
+          "failure": 0,
+          "canonical_ids": 0,
+          "results": [
+            {
+              "message_id": "0:1587579700287156%a62f20e7a62f20e7",
+              "registration_id": "",
+              "error": "string"
+            }
+          ],
+          "failed_registration_ids": [
+            "string"
+          ],
+          "message_id": 0,
+          "error": "string"
+        }
       }
     }
   ]
@@ -502,16 +582,6 @@
 > Returns the service version, name, environment, and description
 
 **Summary**: Returns service data
-
-#### Request Body
-**One of:**
-
-- [SendByUser](/content/api/components?id&#x3D;schemassendbyuser)
-
-- [SendByDevice](/content/api/components?id&#x3D;schemassendbydevice)
-
-- [SendByBundle](/content/api/components?id&#x3D;schemassendbybundle)
-
 
 #### Responses
 
