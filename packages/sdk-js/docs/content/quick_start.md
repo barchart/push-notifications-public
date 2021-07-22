@@ -21,13 +21,13 @@ Two instances of the Barchart ENS Service are always running:
 #### Staging
 
 The _staging_ environment can be used for integration and evaluation purposes. It can be accessed
-at ```push-notifications-stage.aws.barchart.com``` and has two significant limitations:
-
-* data saved in the _staging_ environment can be accessed by anyone.
+at ```https://push-notifications-stage.aws.barchart.com```.
 
 #### Production
 
-The _production_ environment does not permit anonymous connections. **Contact Barchart at solutions@barchart.com or (866) 333-7587 for assistance configuring your account.**
+The _production_ environment does not permit anonymous connections. **Contact Barchart at solutions@barchart.com or (866) 333-7587 for assistance configuring your account.** 
+
+It can be accessed at ```https://push-notifications.aws.barchart.com```.
 
 ## Authorization
 
@@ -79,7 +79,7 @@ If you choose to work directly with the REST interface, you won't need to perfor
 HTTP request is independently authorized by the backend. You simply need to include a JWT token in the _Authorization_
 header of each request.
 
-## Constructing a Device object for register
+## Register a Device
 
 First, we must construct an object which conforms to the [```Device```](content/sdk/lib-data?id=schemadevice) schema.
 Here is a simple example:
@@ -103,7 +103,7 @@ Here is a simple example:
 #### Using the SDK
 
 ```js
-const query = {
+const registrationData = {
 	user: {
 		id: 'me',
 		bundle: 'barchart'
@@ -115,7 +115,7 @@ const query = {
 	provider: 'barchart'
 };
 
-ensGateway.registerDevice(query)
+ensGateway.registerDevice(registrationData)
 	.then((created) => {
 		console.log(`Device registered`);
 	});
@@ -150,14 +150,14 @@ The result will be a complete ```Device``` object, similar to the example below.
 }
 ```
 
-## Unregister device
+## Unregister a Device
 
 You can unregister your device, as follows:
 
 #### Using the SDK
 
 ```js
-const query = {
+const registrationData = {
 	user: {
 		id: 'me',
 		bundle: 'barchart'
@@ -168,7 +168,7 @@ const query = {
 	}
 };
 
-ensGateway.unregisterDevice(query)
+ensGateway.unregisterDevice(registrationData)
 	.then((response) => {
 		console.log(`Unregistered`);
 	});
