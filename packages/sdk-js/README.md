@@ -2,7 +2,7 @@
 
 ### Overview
 
-This **JavaScript SDK** provides API to interact with **ENS** — a simple service for push notifications.
+This **JavaScript SDK** provides API to interact with **Barchart Push Notification Service** — a simple service for push notifications.
 
 ### Documentation
 

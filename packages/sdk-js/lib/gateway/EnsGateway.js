@@ -23,13 +23,13 @@ module.exports = (() => {
 
 	/**
 	 * The **central component of the SDK**. It is responsible for connecting to Barchart's
-	 * ENS. It can be used to register and unregister devices.
+	 * Push Notification Service. It can be used to register and unregister devices.
 	 *
 	 * @public
 	 * @exported
-	 * @param {String} protocol - The protocol of the of the ENS web service (either http or https).
-	 * @param {String} host - The hostname of the ENS web service.
-	 * @param {Number} port - The TCP port number of the ENS web service.
+	 * @param {String} protocol - The protocol of the of the Barchart Push Notification Service web service (either http or https).
+	 * @param {String} host - The hostname of the Barchart Push Notification Service web service.
+	 * @param {Number} port - The TCP port number of the Barchart Push Notification Service web service.
 	 * @param {String} environment - A description of the environment we're connecting to.
 	 * @extends {Disposable}
 	 */

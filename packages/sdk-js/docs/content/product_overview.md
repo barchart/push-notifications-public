@@ -1,4 +1,4 @@
-**This SDK provides an API to interact to the _Barchart ENS_ — a simple tool for push notifications.**
+**This SDK provides an API to interact to the _Barchart Push Notification Service_ — a simple tool for push notifications.**
 
 You can _quickly_ build an application that allows your users to:
 
@@ -7,7 +7,7 @@ You can _quickly_ build an application that allows your users to:
 
 ## Supported Environments
 
-This SDK provides a convenient way to interact with the Barchart ENS. We recommend using it in JavaScript environments.
+This SDK provides a convenient way to interact with the Barchart Push Notification Service. We recommend using it in JavaScript environments.
 
 #### Node.js
 
@@ -15,7 +15,7 @@ This SDK is compatible with Node.js.
 
 #### Direct Access
 
-The Barchart ENS implements a REST interface via HTTP. You may choose to interact with the remote service directly, bypassing this SDK entirely. An [OpenAPI](https://www.openapis.org/) specification of the interface can be found in the [API Reference](/content/api_reference) section.
+The Barchart Push Notification Service implements a REST interface via HTTP. You may choose to interact with the remote service directly, bypassing this SDK entirely. An [OpenAPI](https://www.openapis.org/) specification of the interface can be found in the [API Reference](/content/api_reference) section.
 
 #### Other
 

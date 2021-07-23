@@ -1,6 +1,6 @@
 ## Setup
 
-As a consumer of the Barchart ENS, you have two options:
+As a consumer of the Barchart Push Notification Service, you have two options:
 
 1. Connect and communicate with the backend _by embedding this SDK in your software_, or
 2. Connect and communicate with the backend _by direct interaction with the REST API_.
@@ -16,14 +16,14 @@ the [API Reference](/content/api_reference) section.
 
 ## Environments
 
-Two instances of the Barchart ENS Service are always running:
+Two instances of the Barchart Push Notification Service are always running:
 
-#### Staging
+### Staging
 
 The _staging_ environment can be used for integration and evaluation purposes. It can be accessed
 at ```https://push-notifications-stage.aws.barchart.com```.
 
-#### Production
+### Production
 
 The _production_ environment does not permit anonymous connections. **Contact Barchart at solutions@barchart.com or (866) 333-7587 for assistance configuring your account.** 
 
@@ -55,7 +55,7 @@ Regardless of environment, the token payload must include two claims:
 
 ## Connecting
 
-#### Using the SDK
+### Using the SDK
 
 Before you can do anything meaningful with the SDK, you must obtain an instance of the ```EnsGateway``` class. Use one
 of the static factory functions and provide a strategy for generating JSON Web Tokens, as follows:
@@ -67,13 +67,13 @@ const EnsGateway = require('@barchart/push-notifications-client-js/lib/gateway/E
 const myUserId = 'me';
 const myContextId = 'barchart';
 
-EnsGateway.forTest(JwtProvider.forStaging(myUserId, myContextId))
+EnsGateway.forStaging(JwtProvider.forStaging(myUserId, myContextId))
 	.then((ensGateway) => {
 		// ready ...
 	});
 ```
 
-#### Using the API
+### Using the API
 
 If you choose to work directly with the REST interface, you won't need to perform an explicit "connect" action. Each
 HTTP request is independently authorized by the backend. You simply need to include a JWT token in the _Authorization_
@@ -99,6 +99,8 @@ Here is a simple example:
 ```
 
 **Provider** field refers to name for your APNS or FCM keys. Read [Key Concepts: Provider](/content/concepts/provider) section for details. 
+
+### Example for APNS
 
 #### Using the SDK
 
@@ -150,6 +152,58 @@ The result will be a complete ```Device``` object, similar to the example below.
 }
 ```
 
+### Example for FCM
+
+```js
+const registrationData = {
+	user: {
+		id: 'me',
+		bundle: 'barchart'
+	},
+	fcm: {
+		iid: '...',
+        token: '...',
+		package: 'com.barchart.ens'
+	},
+	provider: 'barchart.test.com'
+};
+
+ensGateway.registerDevice(registrationData)
+	.then((created) => {
+		console.log(`Device registered`);
+	});
+```
+
+#### Using the API
+
+```shell
+curl 'https://push-notifications-stage.aws.barchart.com/v2/register' \
+  -X 'POST' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJtZSIsImNvbnRleHRJZCI6ImJhcmNoYXJ0IiwiaWF0IjoxNjIyNjQ3ODA4fQ.JWM85t7wmFeaWPon1-f-cGRY7cGn2H8B8VZDLaPOsXQ' \
+  -H 'Content-Type: application/json;charset=UTF-8' \
+  --data-binary '{"user":{"id": "me","context":"barchart"},"fcm": {"iid": "...","token":"...","bundle":"com.barchart.ens"},"provider":"barchart.test.com"}'
+```
+
+#### Example Output
+
+The result will be a complete ```Device``` object, similar to the example below.
+
+```json
+{
+	"user": {
+		"id": "me",
+		"context": "barchart"
+	},
+	"fcm": {
+		"iid": "...",
+		"token": "...",
+		"package": "com.barchart.ens"
+	},
+	"provider": "barchart.test.com"
+}
+```
+
 ## Unregister a Device
 
 You can unregister your device, as follows:
@@ -174,6 +228,8 @@ ensGateway.unregisterDevice(registrationData)
 	});
 ```
 
+> `device.device` field should contain data from `apns.device` field for APNS devices, and `fcm.iid` for FCM devices.
+
 #### Using the API
 
 ```shell
@@ -184,6 +240,10 @@ curl 'https://push-notifications-stage.aws.barchart.com/v2/unregister' \
   -H 'Content-Type: application/json;charset=UTF-8' \
   --data-binary '{ "user": "me","device": "...","bundle": "com.barchart.ens","context": "barchart"}'
 ```
+
+## Send a Push Notification
+
+The SDK does not support sending push notifications. Please use the API [directly](/content/api_reference).
 
 ## Sample Applications
 
@@ -196,6 +256,7 @@ Run the script from a command prompt, as follows:
 
 ```shell
 npm install
-node ./example/node/example.js {user_id}
+node ./example/node/apns.js {user_id}
+node ./example/node/fcm.js {user_id}
 ```
 

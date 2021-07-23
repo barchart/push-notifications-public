@@ -1,6 +1,6 @@
 ## Provider
 
-Registration of each device requires the provision of a provider field. Provider defines a name for set of APNS and FCM keys for future push notifications. You must provide an APNS and FCM keys if you want to register your application for ENS. 
+Registration of each device requires the provision of a provider field. Provider defines a name for set of APNS and FCM keys for future push notifications. You must provide an APNS and FCM keys if you want to register your application for Barchart Push Notification Service. 
 
 #### Apple Developer Teams
 
@@ -18,4 +18,6 @@ Instructions for collecting this information can be found here:
 
 #### Google Firebase Cloud Messaging
 
-Coming soon.
+You must grant Barchart permission to send push notifications on your behalf of your organization.
+
+Contact Barchart and provide your Server Key Token. You can find it here: Project Overview -> Project Settings -> Cloud Messaging.

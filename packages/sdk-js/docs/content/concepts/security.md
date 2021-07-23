@@ -10,7 +10,7 @@ Your system is responsible for authentication, for example:
 
 **Since your system authenticated the user, it is responsible for token generation.**
 
-Each interaction with the Barchart ENS will include a token. Barchart will _decode_ your token and _verify_ its authenticity (using a shared secret).
+Each interaction with the Barchart Push Notification Service will include a token. Barchart will _decode_ your token and _verify_ its authenticity (using a shared secret).
 
 #### Token Payload
 
@@ -143,7 +143,7 @@ When using this token, we can only interact with devices owned by ```me@barchart
 
 ## Best Practices
 
-Under no circumstances should your JWT secret be accessible to anyone outside of your organization. If someone obtains your signing secret, they could interact with the Barchart ENS on your behalf.
+Under no circumstances should your JWT secret be accessible to anyone outside of your organization. If someone obtains your signing secret, they could interact with the Barchart Push Notification Service on your behalf.
 
 If you are developing a web application, you should not generate tokens inside the web browser. A clever user could read your JWT secret (from the web browser) and use it to impersonate other users.
 

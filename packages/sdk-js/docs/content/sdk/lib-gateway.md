@@ -1,6 +1,6 @@
 ## EnsGateway :id=ensgateway
 > The <strong>central component of the SDK</strong>. It is responsible for connecting to Barchart's
-> ENS. It can be used to register and unregister devices.
+> Push Notification Service. It can be used to register and unregister devices.
 
 **Kind**: global class  
 **Extends**: <code>Disposable</code>  
@@ -109,9 +109,9 @@
 
 | Param | Type | Description |
 | --- | --- | --- |
-| protocol | <code>String</code> | <p>The protocol of the of the ENS web service (either http or https).</p> |
-| host | <code>String</code> | <p>The hostname of the ENS web service.</p> |
-| port | <code>Number</code> | <p>The TCP port number of the ENS web service.</p> |
+| protocol | <code>String</code> | <p>The protocol of the of the Barchart Push Notification Service web service (either http or https).</p> |
+| host | <code>String</code> | <p>The hostname of the Barchart Push Notification Service web service.</p> |
+| port | <code>Number</code> | <p>The TCP port number of the Barchart Push Notification Service web service.</p> |
 | environment | <code>String</code> | <p>A description of the environment we're connecting to.</p> |
 
 

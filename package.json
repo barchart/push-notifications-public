@@ -1,6 +1,6 @@
 {
 	"name": "@barchart/push-notifications-public-js",
-	"description": "Public packages for the Barchart ENS",
+	"description": "Public packages for the Barchart Push Notification Service",
 	"workspaces": [
 		"packages/*"
 	],

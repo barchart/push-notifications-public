@@ -32,7 +32,7 @@ const deviceToken = '0000000000000000';
 const bundleId = 'com.barchart.ens';
 
 if (typeof (user.id) !== 'string' || user.id.length === 0) {
-	console.error('A user identifier must be specified. Usage example: "node example.js user-123"');
+	console.error('A user identifier must be specified. Usage example: "node apns.js user-123"');
 	process.exit();
 }
 
