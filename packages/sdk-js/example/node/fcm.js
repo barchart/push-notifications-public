@@ -60,22 +60,22 @@ EnsGateway.forStaging(JwtProvider.forStaging(user.id, user.context))
 				console.info(`Example: Created record for [ ${user.id} ] [ ${user.context} ].`);
 			});
 	}).then(() => {
-	console.info(`Example: Unregister device for [ ${user.id} ] [ ${user.context} ].`);
+		console.info(`Example: Unregister device for [ ${user.id} ] [ ${user.context} ].`);
 
-	const unregisterQuery = {
-		user: user,
-		device: {
-			device: iid,
-			bundle: bundleId
-		}
-	};
+		const unregisterQuery = {
+			user: user,
+			device: {
+				device: iid,
+				bundle: bundleId
+			}
+		};
 
-	return ensGateway.unregisterDevice(unregisterQuery)
-		.then((deleted) => {
-			console.info(`Example: Deleted record for [ ${user.id} ] [ ${user.context} ] with message [ ${deleted.message} ].`);
-		});
-}).then(() => {
-	ensGateway.dispose();
+		return ensGateway.unregisterDevice(unregisterQuery)
+			.then((deleted) => {
+				console.info(`Example: Deleted record for [ ${user.id} ] [ ${user.context} ] with message [ ${deleted.message} ].`);
+			});
+	}).then(() => {
+		ensGateway.dispose();
 
-	console.info(`Example: Node.js example script completed normally.`);
-});
+		console.info(`Example: Node.js example script completed normally.`);
+	});
