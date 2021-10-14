@@ -2,7 +2,7 @@
 
 ### Overview
 
-This **JavaScript SDK** provides API to interact with **Barchart Push Notification Service** — a simple service for push notifications.
+This **JavaScript SDK** provides a mechanism to interact with the **Barchart Push Notification Service** API — a simple service for managing push notifications to iOS and Android devices.
 
 ### Documentation
 
