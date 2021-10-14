@@ -617,7 +617,7 @@
     "name": "serverless-push-gateway",
     "environment": "prod",
     "version": "v1.0.0",
-    "description": "ENS service for push notifications"
+    "description": "Barchart Push Notification Service"
   }
 }
 ```

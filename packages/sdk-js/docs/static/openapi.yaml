@@ -916,4 +916,4 @@ paths:
                       description:
                         type: string
                         description: Description of the service
-                        example: "ENS service for push notifications"
+                        example: "Barchart Push Notification Service"
