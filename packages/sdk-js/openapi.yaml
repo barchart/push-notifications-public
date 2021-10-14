@@ -475,7 +475,7 @@ paths:
   /v1/fcm/registerDevice:
     post:
       summary: Register Device
-      description: Register an Android device for notifications with FCM.
+      description: "Register an Android device for notifications with FCM. If you provide a userId and realtimeUserId in the same request, it would create 2 records with the following contexts: 'anonymous' and 'realtime'"
       tags:
         - v1 Android (FCM)
       deprecated: true
@@ -595,6 +595,12 @@ paths:
                 logging:
                   type: boolean
                   description: Debug logging flag for the SUCCESS responses
+                userContext:
+                  type: string
+                  description: "Optional parameter. Determines a user context. Default values: 'anonymous' for userId and 'realtime' for realtimeUserId"
+                provider:
+                  type: string
+                  description: "Optional parameter. Determines APNS keys to send notifications. Default value: barchart"
       responses:
         '200':
           description: OK
@@ -610,7 +616,7 @@ paths:
   /v1/apns/registerDevice:
     post:
       summary: Register Device
-      description: Register an iOS device for notifications with APNs.
+      description: "Register an iOS device for notifications with APNs. If you provide a userId and realtimeUserId in the same request, it would create 2 records with the following contexts: 'anonymous' and 'realtime'"
       tags:
         - v1 iOS (APNs)
       deprecated: true
@@ -716,6 +722,12 @@ paths:
                 logging:
                   type: boolean
                   description: Debug logging flag for the SUCCESS responses
+                userContext:
+                  type: string
+                  description: "Optional parameter. Determines a user context. Default values: 'anonymous' for userId and 'realtime' for realtimeUserId"                
+                provider:
+                  type: string
+                  description: "Optional parameter. Determines APNS keys to send notifications. Default value: barchart"
       responses:
         '200':
           description: OK
