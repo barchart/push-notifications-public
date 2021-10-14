@@ -12,7 +12,7 @@ Complete documentation for this SDK can be accessed here:
 
 ### Example Applications
 
-Example applications for this SDK can be accessed [here](./example).
+Example applications using this SDK can be found [here](./example).
 
 ### Package Managers
 
