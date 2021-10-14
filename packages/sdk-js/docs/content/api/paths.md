@@ -2,7 +2,7 @@
 
 ## POST /v1/fcm/registerDevice 
 
-> Register an Android device for notifications with FCM.
+> Register an Android device for notifications with FCM. If you provide a userId and realtimeUserId in the same request, it would create 2 records with the following contexts: 'anonymous' and 'realtime'
 
 **Summary**: Register Device
 
@@ -96,6 +96,8 @@
 | notification | [<code>Simple-Notification</code>](/content/api/components?id=schemasSimple-Notification) |  | false |  |
 | message | [<code>RAW-FCM-Notification</code>](/content/api/components?id=schemasRAW-FCM-Notification) |  | false |  |
 | logging | <code>Boolean</code> | false | false | Debug logging flag for the SUCCESS responses |
+| userContext | <code>String</code> | false | false | Optional parameter. Determines a user context. Default values: 'anonymous' for userId and 'realtime' for realtimeUserId |
+| provider | <code>String</code> | false | false | Optional parameter. Determines APNS keys to send notifications. Default value: barchart |
 
 **Example**:
 
@@ -126,7 +128,9 @@
     },
     "Data": {}
   },
-  "logging": true
+  "logging": true,
+  "userContext": "string",
+  "provider": "string"
 }
 ```
 
@@ -178,7 +182,7 @@
 
 ## POST /v1/apns/registerDevice 
 
-> Register an iOS device for notifications with APNs.
+> Register an iOS device for notifications with APNs. If you provide a userId and realtimeUserId in the same request, it would create 2 records with the following contexts: 'anonymous' and 'realtime'
 
 **Summary**: Register Device
 
@@ -268,6 +272,8 @@
 | notification | [<code>Simple-Notification-APNs</code>](/content/api/components?id=schemasSimple-Notification-APNs) |  | false |  |
 | apns | [<code>RAW-APNs-Notification</code>](/content/api/components?id=schemasRAW-APNs-Notification) |  | false |  |
 | logging | <code>Boolean</code> | false | false | Debug logging flag for the SUCCESS responses |
+| userContext | <code>String</code> | false | false | Optional parameter. Determines a user context. Default values: 'anonymous' for userId and 'realtime' for realtimeUserId |
+| provider | <code>String</code> | false | false | Optional parameter. Determines APNS keys to send notifications. Default value: barchart |
 
 **Example**:
 
@@ -298,7 +304,9 @@
     },
     "custom-data": {}
   },
-  "logging": true
+  "logging": true,
+  "userContext": "string",
+  "provider": "string"
 }
 ```
 

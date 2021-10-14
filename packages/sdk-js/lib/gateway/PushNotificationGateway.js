@@ -33,7 +33,7 @@ module.exports = (() => {
 	 * @param {String} environment - A description of the environment we're connecting to.
 	 * @extends {Disposable}
 	 */
-	class EnsGateway extends Disposable {
+	class PushNotificationGateway extends Disposable {
 		constructor(protocol, host, port, environment) {
 			super();
 
@@ -117,7 +117,7 @@ module.exports = (() => {
 		 *
 		 * @public
 		 * @param {JwtProvider} jwtProvider
-		 * @returns {Promise<EnsGateway>}
+		 * @returns {Promise<PushNotificationGateway>}
 		 */
 		connect(jwtProvider) {
 			return Promise.resolve()
@@ -147,104 +147,104 @@ module.exports = (() => {
 		}
 
 		/**
-		 * Registers iOS or Android device to receive push notifications.
+		 * Registers an iOS or Android device to receive push notifications.
 		 *
 		 * @public
-		 * @param {Schema.Device} query - User information for registering device to receive push notifications.
+		 * @param {Schema.Device} device - User information for registering device to receive push notifications.
 		 * @returns {Promise<Schema.Device>}
 		 */
-		registerDevice(query) {
+		registerDevice(device) {
 			return Promise.resolve()
 				.then(() => {
 					checkStart.call(this);
 
-					assert.argumentIsRequired(query, 'query', Object);
-					assert.argumentIsRequired(query.user, 'query.user', Object);
-					assert.argumentIsRequired(query.user.id, 'query.user.id', String);
-					assert.argumentIsRequired(query.user.context, 'query.user.context', String);
-					assert.argumentIsRequired(query.provider, 'query.provider', String);
+					assert.argumentIsRequired(device, 'device', Object);
+					assert.argumentIsRequired(device.user, 'device.user', Object);
+					assert.argumentIsRequired(device.user.id, 'device.user.id', String);
+					assert.argumentIsRequired(device.user.context, 'device.user.context', String);
+					assert.argumentIsRequired(device.provider, 'device.provider', String);
 
-					if (!query.apns && !query.fcm) {
-						throw new Error('One of the arguments [ query.apns, query.fcm ] must be provided');
+					if (!device.apns && !device.fcm) {
+						throw new Error('Either [ device.apns ] or [ device.fcm ] must be provided');
 					}
 
-					if (query.apns) {
-						assert.argumentIsRequired(query.apns, 'query.apns', Object);
-						assert.argumentIsRequired(query.apns.device, 'query.apns.device', String);
-						assert.argumentIsRequired(query.apns.bundle, 'query.apns.bundle', String);
+					if (device.apns) {
+						assert.argumentIsRequired(device.apns, 'device.apns', Object);
+						assert.argumentIsRequired(device.apns.device, 'device.apns.device', String);
+						assert.argumentIsRequired(device.apns.bundle, 'device.apns.bundle', String);
 					}
 
-					if (query.fcm) {
-						assert.argumentIsRequired(query.fcm, 'query.fcm', Object);
-						assert.argumentIsRequired(query.fcm.iid, 'query.fcm.iid', String);
-						assert.argumentIsRequired(query.fcm.package, 'query.fcm.package', String);
-						assert.argumentIsRequired(query.fcm.token, 'query.fcm.token', String);
+					if (device.fcm) {
+						assert.argumentIsRequired(device.fcm, 'device.fcm', Object);
+						assert.argumentIsRequired(device.fcm.iid, 'device.fcm.iid', String);
+						assert.argumentIsRequired(device.fcm.package, 'device.fcm.package', String);
+						assert.argumentIsRequired(device.fcm.token, 'device.fcm.token', String);
 					}
 
-					return Gateway.invoke(this._registerEndpoint, query);
+					return Gateway.invoke(this._registerEndpoint, device);
 				});
 		}
 
 		/**
-		 * Unregisters iOS or Android device.
+		 * Unregisters an iOS or Android device.
 		 *
 		 * @public
-		 * @param {Schema.UnregisterQuery} query - User information for unregistering the device to receive push notifications.
+		 * @param {Schema.UnregisterRequest} data - User information for unregistering the device.
 		 * @returns {Promise<Object>}
 		 */
-		unregisterDevice(query) {
+		unregisterDevice(data) {
 			return Promise.resolve()
 				.then(() => {
 					checkStart.call(this);
 
-					assert.argumentIsRequired(query, 'query', Object);
-					assert.argumentIsRequired(query.user, 'query.user', Object);
-					assert.argumentIsRequired(query.user.id, 'query.user.id', String);
-					assert.argumentIsRequired(query.user.context, 'query.user.context', String);
-					assert.argumentIsRequired(query.device, 'query.device', Object);
-					assert.argumentIsRequired(query.device.device, 'query.device.device', String);
-					assert.argumentIsRequired(query.device.bundle, 'query.device.bundle', String);
+					assert.argumentIsRequired(data, 'data', Object);
+					assert.argumentIsRequired(data.user, 'data.user', Object);
+					assert.argumentIsRequired(data.user.id, 'data.user.id', String);
+					assert.argumentIsRequired(data.user.context, 'data.user.context', String);
+					assert.argumentIsRequired(data.device, 'data.device', Object);
+					assert.argumentIsRequired(data.device.device, 'data.device.device', String);
+					assert.argumentIsRequired(data.device.bundle, 'data.device.bundle', String);
 
 					return Gateway.invoke(this._unregisterEndpoint, {
-						user: query.user.id,
-						context: query.user.context,
-						device: query.device.device,
-						bundle: query.device.bundle
+						user: data.user.id,
+						context: data.user.context,
+						device: data.device.device,
+						bundle: data.device.bundle
 					});
 				});
 		}
 
 		/**
-		 * Creates and starts a new {@link EnsGateway} for use in the private staging environment.
+		 * Creates and starts a new {@link PushNotificationGateway} for use in the private staging environment.
 		 *
 		 * @public
 		 * @static
 		 * @param {JwtProvider} jwtProvider
-		 * @returns {Promise<EnsGateway>}
+		 * @returns {Promise<PushNotificationGateway>}
 		 */
 		static forStaging(jwtProvider) {
 			return Promise.resolve()
 				.then(() => {
 					assert.argumentIsRequired(jwtProvider, 'jwtProvider', JwtProvider, 'JwtProvider');
 
-					return start(new EnsGateway(REST_API_SECURE_PROTOCOL, Configuration.stagingHost, REST_API_SECURE_PORT, 'staging'), jwtProvider);
+					return start(new PushNotificationGateway(REST_API_SECURE_PROTOCOL, Configuration.stagingHost, REST_API_SECURE_PORT, 'staging'), jwtProvider);
 				});
 		}
 
 		/**
-		 * Creates and starts a new {@link EnsGateway} for use in the public production environment.
+		 * Creates and starts a new {@link PushNotificationGateway} for use in the public production environment.
 		 *
 		 * @public
 		 * @static
 		 * @param {JwtProvider} jwtProvider
-		 * @returns {Promise<EnsGateway>}
+		 * @returns {Promise<PushNotificationGateway>}
 		 */
 		static forProduction(jwtProvider) {
 			return Promise.resolve()
 				.then(() => {
 					assert.argumentIsRequired(jwtProvider, 'jwtProvider', JwtProvider, 'JwtProvider');
 
-					return start(new EnsGateway(REST_API_SECURE_PROTOCOL, Configuration.productionHost, REST_API_SECURE_PORT, 'production'), jwtProvider);
+					return start(new PushNotificationGateway(REST_API_SECURE_PROTOCOL, Configuration.productionHost, REST_API_SECURE_PORT, 'production'), jwtProvider);
 				});
 		}
 
@@ -252,7 +252,7 @@ module.exports = (() => {
 		}
 
 		toString() {
-			return '[EnsGateway]';
+			return '[PushNotificationGateway]';
 		}
 	}
 
@@ -273,5 +273,5 @@ module.exports = (() => {
 		}
 	}
 
-	return EnsGateway;
+	return PushNotificationGateway;
 })();

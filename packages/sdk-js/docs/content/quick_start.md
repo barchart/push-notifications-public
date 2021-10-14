@@ -57,18 +57,18 @@ Regardless of environment, the token payload must include two claims:
 
 ### Using the SDK
 
-Before you can do anything meaningful with the SDK, you must obtain an instance of the ```EnsGateway``` class. Use one
+Before you can do anything meaningful with the SDK, you must obtain an instance of the ```PushNotificationGateway``` class. Use one
 of the static factory functions and provide a strategy for generating JSON Web Tokens, as follows:
 
 ```js
-const EnsGateway = require('@barchart/push-notifications-client-js/lib/gateway/EnsGateway'),
+const PushNotificationGateway = require('@barchart/push-notifications-client-js/lib/gateway/PushNotificationGateway'),
 	JwtProvider = require('@barchart/push-notifications-client-js/lib/security/JwtProvider');
 
 const myUserId = 'me';
 const myContextId = 'barchart';
 
-EnsGateway.forStaging(JwtProvider.forStaging(myUserId, myContextId))
-	.then((ensGateway) => {
+PushNotificationGateway.forStaging(JwtProvider.forStaging(myUserId, myContextId))
+	.then((pushNotificationGateway) => {
 		// ready ...
 	});
 ```
@@ -82,7 +82,8 @@ header of each request.
 ## Register a Device
 
 First, we must construct an object which conforms to the [```Device```](content/sdk/lib-data?id=schemadevice) schema.
-Here is a simple example:
+
+Here is a simple example for an iOS device. For an Android device, remove the `apns` property and add an `fcm` property.
 
 ```json
 {
@@ -98,7 +99,7 @@ Here is a simple example:
 }
 ```
 
-**Provider** field refers to name for your APNS or FCM keys. Read [Key Concepts: Provider](/content/concepts/provider) section for details. 
+The `provider` property refers to name for your APNS or FCM keys. Read [Key Concepts: Provider](/content/concepts/provider) section for details. 
 
 ### Example for APNS
 
@@ -117,7 +118,7 @@ const registrationData = {
 	provider: 'barchart'
 };
 
-ensGateway.registerDevice(registrationData)
+pushNotificationGatweay.registerDevice(registrationData)
 	.then((created) => {
 		console.log(`Device registered`);
 	});
@@ -168,7 +169,7 @@ const registrationData = {
 	provider: 'barchart.test.com'
 };
 
-ensGateway.registerDevice(registrationData)
+PushNotificationGateway.registerDevice(registrationData)
 	.then((created) => {
 		console.log(`Device registered`);
 	});
@@ -222,7 +223,7 @@ const registrationData = {
 	}
 };
 
-ensGateway.unregisterDevice(registrationData)
+PushNotificationGateway.unregisterDevice(registrationData)
 	.then((response) => {
 		console.log(`Unregistered`);
 	});

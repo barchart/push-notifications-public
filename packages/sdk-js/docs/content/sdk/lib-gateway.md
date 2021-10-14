@@ -1,44 +1,44 @@
-## EnsGateway :id=ensgateway
+## PushNotificationGateway :id=pushnotificationgateway
 > The <strong>central component of the SDK</strong>. It is responsible for connecting to Barchart's
 > Push Notification Service. It can be used to register and unregister devices.
 
 **Kind**: global class  
 **Extends**: <code>Disposable</code>  
 **Access**: public  
-**Import**: @barchart/push-notifications-client-js/lib/gateway/EnsGateway  
-**File**: /lib/gateway/EnsGateway.js  
+**Import**: @barchart/push-notifications-client-js/lib/gateway/PushNotificationGateway  
+**File**: /lib/gateway/PushNotificationGateway.js  
 
-* [EnsGateway](#EnsGateway) ⇐ <code>Disposable</code>
+* [PushNotificationGateway](#PushNotificationGateway) ⇐ <code>Disposable</code>
     * _instance_
-        * [.environment](#EnsGatewayenvironment) ⇒ <code>String</code>
-        * [.connect(jwtProvider)](#EnsGatewayconnect) ⇒ [<code>Promise.&lt;EnsGateway&gt;</code>](#EnsGateway)
-        * [.registerDevice(query)](#EnsGatewayregisterDevice) ⇒ [<code>Promise.&lt;Schema.Device&gt;</code>](/content/sdk/lib-data?id=schemadevice)
-        * [.unregisterDevice(query)](#EnsGatewayunregisterDevice) ⇒ <code>Promise.&lt;Object&gt;</code>
+        * [.environment](#PushNotificationGatewayenvironment) ⇒ <code>String</code>
+        * [.connect(jwtProvider)](#PushNotificationGatewayconnect) ⇒ [<code>Promise.&lt;PushNotificationGateway&gt;</code>](#PushNotificationGateway)
+        * [.registerDevice(device)](#PushNotificationGatewayregisterDevice) ⇒ [<code>Promise.&lt;Schema.Device&gt;</code>](/content/sdk/lib-data?id=schemadevice)
+        * [.unregisterDevice(data)](#PushNotificationGatewayunregisterDevice) ⇒ <code>Promise.&lt;Object&gt;</code>
     * _static_
-        * [.forStaging(jwtProvider)](#EnsGatewayforStaging) ⇒ [<code>Promise.&lt;EnsGateway&gt;</code>](#EnsGateway)
-        * [.forProduction(jwtProvider)](#EnsGatewayforProduction) ⇒ [<code>Promise.&lt;EnsGateway&gt;</code>](#EnsGateway)
+        * [.forStaging(jwtProvider)](#PushNotificationGatewayforStaging) ⇒ [<code>Promise.&lt;PushNotificationGateway&gt;</code>](#PushNotificationGateway)
+        * [.forProduction(jwtProvider)](#PushNotificationGatewayforProduction) ⇒ [<code>Promise.&lt;PushNotificationGateway&gt;</code>](#PushNotificationGateway)
     * _constructor_
-        * [new EnsGateway(protocol, host, port, environment)](#new_EnsGateway_new)
+        * [new PushNotificationGateway(protocol, host, port, environment)](#new_PushNotificationGateway_new)
 
 
 * * *
 
-### ensGateway.environment :id=ensgatewayenvironment
+### pushNotificationGateway.environment :id=pushnotificationgatewayenvironment
 > A description of the environment (e.g. development, production, etc).
 
-**Kind**: instance property of [<code>EnsGateway</code>](#EnsGateway)  
+**Kind**: instance property of [<code>PushNotificationGateway</code>](#PushNotificationGateway)  
 **Returns**: <code>String</code>  
 **Access**: public  
 
 * * *
 
-### ensGateway.connect(jwtProvider) :id=ensgatewayconnect
+### pushNotificationGateway.connect(jwtProvider) :id=pushnotificationgatewayconnect
 > Attempts to establish a connection to the backend. This function should be invoked
 > immediately following instantiation. Once the resulting promise resolves, a
 > connection has been established and other instance methods can be used.
 
-**Kind**: instance method of [<code>EnsGateway</code>](#EnsGateway)  
-**Returns**: [<code>Promise.&lt;EnsGateway&gt;</code>](#EnsGateway)  
+**Kind**: instance method of [<code>PushNotificationGateway</code>](#PushNotificationGateway)  
+**Returns**: [<code>Promise.&lt;PushNotificationGateway&gt;</code>](#PushNotificationGateway)  
 **Access**: public  
 
 | Param | Type |
@@ -48,39 +48,39 @@
 
 * * *
 
-### ensGateway.registerDevice(query) :id=ensgatewayregisterdevice
-> Registers iOS or Android device to receive push notifications.
+### pushNotificationGateway.registerDevice(device) :id=pushnotificationgatewayregisterdevice
+> Registers an iOS or Android device to receive push notifications.
 
-**Kind**: instance method of [<code>EnsGateway</code>](#EnsGateway)  
+**Kind**: instance method of [<code>PushNotificationGateway</code>](#PushNotificationGateway)  
 **Returns**: [<code>Promise.&lt;Schema.Device&gt;</code>](/content/sdk/lib-data?id=schemadevice)  
 **Access**: public  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| query | [<code>Schema.Device</code>](/content/sdk/lib-data?id=schemadevice) | <p>User information for registering device to receive push notifications.</p> |
+| device | [<code>Schema.Device</code>](/content/sdk/lib-data?id=schemadevice) | <p>User information for registering device to receive push notifications.</p> |
 
 
 * * *
 
-### ensGateway.unregisterDevice(query) :id=ensgatewayunregisterdevice
-> Unregisters iOS or Android device.
+### pushNotificationGateway.unregisterDevice(data) :id=pushnotificationgatewayunregisterdevice
+> Unregisters an iOS or Android device.
 
-**Kind**: instance method of [<code>EnsGateway</code>](#EnsGateway)  
+**Kind**: instance method of [<code>PushNotificationGateway</code>](#PushNotificationGateway)  
 **Returns**: <code>Promise.&lt;Object&gt;</code>  
 **Access**: public  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| query | [<code>Schema.UnregisterQuery</code>](/content/sdk/lib-data?id=schemaunregisterquery) | <p>User information for unregistering the device to receive push notifications.</p> |
+| data | [<code>Schema.UnregisterRequest</code>](/content/sdk/lib-data?id=schemaunregisterrequest) | <p>User information for unregistering the device.</p> |
 
 
 * * *
 
-### EnsGateway.forStaging(jwtProvider) :id=ensgatewayforstaging
-> Creates and starts a new [EnsGateway](/content/sdk/lib-gateway?id=ensgateway) for use in the private staging environment.
+### PushNotificationGateway.forStaging(jwtProvider) :id=pushnotificationgatewayforstaging
+> Creates and starts a new [PushNotificationGateway](/content/sdk/lib-gateway?id=pushnotificationgateway) for use in the private staging environment.
 
-**Kind**: static method of [<code>EnsGateway</code>](#EnsGateway)  
-**Returns**: [<code>Promise.&lt;EnsGateway&gt;</code>](#EnsGateway)  
+**Kind**: static method of [<code>PushNotificationGateway</code>](#PushNotificationGateway)  
+**Returns**: [<code>Promise.&lt;PushNotificationGateway&gt;</code>](#PushNotificationGateway)  
 **Access**: public  
 
 | Param | Type |
@@ -90,11 +90,11 @@
 
 * * *
 
-### EnsGateway.forProduction(jwtProvider) :id=ensgatewayforproduction
-> Creates and starts a new [EnsGateway](/content/sdk/lib-gateway?id=ensgateway) for use in the public production environment.
+### PushNotificationGateway.forProduction(jwtProvider) :id=pushnotificationgatewayforproduction
+> Creates and starts a new [PushNotificationGateway](/content/sdk/lib-gateway?id=pushnotificationgateway) for use in the public production environment.
 
-**Kind**: static method of [<code>EnsGateway</code>](#EnsGateway)  
-**Returns**: [<code>Promise.&lt;EnsGateway&gt;</code>](#EnsGateway)  
+**Kind**: static method of [<code>PushNotificationGateway</code>](#PushNotificationGateway)  
+**Returns**: [<code>Promise.&lt;PushNotificationGateway&gt;</code>](#PushNotificationGateway)  
 **Access**: public  
 
 | Param | Type |
@@ -104,8 +104,8 @@
 
 * * *
 
-### new EnsGateway(protocol, host, port, environment) :id=new_ensgateway_new
-**Kind**: constructor of [<code>EnsGateway</code>](#EnsGateway)  
+### new PushNotificationGateway(protocol, host, port, environment) :id=new_pushnotificationgateway_new
+**Kind**: constructor of [<code>PushNotificationGateway</code>](#PushNotificationGateway)  
 
 | Param | Type | Description |
 | --- | --- | --- |

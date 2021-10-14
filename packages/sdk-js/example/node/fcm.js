@@ -1,15 +1,15 @@
-const EnsGateway = require('./../../lib/gateway/EnsGateway'),
+const PushNotificationGateway = require('./../../lib/gateway/PushNotificationGateway'),
 	JwtProvider = require('./../../lib/security/JwtProvider');
 
 console.info(`Example: Node.js example script started.`);
 
-let ensGateway = null;
+let pushNotificationGatewayGateway = null;
 
 process.on('SIGINT', () => {
 	console.info('Example: Processing SIGINT');
 
-	if (ensGateway !== null) {
-		ensGateway.dispose();
+	if (pushNotificationGatewayGateway !== null) {
+		pushNotificationGatewayGateway.dispose();
 	}
 
 	process.exit();
@@ -30,18 +30,18 @@ const user = {
 
 const deviceToken = '0000000000000000';
 const iid = '0000000000';
-const bundleId = 'com.barchart.ens';
+const bundleId = 'com.barchart.pushNotificationGateway';
 
 if (typeof (user.id) !== 'string' || user.id.length === 0) {
 	console.error('A user identifier must be specified. Usage example: "node fcm.js user-123"');
 	process.exit();
 }
 
-console.info(`Example: Initializing EnsGateway, connecting to test environment as [ ${user.id} ] [ ${user.context} ].`);
+console.info(`Example: Initializing PushNotificationGateway, connecting to test environment as [ ${user.id} ] [ ${user.context} ].`);
 
-EnsGateway.forStaging(JwtProvider.forStaging(user.id, user.context))
+PushNotificationGateway.forStaging(JwtProvider.forStaging(user.id, user.context))
 	.then((gateway) => {
-		ensGateway = gateway;
+		pushNotificationGatewayGateway = gateway;
 
 		console.info(`Example: Register device for [ ${user.id} ] [ ${user.context} ].`);
 
@@ -55,7 +55,7 @@ EnsGateway.forStaging(JwtProvider.forStaging(user.id, user.context))
 			provider: 'barchart.test.com'
 		};
 
-		return ensGateway.registerDevice(registerQuery)
+		return pushNotificationGatewayGateway.registerDevice(registerQuery)
 			.then((device) => {
 				console.info(`Example: Created record for [ ${user.id} ] [ ${user.context} ].`);
 			});
@@ -70,12 +70,12 @@ EnsGateway.forStaging(JwtProvider.forStaging(user.id, user.context))
 			}
 		};
 
-		return ensGateway.unregisterDevice(unregisterQuery)
+		return pushNotificationGatewayGateway.unregisterDevice(unregisterQuery)
 			.then((deleted) => {
 				console.info(`Example: Deleted record for [ ${user.id} ] [ ${user.context} ] with message [ ${deleted.message} ].`);
 			});
 	}).then(() => {
-		ensGateway.dispose();
+		pushNotificationGatewayGateway.dispose();
 
 		console.info(`Example: Node.js example script completed normally.`);
 	});

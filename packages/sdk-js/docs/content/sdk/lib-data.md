@@ -6,7 +6,7 @@
 * [Schema](#Schema) : <code>object</code>
     * _static_
         * [.Device](#SchemaDevice) : <code>Object</code>
-        * [.UnregisterQuery](#SchemaUnregisterQuery) : <code>Object</code>
+        * [.UnregisterRequest](#SchemaUnregisterRequest) : <code>Object</code>
 
 
 * * *
@@ -19,37 +19,37 @@
 
 | Name | Type | Description |
 | --- | --- | --- |
-| query | <code>Object</code> | <p>The query object</p> |
-| query.user | <code>Object</code> | <p>An object contains user data</p> |
-| query.user.id | <code>String</code> | <p>A user id</p> |
-| query.user.context | <code>String</code> | <p>A user context</p> |
-| [query.apns] | <code>Object</code> | <p>An object contains APNS data</p> |
-| query.apns.device | <code>String</code> | <p>Unique device token</p> |
-| query.apns.bundle | <code>String</code> | <p>An application bundle name</p> |
-| [query.fcm] | <code>Object</code> | <p>An object contains FCM data</p> |
-| query.fcm.token | <code>String</code> | <p>Unique device token</p> |
-| query.fcm.package | <code>String</code> | <p>An application package name</p> |
-| query.fcm.iid | <code>String</code> | <p>Firebase IID of device</p> |
-| query.provider | <code>String</code> | <p>Provider name</p> |
+| device | <code>Object</code> |  |
+| device.user | <code>Object</code> | <p>An object contains user data</p> |
+| device.user.id | <code>String</code> | <p>A user id</p> |
+| device.user.context | <code>String</code> | <p>A user context</p> |
+| [device.apns] | <code>Object</code> | <p>An object contains APNS data</p> |
+| device.apns.device | <code>String</code> | <p>Unique device token</p> |
+| device.apns.bundle | <code>String</code> | <p>An application bundle name</p> |
+| [device.fcm] | <code>Object</code> | <p>An object contains FCM data</p> |
+| device.fcm.token | <code>String</code> | <p>Unique device token</p> |
+| device.fcm.package | <code>String</code> | <p>An application package name</p> |
+| device.fcm.iid | <code>String</code> | <p>Firebase IID of device</p> |
+| device.provider | <code>String</code> | <p>Provider name</p> |
 
 
 * * *
 
-### Schema.UnregisterQuery :id=schemaunregisterquery
-> An unregister device query.
+### Schema.UnregisterRequest :id=schemaunregisterrequest
+> Data structure used to unregister a device.
 
 **Kind**: static typedef of [<code>Schema</code>](#Schema)  
 **Properties**
 
 | Name | Type | Description |
 | --- | --- | --- |
-| query | <code>Object</code> | <p>The query object</p> |
-| query.user | <code>Object</code> | <p>An object contains user data</p> |
-| query.user.id | <code>String</code> | <p>A user id</p> |
-| query.user.context | <code>String</code> | <p>A user context</p> |
-| query.device | <code>Object</code> | <p>An object contains APNS or FCM data</p> |
-| query.device.device | <code>String</code> | <p>APNS device token or FCM IID</p> |
-| query.device.bundle | <code>String</code> | <p>Bundle or Package name of the application</p> |
+| request | <code>Object</code> |  |
+| request.user | <code>Object</code> | <p>An object contains user data</p> |
+| request.user.id | <code>String</code> | <p>A user id</p> |
+| request.user.context | <code>String</code> | <p>A user context</p> |
+| request.device | <code>Object</code> | <p>An object contains APNS or FCM data</p> |
+| request.device.device | <code>String</code> | <p>APNS device token or FCM IID</p> |
+| request.device.bundle | <code>String</code> | <p>Bundle or Package name of the application</p> |
 
 
 * * *

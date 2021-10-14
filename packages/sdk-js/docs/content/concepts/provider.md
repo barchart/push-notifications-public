@@ -1,6 +1,4 @@
-## Provider
-
-Registration of each device requires the provision of a provider field. Provider defines a name for set of APNS and FCM keys for future push notifications. You must provide an APNS and FCM keys if you want to register your application for Barchart Push Notification Service. 
+Registration of a device requires a `provider` field. The `provider` field refers your APNS keys and FCM keys. Once you generate these keys (see below), Barchart will assign you a value to use for the `provider` field.
 
 #### Apple Developer Teams
 

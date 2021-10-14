@@ -104,15 +104,15 @@ function getJwtToken() {
 
 Next, instantiate a [```JwtProvider```](/content/sdk/lib-security?id=jwtprovider) and pass it to one of the environment-specific factory function:
 
-* ```EnsGateway.forStaging```
+* ```PushNotificationGateway.forStaging```
 
 For example:
 
 ```js
 const jwtProvider = new JwtProvider(getJwtToken);
 
-EnsGateway.forStaging(jwtProvider)
-	.then((ensGateway) => {
+PushNotificationGateway.forStaging(jwtProvider)
+	.then((pushNotificationGateway) => {
 		// Ready to use ...
 	});
 ```

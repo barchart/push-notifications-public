@@ -1,10 +1,10 @@
-const EnsGateway = require('./gateway/EnsGateway');
+const PushNotificationGateway = require('./gateway/PushNotificationGateway');
 
 module.exports = (() => {
 	'use strict';
 
 	return {
-		EnsGateway: EnsGateway,
+		PushNotificationGateway: PushNotificationGateway,
 		version: '0.0.0'
 	};
 })();

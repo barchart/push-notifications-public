@@ -1,23 +1,30 @@
 {
-	"name": "@barchart/push-notifications-public-js",
-	"description": "Public packages for the Barchart Push Notification Service",
-	"workspaces": [
-		"packages/*"
-	],
-	"author": {
-		"name": "Dzmitry Afanasenka",
-		"email": "dzmitry.afanasenka@gmail.com"
-	},
-	"private": true,
-	"scripts": {
-		"clean": "lerna clean --yes && rm -rf node_modules",
-		"lint": "lerna run lint --stream",
-		"test": "lerna run test --stream",
-		"preversion": "git diff --exit-code",
-		"release": "lerna version -m 'Release. Bump version number %v' --tag-version-prefix='' --force-publish --no-granular-pathspec"
-	},
-	"devDependencies": {
-		"jshint": "^2.12.0",
-		"lerna": "^3.22.1"
+  "name": "@barchart/push-notifications-public-js",
+  "description": "Public packages for the Barchart Push Notification Service",
+  "workspaces": [
+	"packages/*"
+  ],
+  "author": {
+	"name": "Dzmitry Afanasenka",
+	"email": "dzmitry.afanasenka@gmail.com"
+  },
+  "contributors": [
+	{
+	  "name": "Bryan Ingle",
+	  "email": "bryan.ingle@barchart.com",
+	  "url": "https://www.barchart.com"
 	}
+  ],
+  "private": true,
+  "scripts": {
+	"clean": "lerna clean --yes && rm -rf node_modules",
+	"lint": "lerna run lint --stream",
+	"test": "lerna run test --stream",
+	"preversion": "git diff --exit-code",
+	"release": "lerna version -m 'Release. Bump version number %v' --tag-version-prefix='' --force-publish --no-granular-pathspec"
+  },
+  "devDependencies": {
+	"jshint": "^2.12.0",
+	"lerna": "^3.22.1"
+  }
 }
