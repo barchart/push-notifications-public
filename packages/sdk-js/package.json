@@ -17,7 +17,7 @@
 	"lint": "eslint --fix --config=.eslintrc './**/*.js'",
 	"deploy:documentation": "gulp deploy-documentation",
 	"postversion": "gulp deploy-documentation",
-	"version": "gulp embed-version && gulp build"
+	"version": "gulp embed-version"
   },
   "repository": {
 	"type": "git",
