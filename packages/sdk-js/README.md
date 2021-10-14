@@ -8,7 +8,7 @@ This **JavaScript SDK** provides API to interact with **Barchart Push Notificati
 
 Complete documentation for this SDK can be accessed here:
 
-* [https://docs.barchart.com/push-notification-client-js/](https://docs.barchart.com/push-notification-client-js/)
+* [https://docs.barchart.com/push-notifications-client-js/](https://docs.barchart.com/push-notifications-client-js/)
 
 ### Example Applications
 
