@@ -99,6 +99,7 @@ module.exports = (() => {
 		static fromTokenGenerator(tokenGenerator, refreshInterval) {
 			return new JwtProvider(tokenGenerator, refreshInterval);
 		}
+
 		/**
 		 * Builds a {@link JwtProvider} which will generate tokens impersonating the specified
 		 * user. The "stage" environment is for Barchart use only and access is restricted
