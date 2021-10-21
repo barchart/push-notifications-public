@@ -109,7 +109,7 @@ The `provider` property refers to name for your APNS or FCM keys. Read [Key Conc
 const registrationData = {
 	user: {
 		id: 'me',
-		bundle: 'barchart'
+		context: 'barchart'
 	},
 	apns: {
 		device: '...',
@@ -159,7 +159,7 @@ The result will be a complete ```Device``` object, similar to the example below.
 const registrationData = {
 	user: {
 		id: 'me',
-		bundle: 'barchart'
+		context: 'barchart'
 	},
 	fcm: {
 		iid: '...',
@@ -215,7 +215,7 @@ You can unregister your device, as follows:
 const registrationData = {
 	user: {
 		id: 'me',
-		bundle: 'barchart'
+		context: 'barchart'
 	},
 	device: {
 		device: '...',
