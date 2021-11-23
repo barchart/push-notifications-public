@@ -1,4 +1,5 @@
 openapi: 3.0.1
+
 info:
   title: 'Push Notifications: Android (FCM) and iOS (APNs)'
   version: '2.0.0'
@@ -390,8 +391,8 @@ components:
           example: 'D17EF06E-3DCF-E5EE-BBD5-31B4B75CAD63'
         Timestamp:
           type: string
-          example: '0001-01-01T00:00:00Z'  
-    
+          example: '0001-01-01T00:00:00Z'
+
     Device:
       type: object
       description: 'Device data'
@@ -410,7 +411,7 @@ components:
               example: 'barchart|00000000'
         provider:
           type: object
-          properties: 
+          properties:
             secret:
               type: string
               example: 'barchart'
@@ -419,7 +420,7 @@ components:
           example: 'APNS'
         apns:
           type: object
-          properties: 
+          properties:
             device:
               type: string
               example: '78ca4b1930f9464f22ad8bb6a6b83d735273fcb4a588108bacadd2fb878149f0'
@@ -428,8 +429,8 @@ components:
               example: 'com.barchart.ens'
         fcm:
           type: object
-          properties: 
-            iid: 
+          properties:
+            iid:
               type: string
               example: 'fOxNSJtbSAKKgUDrwDOrHH'
             token:
@@ -460,7 +461,12 @@ components:
       type: http
       scheme: bearer
       bearerFormat: JWT
-      description: The JWT authorization
+      description: The JWT authorization for register/unregister endpoints
+    JwtAdmin:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: The JWT authorization for send and job endpoints
 
 tags:
   - name: v1 Android (FCM)
@@ -724,7 +730,7 @@ paths:
                   description: Debug logging flag for the SUCCESS responses
                 userContext:
                   type: string
-                  description: "Optional parameter. Determines a user context. Default values: 'anonymous' for userId and 'realtime' for realtimeUserId"                
+                  description: "Optional parameter. Determines a user context. Default values: 'anonymous' for userId and 'realtime' for realtimeUserId"
                 provider:
                   type: string
                   description: "Optional parameter. Determines APNS keys to send notifications. Default value: barchart"
@@ -751,7 +757,7 @@ paths:
       tags:
         - v2
       security:
-        - JWT: [ ]
+        - Jwt: [ ]
       requestBody:
         content:
           application/json:
@@ -782,7 +788,7 @@ paths:
       tags:
         - v2
       security:
-        - JWT: [ ]
+        - Jwt: [ ]
       requestBody:
         content:
           application/json:
@@ -831,7 +837,7 @@ paths:
       tags:
         - v2
       security:
-        - JWT: [ ]
+        - JwtAdmin: [ ]
       requestBody:
         content:
           application/json:
@@ -848,46 +854,78 @@ paths:
               schema:
                 type: object
                 properties:
-                  id: 
+                  id:
                     type: string
                     format: uuid
-                  apns:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        status: 
-                          type: string
-                          description: 'Status of the notification'
-                          example: 'Successful'
-                        device:
-                          $ref: '#/components/schemas/Device'
-                        details:
-                          $ref: '#/components/schemas/APNSResponse'
-                  fcm:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        status:
-                          type: string
-                          description: 'Status of the notification'
-                          example: 'Successful'
-                        device:
-                          $ref: '#/components/schemas/Device'
-                        details:
-                          $ref: '#/components/schemas/FCMResponse'
+                    description: 'The Job ID'
         '400':
           $ref: '#/components/responses/ErrorResponse'
         '403':
           $ref: '#/components/responses/ErrorResponse'
         '500':
           $ref: '#/components/responses/ErrorResponse'
-          
+
+  /v2/job/{id}:
+    get:
+      summary: Send a push notification
+      description: Sends a push notification to devices using APNS and FCM.
+      tags:
+        - v2
+      security:
+        - JwtAdmin: [ ]
+      requestBody:
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: '#/components/schemas/SendByUser'
+                - $ref: '#/components/schemas/SendByDevice'
+                - $ref: '#/components/schemas/SendByBundle'
+      responses:
+        '200':
+          description: An object with job information.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                    description: 'The Job ID'
+                  status:
+                    type: string
+                    description: 'The Job Status CREATED/DONE/IN_PROGRESS'
+                  request:
+                    type: string
+                    description: 'The original request'
+                  scan:
+                    type: object
+                    properties:
+                      last:
+                        type: string
+                        description: 'The last scanned device'
+                  system:
+                    type: object
+                    properties:
+                      created:
+                        type: number
+                        description: 'The date the job was created'
+                      updated:
+                        type: number
+                        description: 'The date the job was updated'
+                      finished:
+                        type: number
+                        description: 'The date the job was finished'
+        '404':
+          $ref: '#/components/responses/ErrorResponse'
+        '500':
+          $ref: '#/components/responses/ErrorResponse'
+
   /v2/service/read:
     get:
       summary: Returns service data
-      description: Returns the service version, name, environment, and description 
+      description: Returns the service version, name, environment, and description
       tags:
         - v2
       responses:
@@ -900,7 +938,7 @@ paths:
                 properties:
                   service:
                     type: object
-                    properties: 
+                    properties:
                       name:
                         type: string
                         description: Service name
