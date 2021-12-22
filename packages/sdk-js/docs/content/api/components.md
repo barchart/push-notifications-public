@@ -539,7 +539,20 @@
 
 ### JWT :id=securityjwt
 
->The JWT authorization
+>The JWT authorization for register/unregister endpoints
+
+**Type**: http bearer
+    
+#### Headers
+| Name | Format | Example |
+| ---- | ------ | ------- |
+| Authorization | JWT | Authorization: Bearer <code>&lt;Token&gt;</code> |
+
+* * *
+
+### JwtAdmin :id=securityjwtadmin
+
+>The JWT authorization for send and job endpoints
 
 **Type**: http bearer
     

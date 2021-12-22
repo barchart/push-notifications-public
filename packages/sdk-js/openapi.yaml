@@ -867,8 +867,8 @@ paths:
 
   /v2/job/{id}:
     get:
-      summary: Send a push notification
-      description: Sends a push notification to devices using APNS and FCM.
+      summary: Gets information about a job
+      description: Returns information about a job.
       tags:
         - v2
       security:
