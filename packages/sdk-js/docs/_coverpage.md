@@ -1,4 +1,4 @@
-# @barchart/push-notifications-client-js <small>1.0.1</small>
+# @barchart/push-notifications-client-js <small>1.0.2</small>
 
 > JavaScript SDK for Barchart&#x27;s Push Notification Service
 
