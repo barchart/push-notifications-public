@@ -872,7 +872,7 @@ paths:
       tags:
         - v2
       security:
-        - JwtAdmin: [ ]
+        - JWT: [ ]
       requestBody:
         content:
           application/json:

@@ -505,7 +505,7 @@
 **Summary**: Gets information about a job
 
 **Security**: 
-[JwtAdmin](/content/api/components?id=securityJwtAdmin)
+[JWT](/content/api/components?id=securityJWT)
 #### Request Body
 **One of:**
 
