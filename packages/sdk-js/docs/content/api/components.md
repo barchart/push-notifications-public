@@ -28,153 +28,38 @@
 
 ## Schemas
 
-### RAW-FCM-Notification :id=schemasraw-fcm-notification
+### UserInfo :id=schemasuserinfo
 **Type**: <code>Object</code>
-    
+
+>Information that uniquely identifies a user.
+
 | Name | Type | Required | Nullable | Description |
 | ---- | ---- | -------- | -------- | ----------- |
-| Notification | <code>Object</code> |  | false |  |
-| Notification.Title | <code>String</code> | false | false | The notification's title. |
-| Notification.Body | <code>String</code> | false | false | The notification's body text. |
-| Notification.Icon | <code>String</code> | false | false | The notification's icon. Sets the notification icon to myicon for drawable resource myicon. |
-| Notification.Color | <code>String</code> | false | false | The notification's icon color, expressed in #rrggbb format. |
-| Notification.ChannelID | <code>String</code> | false | false | The notification's channel ID. |
-| Notification.ClickAction | <code>String</code> | false | false | The action associated with a user click on the notification. |
-| Data | <code>Object</code> | false | false |  |
+| id | <code>String</code> | true | false | The unique identifier for the user (within the context). |
+| context | <code>String</code> | true | false | A value assigned to you by Barchart, (e.g. application or customer name). |
+
 
 **Example**:
 
 ```json
 {
-  "Notification": {
-    "Title": "string",
-    "Body": "string",
-    "Icon": "string",
-    "Color": "string",
-    "ChannelID": "string",
-    "ClickAction": "string"
-  },
-  "Data": {}
+  "id": "abc-12345678",
+  "context": "my-company"
 }
 ```
 
 * * *
 
-### Simple-Notification :id=schemassimple-notification
+### ApnsInfo :id=schemasapnsinfo
 **Type**: <code>Object</code>
-    
+
+>Information regarding an iOS device (used to communicate with APNS).
+
 | Name | Type | Required | Nullable | Description |
 | ---- | ---- | -------- | -------- | ----------- |
-| title | <code>String</code> | true | false | The notification's title. |
-| body | <code>String</code> | true | false | The notification's body text. |
-| icon | <code>String</code> | false | false | The notification's icon. Sets the notification icon to myicon for drawable resource myicon. |
-| color | <code>String</code> | false | false | The notification's icon color, expressed in #rrggbb format. |
-| image | <code>String</code> | false | false | Contains the URL of an image that is going to be downloaded on the device and displayed in a notification. |
-| click_action | <code>String</code> | false | false | The action associated with a user click on the notification. |
-| data | <code>Object</code> | false | false | Custom data: arbitrary key/value payload. |
+| device | <code>String</code> | true | false | The unique identifer for the iOS device. |
+| bundle | <code>String</code> | true | false | The bundle name of a mobile application registered with APNS. |
 
-**Example**:
-
-```json
-{
-  "title": "string",
-  "body": "string",
-  "icon": "string",
-  "color": "string",
-  "image": "string",
-  "click_action": "string",
-  "data": {}
-}
-```
-
-* * *
-
-### Simple-Notification-APNs :id=schemassimple-notification-apns
-**Type**: <code>Object</code>
-    
-| Name | Type | Required | Nullable | Description |
-| ---- | ---- | -------- | -------- | ----------- |
-| title | <code>String</code> | true | false | The notification's title. |
-| subtitle | <code>String</code> | false | false | The notification's subtitle. |
-| body | <code>String</code> | true | false | The notification's body text. |
-| category | <code>String</code> | false | false | The notification's category. |
-| data | <code>Object</code> | false | false | Custom data: arbitrary key/value payload. |
-
-**Example**:
-
-```json
-{
-  "title": "Title: Hello from GO",
-  "subtitle": "subTitle: This is awesome",
-  "body": "Even more Content",
-  "category": "alert",
-  "data": {}
-}
-```
-
-* * *
-
-### RAW-APNs-Notification :id=schemasraw-apns-notification
-**Type**: <code>Object</code>
-    
-| Name | Type | Required | Nullable | Description |
-| ---- | ---- | -------- | -------- | ----------- |
-| aps | <code>Object</code> |  | false |  |
-| aps.alert | <code>Object</code> |  | false |  |
-| aps.alert.title | <code>String</code> | false | false |  |
-| aps.alert.subtitle | <code>String</code> | false | false |  |
-| aps.alert.body | <code>String</code> | false | false |  |
-| aps.alert.thread_identifier | <code>String</code> | false | false |  |
-| aps.alert.category | <code>String</code> | false | false |  |
-| aps.badge | <code>Number</code> | false | false |  |
-| custom-data | <code>Object</code> | false | false |  |
-
-**Example**:
-
-```json
-{
-  "aps": {
-    "alert": {
-      "title": "string",
-      "subtitle": "string",
-      "body": "string",
-      "thread_identifier": "string",
-      "category": "string"
-    },
-    "badge": 0
-  },
-  "custom-data": {}
-}
-```
-
-* * *
-
-### User :id=schemasuser
-**Type**: <code>Object</code>
-    
-| Name | Type | Required | Nullable | Description |
-| ---- | ---- | -------- | -------- | ----------- |
-| id | <code>String</code> | true | false | A user ID |
-| context | <code>String</code> | true | false | A user context (e.g. barchart) |
-
-**Example**:
-
-```json
-{
-  "id": "12345678",
-  "context": "string"
-}
-```
-
-* * *
-
-### Apns :id=schemasapns
-**Type**: <code>Object</code>
-    
-| Name | Type | Required | Nullable | Description |
-| ---- | ---- | -------- | -------- | ----------- |
-| device | <code>String</code> | true | false | A device token |
-| bundle | <code>String</code> | true | false | An application bundle name |
 
 **Example**:
 
@@ -187,14 +72,17 @@
 
 * * *
 
-### Fcm :id=schemasfcm
+### FcmInfo :id=schemasfcminfo
 **Type**: <code>Object</code>
-    
+
+>Information regarding an APNS device (used to communicate with FCM).
+
 | Name | Type | Required | Nullable | Description |
 | ---- | ---- | -------- | -------- | ----------- |
-| iid | <code>String</code> | true | false | Firebase IID |
-| token | <code>String</code> | true | false | Firebase device token |
-| package | <code>String</code> | true | false | An application package name |
+| iid | <code>String</code> | true | false | The Firebase IID. |
+| token | <code>String</code> | true | false | The Firebase device token. |
+| package | <code>String</code> | true | false | The package name of a mobile application registered with FCM. |
+
 
 **Example**:
 
@@ -208,22 +96,25 @@
 
 * * *
 
-### ApnsRegister :id=schemasapnsregister
+### RegisterRequestForApns :id=schemasregisterrequestforapns
 **Type**: <code>Object</code>
-    
+
+>Data used to &quot;register&quot; an iOS device (for use with APNS).
+
 | Name | Type | Required | Nullable | Description |
 | ---- | ---- | -------- | -------- | ----------- |
-| user | [<code>User</code>](#schemasUser) | true | false |  |
-| apns | [<code>Apns</code>](#schemasApns) | true | false |  |
-| provider | <code>String</code> | true | false | An APNS or FCM provider |
+| user | [<code>UserInfo</code>](#schemasUserInfo) | true | false |  |
+| apns | [<code>ApnsInfo</code>](#schemasApnsInfo) | true | false |  |
+| provider | <code>String</code> | true | false | A value assigned to you by Barchart, typically the same as your context. |
+
 
 **Example**:
 
 ```json
 {
   "user": {
-    "id": "12345678",
-    "context": "string"
+    "id": "abc-12345678",
+    "context": "my-company"
   },
   "apns": {
     "device": "6f2dfb1ee3f636e93fad5189710d4fa92edb8ec13d1e39d1bb9d9acd1286f012",
@@ -235,22 +126,25 @@
 
 * * *
 
-### FcmRegister :id=schemasfcmregister
+### RegisterRequestForFcm :id=schemasregisterrequestforfcm
 **Type**: <code>Object</code>
-    
+
+>Data used to &quot;register&quot; an Android device (for use with FCM).
+
 | Name | Type | Required | Nullable | Description |
 | ---- | ---- | -------- | -------- | ----------- |
-| user | [<code>User</code>](#schemasUser) | true | false |  |
-| fcm | [<code>Fcm</code>](#schemasFcm) | true | false |  |
-| provider | <code>String</code> | true | false | An APNS or FCM provider |
+| user | [<code>UserInfo</code>](#schemasUserInfo) | true | false |  |
+| fcm | [<code>FcmInfo</code>](#schemasFcmInfo) | true | false |  |
+| provider | <code>String</code> | true | false | A value assigned to you by Barchart, typically the same as your context. |
+
 
 **Example**:
 
 ```json
 {
   "user": {
-    "id": "12345678",
-    "context": "string"
+    "id": "abc-12345678",
+    "context": "my-company"
   },
   "fcm": {
     "iid": "ca1GWEasSt-LfySsUq_qhi",
@@ -263,14 +157,42 @@
 
 * * *
 
-### Notification :id=schemasnotification
+### UnregisterRequest :id=schemasunregisterrequest
 **Type**: <code>Object</code>
-    
+
+>Data used to &quot;unregister&quot; an iOS or Android device.
+
 | Name | Type | Required | Nullable | Description |
 | ---- | ---- | -------- | -------- | ----------- |
-| title | <code>String</code> | false | false | An notification title |
-| subtitle | <code>String</code> | false | false |  |
-| body | <code>String</code> | false | false | An notification body |
+| device | <code>String</code> | false | false | The device token (for APNS) or an IID (for FCM). |
+| bundle | <code>String</code> | false | false | The bundle name (APNS) or the package name (FCM). |
+| user | <code>String</code> | false | false | The unique identifier for the user (within the context). |
+| context | <code>String</code> | false | false | A value assigned to you by Barchart, (e.g. application or customer name). |
+
+
+**Example**:
+
+```json
+{
+  "device": "ca1GWEasSt-LfySsUq_qhi",
+  "bundle": "com.barchart.ens",
+  "user": "abc-12345678",
+  "context": "my-company"
+}
+```
+
+* * *
+
+### NotificationContent :id=schemasnotificationcontent
+**Type**: <code>Object</code>
+
+>The content of a notification (e.g. title, body, etc).
+
+| Name | Type | Required | Nullable | Description |
+| ---- | ---- | -------- | -------- | ----------- |
+| title | <code>String</code> | false | false | The title of the notification. |
+| subtitle | <code>String</code> | false | false | The subtitle of the notification. |
+| body | <code>String</code> | false | false | The content of the notification. |
 | category | <code>String</code> | false | false |  |
 | icon | <code>String</code> | false | false |  |
 | image | <code>String</code> | false | false |  |
@@ -280,13 +202,14 @@
 | click_action | <code>String</code> | false | false |  |
 | data | <code>Object</code> | false | false |  |
 
+
 **Example**:
 
 ```json
 {
-  "title": "Test notification",
-  "subtitle": "string",
-  "body": "Something happened",
+  "title": "Test Notification Title",
+  "subtitle": "Test Notification Subtitle",
+  "body": "We thought you should know — an important event just happened.",
   "category": "string",
   "icon": "string",
   "image": "string",
@@ -303,28 +226,31 @@
 
 * * *
 
-### SendByUser :id=schemassendbyuser
+### NotificationRequestForUser :id=schemasnotificationrequestforuser
 **Type**: <code>Object</code>
-    
+
+>The object required to send a notification to a specific user.
+
 | Name | Type | Required | Nullable | Description |
 | ---- | ---- | -------- | -------- | ----------- |
-| user | <code>String</code> | false | false | A user ID |
-| context | <code>String</code> | false | false | A user context (e.g. barchart) |
-| bundle | <code>String</code> | false | false | An application bundle or package name |
-| notification | [<code>Notification</code>](#schemasNotification) |  | false |  |
-| development | <code>Boolean</code> | false | false | Uses sandbox for APNS if true |
+| user | <code>String</code> | false | false | The unique identifier for the user (within the context). |
+| context | <code>String</code> | false | false | A value assigned to you by Barchart, (e.g. application or customer name). |
+| bundle | <code>String</code> | false | false | The bundle name (APNS) or the package name (FCM). |
+| notification | [<code>NotificationContent</code>](#schemasNotificationContent) | false | false |  |
+| development | <code>Boolean</code> | false | false | If true, the APNS sandbox is used. |
+
 
 **Example**:
 
 ```json
 {
-  "user": "12345678",
-  "context": "barchart",
+  "user": "abc-12345678",
+  "context": "my-company",
   "bundle": "com.barchart.ens",
   "notification": {
-    "title": "Test notification",
-    "subtitle": "string",
-    "body": "Something happened",
+    "title": "Test Notification Title",
+    "subtitle": "Test Notification Subtitle",
+    "body": "We thought you should know — an important event just happened.",
     "category": "string",
     "icon": "string",
     "image": "string",
@@ -337,20 +263,23 @@
       "property2": null
     }
   },
-  "development": true
+  "development": false
 }
 ```
 
 * * *
 
-### SendByDevice :id=schemassendbydevice
+### NotificationRequestForDevice :id=schemasnotificationrequestfordevice
 **Type**: <code>Object</code>
-    
+
+>The object required to send a notification to a specific device.
+
 | Name | Type | Required | Nullable | Description |
 | ---- | ---- | -------- | -------- | ----------- |
-| device | <code>String</code> | false | false | APNS device token or FCM IID |
-| notification | [<code>Notification</code>](#schemasNotification) |  | false |  |
-| development | <code>Boolean</code> | false | false | Uses sandbox for APNS if true |
+| device | <code>String</code> | false | false | A device token (for APNS) or an IID (for FCM) |
+| notification | [<code>NotificationContent</code>](#schemasNotificationContent) | false | false |  |
+| development | <code>Boolean</code> | false | false | If true, the APNS sandbox is used. |
+
 
 **Example**:
 
@@ -358,9 +287,9 @@
 {
   "device": "ca1GWEasSt-LfySsUq_qhi",
   "notification": {
-    "title": "Test notification",
-    "subtitle": "string",
-    "body": "Something happened",
+    "title": "Test Notification Title",
+    "subtitle": "Test Notification Subtitle",
+    "body": "We thought you should know — an important event just happened.",
     "category": "string",
     "icon": "string",
     "image": "string",
@@ -373,20 +302,23 @@
       "property2": null
     }
   },
-  "development": true
+  "development": false
 }
 ```
 
 * * *
 
-### SendByBundle :id=schemassendbybundle
+### NotificationRequestForBundle :id=schemasnotificationrequestforbundle
 **Type**: <code>Object</code>
-    
+
+>The object required to send a notification to a bundle (multiple devices).
+
 | Name | Type | Required | Nullable | Description |
 | ---- | ---- | -------- | -------- | ----------- |
-| bundle | <code>String</code> | false | false | An application bundle or package name |
-| notification | [<code>Notification</code>](#schemasNotification) |  | false |  |
-| development | <code>Boolean</code> | false | false | Uses sandbox for APNS if true |
+| bundle | <code>String</code> | false | false | The bundle name (APNS) or the package name (FCM). |
+| notification | [<code>NotificationContent</code>](#schemasNotificationContent) | false | false |  |
+| development | <code>Boolean</code> | false | false | If true, the APNS sandbox is used. |
+
 
 **Example**:
 
@@ -394,9 +326,9 @@
 {
   "bundle": "com.barchart.ens",
   "notification": {
-    "title": "Test notification",
-    "subtitle": "string",
-    "body": "Something happened",
+    "title": "Test Notification Title",
+    "subtitle": "Test Notification Subtitle",
+    "body": "We thought you should know — an important event just happened.",
     "category": "string",
     "icon": "string",
     "image": "string",
@@ -409,127 +341,7 @@
       "property2": null
     }
   },
-  "development": true
-}
-```
-
-* * *
-
-### FCMResponse :id=schemasfcmresponse
-**Type**: <code>Object</code>
-    
-| Name | Type | Required | Nullable | Description |
-| ---- | ---- | -------- | -------- | ----------- |
-| StatusCode | <code>Integer</code> | false | false |  |
-| Response | <code>Object</code> |  | false | Response represents the FCM server's response to the application server's sent message |
-| Response.multicast_id | <code>Integer</code> | false | false |  |
-| Response.success | <code>Integer</code> | false | false |  |
-| Response.failure | <code>Integer</code> | false | false |  |
-| Response.canonical_ids | <code>Integer</code> | false | false |  |
-| Response.results | <code>Array&lt;object&gt;</code> | false | false | Result represents the status of a processed message |
-| Response.results[i].message_id | <code>String</code> | false | false |  |
-| Response.results[i].registration_id | <code>String</code> | false | false |  |
-| Response.results[i].error | <code>String</code> | false | true |  |
-| Response.failed_registration_ids | <code>Array</code> | false | true | Device Group HTTP Response |
-| Response.failed_registration_ids[i] | <code>String</code> | false | false |  |
-| Response.message_id | <code>Integer</code> | false | false |  |
-| Response.error | <code>String</code> | false | true |  |
-
-**Example**:
-
-```json
-{
-  "StatusCode": 200,
-  "Response": {
-    "multicast_id": 8758031548066235000,
-    "success": 1,
-    "failure": 0,
-    "canonical_ids": 0,
-    "results": [
-      {
-        "message_id": "0:1587579700287156%a62f20e7a62f20e7",
-        "registration_id": "",
-        "error": "string"
-      }
-    ],
-    "failed_registration_ids": [
-      "string"
-    ],
-    "message_id": 0,
-    "error": "string"
-  }
-}
-```
-
-* * *
-
-### APNSResponse :id=schemasapnsresponse
-**Type**: <code>Object</code>
-    
-| Name | Type | Required | Nullable | Description |
-| ---- | ---- | -------- | -------- | ----------- |
-| StatusCode | <code>Number</code> | false | false |  |
-| Reson | <code>String</code> | false | false |  |
-| ApnsID | <code>String</code> | false | false |  |
-| Timestamp | <code>String</code> | false | false |  |
-
-**Example**:
-
-```json
-{
-  "StatusCode": 200,
-  "Reson": "",
-  "ApnsID": "D17EF06E-3DCF-E5EE-BBD5-31B4B75CAD63",
-  "Timestamp": "0001-01-01T00:00:00Z"
-}
-```
-
-* * *
-
-### Device :id=schemasdevice
-**Type**: <code>Object</code>
-    
-| Name | Type | Required | Nullable | Description |
-| ---- | ---- | -------- | -------- | ----------- |
-| user | <code>Object</code> |  | false |  |
-| user.id | <code>String</code> | false | false |  |
-| user.context | <code>String</code> | false | false |  |
-| user.unique | <code>String</code> | false | false |  |
-| provider | <code>Object</code> |  | false |  |
-| provider.secret | <code>String</code> | false | false |  |
-| type | <code>String</code> | false | false |  |
-| apns | <code>Object</code> |  | false |  |
-| apns.device | <code>String</code> | false | false |  |
-| apns.bundle | <code>String</code> | false | false |  |
-| fcm | <code>Object</code> |  | false |  |
-| fcm.iid | <code>String</code> | false | false |  |
-| fcm.token | <code>String</code> | false | false |  |
-| fcm.package | <code>String</code> | false | false |  |
-| timestamp | <code>Number</code> | false | false |  |
-
-**Example**:
-
-```json
-{
-  "user": {
-    "id": "00000000",
-    "context": "barchart",
-    "unique": "barchart|00000000"
-  },
-  "provider": {
-    "secret": "barchart"
-  },
-  "type": "APNS",
-  "apns": {
-    "device": "78ca4b1930f9464f22ad8bb6a6b83d735273fcb4a588108bacadd2fb878149f0",
-    "bundle": "com.barchart.ens"
-  },
-  "fcm": {
-    "iid": "fOxNSJtbSAKKgUDrwDOrHH",
-    "token": "fOxNSJtbSAKKgUDrwDOrHH:APA91bFm_oZ_DA8SvvR1VND1PNpAaa4BNEps0PISF4sRWEBq2nLATLiTO63E3JnBIZ9arwFQmUquft_tr24BKHT2w5rgdy8SeZuubE-UUQNrTEbB00ObeT1N5P-2_XPq75Xzu758MaPK",
-    "package": "com.barchart.ens"
-  },
-  "timestamp": 1626688692651
+  "development": false
 }
 ```
 
@@ -537,12 +349,12 @@
 
 ## Security
 
-### JWT :id=securityjwt
+### Jwt-Consumer :id=securityjwt-consumer
 
->The JWT authorization for register/unregister endpoints
+>The JWT used to register and unregister devices.
 
 **Type**: http bearer
-    
+
 #### Headers
 | Name | Format | Example |
 | ---- | ------ | ------- |
@@ -550,12 +362,12 @@
 
 * * *
 
-### JwtAdmin :id=securityjwtadmin
+### Jwt-Admin :id=securityjwt-admin
 
->The JWT authorization for send and job endpoints
+>The JWT used to send notifications and query jobs.
 
 **Type**: http bearer
-    
+
 #### Headers
 | Name | Format | Example |
 | ---- | ------ | ------- |

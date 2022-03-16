@@ -1,0 +1,426 @@
+openapi: 3.0.1
+
+info:
+  title: Barchart Push Notification Service
+  version: v2.3.1
+  description: Register and unregister Android and iOS devices; send mobile push notifications to those devices (via APNS and FCM).
+  contact:
+    name: Barchart Support
+    url: https://help.barchart.com/support/home
+    email: support@barchart.com
+
+components:
+  securitySchemes:
+    Jwt-Consumer:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: The JWT used to register and unregister devices.
+    Jwt-Admin:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: The JWT used to send notifications and query jobs.
+
+  schemas:
+    UserInfo:
+      type: object
+      description: Information that uniquely identifies a user.
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the user (within the context).
+          example: abc-12345678
+        context:
+          type: string
+          description: A value assigned to you by Barchart, (e.g. application or customer name).
+          example: my-company
+      required:
+        - id
+        - context
+
+    ApnsInfo:
+      type: object
+      description: Information regarding an iOS device (used to communicate with APNS).
+      properties:
+        device:
+          type: string
+          description: The unique identifer for the iOS device.
+          example: 6f2dfb1ee3f636e93fad5189710d4fa92edb8ec13d1e39d1bb9d9acd1286f012
+        bundle:
+          type: string
+          description: The bundle name of a mobile application registered with APNS.
+          example: com.barchart.ens
+      required:
+        - device
+        - bundle
+
+    FcmInfo:
+      type: object
+      description: Information regarding an APNS device (used to communicate with FCM).
+      properties:
+        iid:
+          type: string
+          description: The Firebase IID.
+          example: ca1GWEasSt-LfySsUq_qhi
+        token:
+          type: string
+          description: The Firebase device token.
+          example: ca1GWEasSt-LfySsUq_qhi:APA91bG4YXRvS5dxzUXnDGDgvAh7aojLqZg_21XeiHloaF2Wxqfioyi7JY1sIiFN_oX2_3ye3cgj1cK2forNFIuyo-YVvDd6iwQISXOwVHeJL34j6SuKcaXqqnikn-cPdZ3gb-iSmasd
+        package:
+          type: string
+          description: The package name of a mobile application registered with FCM.
+          example: com.barchart.com
+      required:
+        - iid
+        - token
+        - package
+
+    RegisterRequestForApns:
+      type: object
+      description: Data used to "register" an iOS device (for use with APNS).
+      properties:
+        user:
+          $ref: '#/components/schemas/UserInfo'
+        apns:
+          $ref: '#/components/schemas/ApnsInfo'
+        provider:
+          type: string
+          description: A value assigned to you by Barchart, typically the same as your context.
+      required:
+        - user
+        - provider
+        - apns
+
+    RegisterRequestForFcm:
+      type: object
+      description: Data used to "register" an Android device (for use with FCM).
+      properties:
+        user:
+          $ref: '#/components/schemas/UserInfo'
+        fcm:
+          $ref: '#/components/schemas/FcmInfo'
+        provider:
+          type: string
+          description: A value assigned to you by Barchart, typically the same as your context.
+      required:
+        - user
+        - provider
+        - fcm
+
+    UnregisterRequest:
+      type: object
+      description: Data used to "unregister" an iOS or Android device.
+      properties:
+        device:
+          type: string
+          description: The device token (for APNS) or an IID (for FCM).
+          example: ca1GWEasSt-LfySsUq_qhi
+        bundle:
+          type: string
+          description: The bundle name (APNS) or the package name (FCM).
+          example: com.barchart.ens
+        user:
+          type: string
+          description: The unique identifier for the user (within the context).
+          example: abc-12345678
+        context:
+          type: string
+          description: A value assigned to you by Barchart, (e.g. application or customer name).
+          example: my-company
+
+    NotificationContent:
+      type: object
+      description: The content of a notification (e.g. title, body, etc).
+      properties:
+        title:
+          type: string
+          description: The title of the notification.
+          example: Test Notification Title
+        subtitle:
+          type: string
+          description: The subtitle of the notification.
+          example: Test Notification Subtitle
+        body:
+          type: string
+          description: The content of the notification.
+          example: We thought you should know — an important event just happened.
+        category:
+          type: string
+        icon:
+          type: string
+        image:
+          type: string
+        sound:
+          type: string
+        badge:
+          type: string
+        color:
+          type: string
+        click_action:
+          type: string
+        data:
+          type: object
+          additionalProperties: { }
+
+    NotificationRequestForUser:
+      type: object
+      description: The object required to send a notification to a specific user.
+      properties:
+        user:
+          type: string
+          description: The unique identifier for the user (within the context).
+          example: abc-12345678
+        context:
+          type: string
+          description: A value assigned to you by Barchart, (e.g. application or customer name).
+          example: my-company
+        bundle:
+          type: string
+          description: The bundle name (APNS) or the package name (FCM).
+          example: com.barchart.ens
+        notification:
+          $ref: '#/components/schemas/NotificationContent'
+        development:
+          type: boolean
+          description: If true, the APNS sandbox is used.
+          example: false
+
+    NotificationRequestForDevice:
+      type: object
+      description: The object required to send a notification to a specific device.
+      properties:
+        device:
+          type: string
+          description: A device token (for APNS) or an IID (for FCM)
+          example: ca1GWEasSt-LfySsUq_qhi
+        notification:
+          $ref: '#/components/schemas/NotificationContent'
+        development:
+          type: boolean
+          description: If true, the APNS sandbox is used.
+          example: false
+
+    NotificationRequestForBundle:
+      type: object
+      description: The object required to send a notification to a bundle (multiple devices).
+      properties:
+        bundle:
+          type: string
+          description: The bundle name (APNS) or the package name (FCM).
+          example: com.barchart.ens
+        notification:
+          $ref: '#/components/schemas/NotificationContent'
+        development:
+          type: boolean
+          description: If true, the APNS sandbox is used.
+          example: false
+
+  responses:
+    ErrorResponse:
+      description: 'Object with array of errors'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              errors:
+                type: array
+                items:
+                  type: string
+
+tags:
+  - name: v2
+
+servers:
+  - url: 'https://push-notifications.aws.barchart.com'
+  - url: 'https://push-notifications.stage.aws.barchart.com'
+
+paths:
+  /v2/register:
+    post:
+      summary: Register Device
+      description: Register a device for notifications with APNS or FCM.
+      tags:
+        - v2
+      security:
+        - Jwt-Consumer: [ ]
+      requestBody:
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: '#/components/schemas/RegisterRequestForApns'
+                - $ref: '#/components/schemas/RegisterRequestForFcm'
+      responses:
+        '200':
+          description: Device has been registered.
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/RegisterRequestForApns'
+                  - $ref: '#/components/schemas/RegisterRequestForFcm'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+        '403':
+          $ref: '#/components/responses/ErrorResponse'
+        '500':
+          $ref: '#/components/responses/ErrorResponse'
+
+  /v2/unregister:
+    post:
+      summary: Unregister Device
+      description: Deletes registrations for a device.
+      tags:
+        - v2
+      security:
+        - Jwt-Consumer: [ ]
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UnregisterRequest'
+      responses:
+        '200':
+          description: Device has been unregistered.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: 'successfully'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+        '403':
+          $ref: '#/components/responses/ErrorResponse'
+        '500':
+          $ref: '#/components/responses/ErrorResponse'
+
+  /v2/send:
+    post:
+      summary: Send push notification(s)
+      description: Starts a job to transmit push notification(s) via APNS and/or FCM.
+      tags:
+        - v2
+      security:
+        - Jwt-Admin: [ ]
+      requestBody:
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: '#/components/schemas/NotificationRequestForUser'
+                - $ref: '#/components/schemas/NotificationRequestForDevice'
+                - $ref: '#/components/schemas/NotificationRequestForBundle'
+      responses:
+        '200':
+          description: The notification has been scheduled for transmission.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                    description: The identifier of the job responsible for sending the push notification.
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+        '403':
+          $ref: '#/components/responses/ErrorResponse'
+        '500':
+          $ref: '#/components/responses/ErrorResponse'
+
+  /v2/job/{id}:
+    get:
+      summary: Retrieves status of a job to send notification(s).
+      description: Retrieves status of a job to send notification(s).
+      tags:
+        - v2
+      security:
+        - Jwt-Admin: [ ]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The identifier of the job to query.
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: An object with job information.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                    description: The job identifier.
+                  status:
+                    type: string
+                    description: The status of the job (CREATED/DONE/IN_PROGRESS)
+                  request:
+                    type: string
+                    description: The original request which spawned the job.
+                  scan:
+                    type: object
+                    properties:
+                      last:
+                        type: string
+                        description: The last device processed.
+                  system:
+                    type: object
+                    properties:
+                      created:
+                        type: number
+                        description: Date the job was created (milliseconds since epoch).
+                      updated:
+                        type: number
+                        description: Date the job was updated (milliseconds since epoch).
+                      finished:
+                        type: number
+                        description: Date the job finished (milliseconds since epoch).
+        '404':
+          $ref: '#/components/responses/ErrorResponse'
+        '500':
+          $ref: '#/components/responses/ErrorResponse'
+
+  /v2/service/read:
+    get:
+      summary: Retrieves metadata regarding the Barchart Push Notification Service.
+      description: Retrieves the version of the Barchart Push Notification Service and other metadata.
+      tags:
+        - v2
+      responses:
+        '200':
+          description: Version of the Barchart Push Notification Service and other metadata.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  service:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        description: Service name
+                        example: serverless-push-gateway
+                      environment:
+                        type: string
+                        description: Current environment
+                        example: prod
+                      version:
+                        type: string
+                        description: Current version of the service
+                        example: v2.3.0
+                      description:
+                        type: string
+                        description: Description of the service
+                        example: Barchart Push Notification Service
