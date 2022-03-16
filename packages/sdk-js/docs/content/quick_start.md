@@ -246,18 +246,26 @@ curl 'https://push-notifications-stage.aws.barchart.com/v2/unregister' \
 
 The SDK does not support sending push notifications. Please use the API [directly](/content/api_reference).
 
-## Sample Applications
+## Sample Scripts
 
-One sample application was built with the SDK. Reviewing it may provide some insight into SDK features and usage.
+Two sample scripts were built with the SDK. Reviewing it may provide some insight into SDK features and usage.
 
 ### Node.js
 
-A simple Node.js script connects to the _stage_ environment, register a device, and then unregister it.
-Run the script from a command prompt, as follows:
+Simple Node.js scripts connects to the _stage_ environment, register a device, and then unregister it.
+
+Assuming you have [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) and [Node.js](https://nodejs.org/en/download/) installed, run the following:
 
 ```shell
+git clone git@github.com:barchart/push-notifications-public-js.git
+cd push-notifications-public-js
 npm install
-node ./example/node/apns.js {user_id}
-node ./example/node/fcm.js {user_id}
+cd packages/sdk-js/example/node
 ```
 
+Then, execute the scripts (one for APNS and another for FCM) as follows:
+
+```shell
+node apns.js {user_id}
+node fcm.js {user_id}
+```
