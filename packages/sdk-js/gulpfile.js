@@ -25,7 +25,7 @@ gulp.task('embed-version', () => {
 		.pipe(replace(/(>)([0-9]+\.[0-9]+\.[0-9]+.*)(<)/g, '$1' + version + '$3'))
 		.pipe(gulp.dest('./docs/'));
 
-	const openapi = gulp.src(['./openapi.yaml'])
+	const openapi = gulp.src(['./openapi_v2.yaml'])
 		.pipe(replace(/(version:\s*)([0-9]+\.[0-9]+\.[0-9]+.*)/g, '$1' + version))
 		.pipe(gulp.dest('./'));
 
