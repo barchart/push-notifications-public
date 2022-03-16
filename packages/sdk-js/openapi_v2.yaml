@@ -129,40 +129,6 @@ components:
           description: A value assigned to you by Barchart, (e.g. application or customer name).
           example: my-company
 
-    NotificationContent:
-      type: object
-      description: The content of a notification (e.g. title, body, etc).
-      properties:
-        title:
-          type: string
-          description: The title of the notification.
-          example: Test Notification Title
-        subtitle:
-          type: string
-          description: The subtitle of the notification.
-          example: Test Notification Subtitle
-        body:
-          type: string
-          description: The content of the notification.
-          example: We thought you should know — an important event just happened.
-        category:
-          type: string
-        icon:
-          type: string
-        image:
-          type: string
-        sound:
-          type: string
-        badge:
-          type: string
-        color:
-          type: string
-        click_action:
-          type: string
-        data:
-          type: object
-          additionalProperties: { }
-
     NotificationRequestForUser:
       type: object
       description: The object required to send a notification to a specific user.
@@ -215,6 +181,40 @@ components:
           type: boolean
           description: If true, the APNS sandbox is used.
           example: false
+
+    NotificationContent:
+      type: object
+      description: The content of a notification (e.g. title, body, etc).
+      properties:
+        title:
+          type: string
+          description: The title of the notification.
+          example: Test Notification Title
+        subtitle:
+          type: string
+          description: The subtitle of the notification.
+          example: Test Notification Subtitle
+        body:
+          type: string
+          description: The content of the notification.
+          example: We thought you should know — an important event just happened.
+        category:
+          type: string
+        icon:
+          type: string
+        image:
+          type: string
+        sound:
+          type: string
+        badge:
+          type: string
+        color:
+          type: string
+        click_action:
+          type: string
+        data:
+          type: object
+          additionalProperties: { }
 
   responses:
     ErrorResponse:

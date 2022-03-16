@@ -183,49 +183,6 @@
 
 * * *
 
-### NotificationContent :id=schemasnotificationcontent
-**Type**: <code>Object</code>
-
->The content of a notification (e.g. title, body, etc).
-
-| Name | Type | Required | Nullable | Description |
-| ---- | ---- | -------- | -------- | ----------- |
-| title | <code>String</code> | false | false | The title of the notification. |
-| subtitle | <code>String</code> | false | false | The subtitle of the notification. |
-| body | <code>String</code> | false | false | The content of the notification. |
-| category | <code>String</code> | false | false |  |
-| icon | <code>String</code> | false | false |  |
-| image | <code>String</code> | false | false |  |
-| sound | <code>String</code> | false | false |  |
-| badge | <code>String</code> | false | false |  |
-| color | <code>String</code> | false | false |  |
-| click_action | <code>String</code> | false | false |  |
-| data | <code>Object</code> | false | false |  |
-
-
-**Example**:
-
-```json
-{
-  "title": "Test Notification Title",
-  "subtitle": "Test Notification Subtitle",
-  "body": "We thought you should know — an important event just happened.",
-  "category": "string",
-  "icon": "string",
-  "image": "string",
-  "sound": "string",
-  "badge": "string",
-  "color": "string",
-  "click_action": "string",
-  "data": {
-    "property1": null,
-    "property2": null
-  }
-}
-```
-
-* * *
-
 ### NotificationRequestForUser :id=schemasnotificationrequestforuser
 **Type**: <code>Object</code>
 
@@ -342,6 +299,49 @@
     }
   },
   "development": false
+}
+```
+
+* * *
+
+### NotificationContent :id=schemasnotificationcontent
+**Type**: <code>Object</code>
+
+>The content of a notification (e.g. title, body, etc).
+
+| Name | Type | Required | Nullable | Description |
+| ---- | ---- | -------- | -------- | ----------- |
+| title | <code>String</code> | false | false | The title of the notification. |
+| subtitle | <code>String</code> | false | false | The subtitle of the notification. |
+| body | <code>String</code> | false | false | The content of the notification. |
+| category | <code>String</code> | false | false |  |
+| icon | <code>String</code> | false | false |  |
+| image | <code>String</code> | false | false |  |
+| sound | <code>String</code> | false | false |  |
+| badge | <code>String</code> | false | false |  |
+| color | <code>String</code> | false | false |  |
+| click_action | <code>String</code> | false | false |  |
+| data | <code>Object</code> | false | false |  |
+
+
+**Example**:
+
+```json
+{
+  "title": "Test Notification Title",
+  "subtitle": "Test Notification Subtitle",
+  "body": "We thought you should know — an important event just happened.",
+  "category": "string",
+  "icon": "string",
+  "image": "string",
+  "sound": "string",
+  "badge": "string",
+  "color": "string",
+  "click_action": "string",
+  "data": {
+    "property1": null,
+    "property2": null
+  }
 }
 ```
 

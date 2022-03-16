@@ -33,10 +33,10 @@
 * [RegisterRequestForApns](/content/api/components?id=schemasRegisterRequestForApns)
 * [RegisterRequestForFcm](/content/api/components?id=schemasRegisterRequestForFcm)
 * [UnregisterRequest](/content/api/components?id=schemasUnregisterRequest)
-* [NotificationContent](/content/api/components?id=schemasNotificationContent)
 * [NotificationRequestForUser](/content/api/components?id=schemasNotificationRequestForUser)
 * [NotificationRequestForDevice](/content/api/components?id=schemasNotificationRequestForDevice)
 * [NotificationRequestForBundle](/content/api/components?id=schemasNotificationRequestForBundle)
+* [NotificationContent](/content/api/components?id=schemasNotificationContent)
 
 ### Security 
 
