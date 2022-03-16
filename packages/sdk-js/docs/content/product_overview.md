@@ -1,6 +1,6 @@
 **This SDK provides a convenient way to interact with the _Barchart Push Notification Service._**
 
-You can _quickly_ build an application that allows your applications to:
+You can write code that allows your applications to:
 
 * Register a "device" for push notification delivery
 * Unregister a "device" from push notification delivery
