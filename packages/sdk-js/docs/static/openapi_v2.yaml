@@ -410,17 +410,17 @@ paths:
                     properties:
                       name:
                         type: string
-                        description: Service name
+                        description: The name of the remote service.
                         example: serverless-push-gateway
                       environment:
                         type: string
-                        description: Current environment
+                        description: The name of the enviroment (e.g. stage or prod).
                         example: prod
                       version:
                         type: string
-                        description: Current version of the service
+                        description: The version of the remote service.
                         example: v2.3.0
                       description:
                         type: string
-                        description: Description of the service
+                        description: A description of the remote service.
                         example: Barchart Push Notification Service

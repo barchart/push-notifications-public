@@ -241,10 +241,10 @@
 | Name | Type | Required | Nullable | Description |
 | ---- | ---- | -------- | -------- | ----------- |
 | service | <code>Object</code> | false | false |  |
-| service.name | <code>String</code> | false | false | Service name |
-| service.environment | <code>String</code> | false | false | Current environment |
-| service.version | <code>String</code> | false | false | Current version of the service |
-| service.description | <code>String</code> | false | false | Description of the service |
+| service.name | <code>String</code> | false | false | The name of the remote service. |
+| service.environment | <code>String</code> | false | false | The name of the enviroment (e.g. stage or prod). |
+| service.version | <code>String</code> | false | false | The version of the remote service. |
+| service.description | <code>String</code> | false | false | A description of the remote service. |
 
 **Example**:
 
