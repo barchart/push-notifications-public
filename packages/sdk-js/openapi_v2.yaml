@@ -128,6 +128,11 @@ components:
           type: string
           description: A value assigned to you by Barchart, (e.g. application or customer name).
           example: my-company
+      required:
+        - device
+        - bundle
+        - user
+        - context
 
     NotificationRequestForUser:
       type: object
@@ -151,6 +156,11 @@ components:
           type: boolean
           description: If true, the APNS sandbox is used.
           example: false
+      required:
+        - user
+        - context
+        - bundle
+        - notification
 
     NotificationRequestForDevice:
       type: object
@@ -166,6 +176,9 @@ components:
           type: boolean
           description: If true, the APNS sandbox is used.
           example: false
+      required:
+        - device
+        - notification
 
     NotificationRequestForBundle:
       type: object
@@ -181,6 +194,9 @@ components:
           type: boolean
           description: If true, the APNS sandbox is used.
           example: false
+      required:
+        - bundle
+        - notification
 
     NotificationContent:
       type: object
@@ -215,6 +231,40 @@ components:
         data:
           type: object
           additionalProperties: { }
+      required:
+        - title
+
+    JobInfo:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: The job identifier.
+        status:
+          type: string
+          description: The status of the job (CREATED/DONE/IN_PROGRESS)
+        request:
+          type: string
+          description: The original request which spawned the job.
+        scan:
+          type: object
+          properties:
+            last:
+              type: string
+              description: The last device processed.
+        system:
+          type: object
+          properties:
+            created:
+              type: number
+              description: Date the job was created (milliseconds since epoch).
+            updated:
+              type: number
+              description: Date the job was updated (milliseconds since epoch).
+            finished:
+              type: number
+              description: Date the job finished (milliseconds since epoch).
 
   responses:
     ErrorResponse:
@@ -356,36 +406,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  id:
-                    type: string
-                    format: uuid
-                    description: The job identifier.
-                  status:
-                    type: string
-                    description: The status of the job (CREATED/DONE/IN_PROGRESS)
-                  request:
-                    type: string
-                    description: The original request which spawned the job.
-                  scan:
-                    type: object
-                    properties:
-                      last:
-                        type: string
-                        description: The last device processed.
-                  system:
-                    type: object
-                    properties:
-                      created:
-                        type: number
-                        description: Date the job was created (milliseconds since epoch).
-                      updated:
-                        type: number
-                        description: Date the job was updated (milliseconds since epoch).
-                      finished:
-                        type: number
-                        description: Date the job finished (milliseconds since epoch).
+                $ref: '#/components/schemas/JobInfo'
         '404':
           $ref: '#/components/responses/ErrorResponse'
         '500':
