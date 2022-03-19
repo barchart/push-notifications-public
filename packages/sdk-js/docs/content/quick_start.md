@@ -99,7 +99,7 @@ Here is a simple example for an iOS device. For an Android device, remove the `a
 }
 ```
 
-The `provider` property refers to name for your APNs or FCM keys. Read [Key Concepts: Provider](/content/concepts/provider) section for details. 
+The `provider` property refers to name for your APNs or FCM keys. Read [Key Concepts: Providers](/content/concepts/providers) section for details. 
 
 ### Example for APNs
 

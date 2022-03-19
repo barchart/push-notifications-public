@@ -4,7 +4,7 @@
 **Other**
 
 * Updated OpenAPI definition file, making significant adjustments, corrections, and clarifications.
-* Updated OpenAPI definition file, removing all references to the ```v1``` of the API (```v1``` is deprecated and should not be documented).
+* Updated OpenAPI definition file, removing all references to the ```v1``` of the API, which has been deprecated.
 
 ## 1.0.3
 **Other**

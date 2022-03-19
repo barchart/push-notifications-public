@@ -2,7 +2,7 @@
 * [Quick Start](/content/quick_start)
 * Key Concepts
   * [Security](/content/concepts/security)
-  * [Provider](/content/concepts/provider)
+  * [Providers](/content/concepts/providers)
 <!-- sdk_open -->
 * [SDK Reference](/content/sdk_reference)
 	* [lib/data](/content/sdk/lib-data)
