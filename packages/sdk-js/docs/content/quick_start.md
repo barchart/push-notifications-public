@@ -31,22 +31,16 @@ It can be accessed at ```https://push-notifications.aws.barchart.com```.
 
 ## Authorization
 
-[JSON Web Tokens](https://en.wikipedia.org/wiki/JSON_Web_Token) — called JWT — are used for authorization. Each request
-made to the backend must include a token. Generating these tokens is surprisingly easy — refer to
-the [Key Concepts: Security](/content/concepts/security) section for details.
+[JSON Web Tokens](https://en.wikipedia.org/wiki/JSON_Web_Token) — called JWT — are used for authorization. Each request made to the backend must include a token. Generating these tokens is surprisingly easy — refer to the [Key Concepts: Security](/content/concepts/security) section for details.
 
 In the _staging_ environment, token generation uses these parameters:
 
 * Tokens are signed with the ```HMAC-SHA256``` (aka ```HS256```) algorithm
 * Tokens are signed with the following secret: ```"public-knowledge-1234567890"```
 
-The _staging_ environment is intended for evaluation and testing purposes. Since the signing secret has been
-publicized (above), there can be no expectation of privacy. Consequently, no sensitive information should be saved in
-the _staging_ environment.
+The _staging_ environment is intended for evaluation and testing purposes. Since the signing secret has been publicized (above), there can be no expectation of privacy. Consequently, no sensitive information should be saved in the _staging_ environment.
 
-The _production_ environment is secure. You will generate
-a [public/private key pair](https://en.wikipedia.org/wiki/Public-key_cryptography) and provide the public certificate to
-Barchart. As long as you maintain control over your private certificate, your data will be protected.
+The _production_ environment is secure. You will generate a [public/private key pair](https://en.wikipedia.org/wiki/Public-key_cryptography) and provide the public certificate to Barchart. As long as you maintain control over your private certificate, your data will be protected.
 
 Regardless of environment, the token payload must include two claims:
 
@@ -57,8 +51,7 @@ Regardless of environment, the token payload must include two claims:
 
 ### Using the SDK
 
-Before you can do anything meaningful with the SDK, you must obtain an instance of the ```PushNotificationGateway``` class. Use one
-of the static factory functions and provide a strategy for generating JSON Web Tokens, as follows:
+Before you can do anything meaningful with the SDK, you must obtain an instance of the ```PushNotificationGateway``` class. Use one of the static factory functions and provide a strategy for generating JSON Web Tokens, as follows:
 
 ```js
 const PushNotificationGateway = require('@barchart/push-notifications-client-js/lib/gateway/PushNotificationGateway'),
@@ -75,9 +68,7 @@ PushNotificationGateway.forStaging(JwtProvider.forStaging(myUserId, myContextId)
 
 ### Using the API
 
-If you choose to work directly with the REST interface, you won't need to perform an explicit "connect" action. Each
-HTTP request is independently authorized by the backend. You simply need to include a JWT token in the _Authorization_
-header of each request.
+If you choose to work directly with the REST interface, you won't need to perform an explicit "connect" action. Each HTTP request is independently authorized by the backend. You simply need to include a JWT token in the _Authorization_ header of each request.
 
 ## Register a Device
 
