@@ -3,7 +3,7 @@ openapi: 3.0.1
 info:
   title: Barchart Push Notification Service
   version: v2.3.1
-  description: Register and unregister Android and iOS devices; send mobile push notifications to those devices (via APNS and FCM).
+  description: Register and unregister Android and iOS devices; send mobile push notifications to those devices (via APNs and FCM).
   contact:
     name: Barchart Support
     url: https://help.barchart.com/support/home
@@ -41,7 +41,7 @@ components:
 
     ApnsInfo:
       type: object
-      description: Information regarding an iOS device (used to communicate with APNS).
+      description: Information regarding an iOS device (used to communicate with APNs).
       properties:
         device:
           type: string
@@ -49,7 +49,7 @@ components:
           example: 6f2dfb1ee3f636e93fad5189710d4fa92edb8ec13d1e39d1bb9d9acd1286f012
         bundle:
           type: string
-          description: The bundle name of a mobile application registered with APNS.
+          description: The bundle name of a mobile application registered with APNs.
           example: com.barchart.ens
       required:
         - device
@@ -57,7 +57,7 @@ components:
 
     FcmInfo:
       type: object
-      description: Information regarding an APNS device (used to communicate with FCM).
+      description: Information regarding an APNs device (used to communicate with FCM).
       properties:
         iid:
           type: string
@@ -78,7 +78,7 @@ components:
 
     RegisterRequestForApns:
       type: object
-      description: Data used to "register" an iOS device (for use with APNS).
+      description: Data used to "register" an iOS device (for use with APNs).
       properties:
         user:
           $ref: '#/components/schemas/UserInfo'
@@ -114,11 +114,11 @@ components:
       properties:
         device:
           type: string
-          description: The device token (for APNS) or an IID (for FCM).
+          description: The device token (for APNs) or an IID (for FCM).
           example: ca1GWEasSt-LfySsUq_qhi
         bundle:
           type: string
-          description: The bundle name (APNS) or the package name (FCM).
+          description: The bundle name (APNs) or the package name (FCM).
           example: com.barchart.ens
         user:
           type: string
@@ -148,13 +148,13 @@ components:
           example: my-company
         bundle:
           type: string
-          description: The bundle name (APNS) or the package name (FCM).
+          description: The bundle name (APNs) or the package name (FCM).
           example: com.barchart.ens
         notification:
           $ref: '#/components/schemas/NotificationContent'
         development:
           type: boolean
-          description: If true, the APNS sandbox is used.
+          description: If true, the APNs sandbox is used.
           example: false
       required:
         - user
@@ -168,13 +168,13 @@ components:
       properties:
         device:
           type: string
-          description: A device token (for APNS) or an IID (for FCM)
+          description: A device token (for APNs) or an IID (for FCM)
           example: ca1GWEasSt-LfySsUq_qhi
         notification:
           $ref: '#/components/schemas/NotificationContent'
         development:
           type: boolean
-          description: If true, the APNS sandbox is used.
+          description: If true, the APNs sandbox is used.
           example: false
       required:
         - device
@@ -186,13 +186,13 @@ components:
       properties:
         bundle:
           type: string
-          description: The bundle name (APNS) or the package name (FCM).
+          description: The bundle name (APNs) or the package name (FCM).
           example: com.barchart.ens
         notification:
           $ref: '#/components/schemas/NotificationContent'
         development:
           type: boolean
-          description: If true, the APNS sandbox is used.
+          description: If true, the APNs sandbox is used.
           example: false
       required:
         - bundle
@@ -290,7 +290,7 @@ paths:
   /v2/register:
     post:
       summary: Register Device
-      description: Register a device for notifications with APNS or FCM.
+      description: Register a device for notifications with APNs or FCM.
       tags:
         - v2
       security:
@@ -352,7 +352,7 @@ paths:
   /v2/send:
     post:
       summary: Send push notification(s)
-      description: Starts a job to transmit push notification(s) via APNS and/or FCM.
+      description: Starts a job to transmit push notification(s) via APNs and/or FCM.
       tags:
         - v2
       security:

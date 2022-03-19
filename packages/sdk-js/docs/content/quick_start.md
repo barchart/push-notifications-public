@@ -99,9 +99,9 @@ Here is a simple example for an iOS device. For an Android device, remove the `a
 }
 ```
 
-The `provider` property refers to name for your APNS or FCM keys. Read [Key Concepts: Provider](/content/concepts/provider) section for details. 
+The `provider` property refers to name for your APNs or FCM keys. Read [Key Concepts: Provider](/content/concepts/provider) section for details. 
 
-### Example for APNS
+### Example for APNs
 
 #### Using the SDK
 
@@ -229,7 +229,7 @@ PushNotificationGateway.unregisterDevice(registrationData)
 	});
 ```
 
-> `device.device` field should contain data from `apns.device` field for APNS devices, and `fcm.iid` for FCM devices.
+> `device.device` field should contain data from `apns.device` field for APNs devices, and `fcm.iid` for FCM devices.
 
 #### Using the API
 
@@ -263,7 +263,7 @@ npm install
 cd packages/sdk-js/example/node
 ```
 
-Then, execute the scripts (one for APNS and another for FCM) as follows:
+Then, execute the scripts (one for APNs and another for FCM) as follows:
 
 ```shell
 node apns.js {user_id}

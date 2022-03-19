@@ -2,7 +2,7 @@
 
 ## POST /v2/register 
 
-> Register a device for notifications with APNS or FCM.
+> Register a device for notifications with APNs or FCM.
 
 **Summary**: Register Device
 
@@ -106,7 +106,7 @@
 
 ## POST /v2/send 
 
-> Starts a job to transmit push notification(s) via APNS and/or FCM.
+> Starts a job to transmit push notification(s) via APNs and/or FCM.
 
 **Summary**: Send push notification(s)
 
@@ -180,23 +180,11 @@
 
 **Content Type**: <code>application/json</code>
 
-**Response Type:** <code>Object</code>
-    
-| Name | Type | Required | Nullable | Description |
-| ---- | ---- | -------- | -------- | ----------- |
-| id | <code>String</code> | false | false | The job identifier. |
-| status | <code>String</code> | false | false | The status of the job (CREATED/DONE/IN_PROGRESS) |
-| request | <code>String</code> | false | false | The original request which spawned the job. |
-| scan | <code>Object</code> | false | false |  |
-| scan.last | <code>String</code> | false | false | The last device processed. |
-| system | <code>Object</code> | false | false |  |
-| system.created | <code>Number</code> | false | false | Date the job was created (milliseconds since epoch). |
-| system.updated | <code>Number</code> | false | false | Date the job was updated (milliseconds since epoch). |
-| system.finished | <code>Number</code> | false | false | Date the job finished (milliseconds since epoch). |
+**Response Type:** [<code>JobInfo</code>](/content/api/components?id=schemasJobInfo)
 
 **Example**:
 
-```json
+```
 {
   "id": "497f6eca-6276-4993-bfeb-53cbbbba6f08",
   "status": "string",

@@ -2,7 +2,7 @@
 
 ## Barchart Push Notification Service v2.3.1 {docsify-ignore}
     
-> Register and unregister Android and iOS devices; send mobile push notifications to those devices (via APNS and FCM).
+> Register and unregister Android and iOS devices; send mobile push notifications to those devices (via APNs and FCM).
 
 ## OpenAPI Definition {docsify-ignore}
 
@@ -37,6 +37,7 @@
 * [NotificationRequestForDevice](/content/api/components?id=schemasNotificationRequestForDevice)
 * [NotificationRequestForBundle](/content/api/components?id=schemasNotificationRequestForBundle)
 * [NotificationContent](/content/api/components?id=schemasNotificationContent)
+* [JobInfo](/content/api/components?id=schemasJobInfo)
 
 ### Security 
 

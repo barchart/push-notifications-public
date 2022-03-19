@@ -14,7 +14,7 @@
  * @property {Object} device.user - An object contains user data
  * @property {String} device.user.id - A user id
  * @property {String} device.user.context - A user context
- * @property {Object} [device.apns] - An object contains APNS data
+ * @property {Object} [device.apns] - An object contains APNs data
  * @property {String} device.apns.device - Unique device token
  * @property {String} device.apns.bundle - An application bundle name
  * @property {Object} [device.fcm] - An object contains FCM data
@@ -34,7 +34,7 @@
  * @property {Object} request.user - An object contains user data
  * @property {String} request.user.id - A user id
  * @property {String} request.user.context - A user context
- * @property {Object} request.device - An object contains APNS or FCM data
- * @property {String} request.device.device - APNS device token or FCM IID
+ * @property {Object} request.device - An object contains APNs or FCM data
+ * @property {String} request.device.device - APNs device token or FCM IID
  * @property {String} request.device.bundle - Bundle or Package name of the application
  */

@@ -1,4 +1,4 @@
-Registration of a device requires a `provider` field. The `provider` field refers your APNS keys and FCM keys. Once you generate these keys (see below), Barchart will assign you a value to use for the `provider` field.
+Registration of a device requires a `provider` field. The `provider` field refers your APNs keys and FCM keys. Once you generate these keys (see below), Barchart will assign you a value to use for the `provider` field.
 
 #### Apple Developer Teams
 

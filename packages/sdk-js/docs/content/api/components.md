@@ -53,12 +53,12 @@
 ### ApnsInfo :id=schemasapnsinfo
 **Type**: <code>Object</code>
 
->Information regarding an iOS device (used to communicate with APNS).
+>Information regarding an iOS device (used to communicate with APNs).
 
 | Name | Type | Required | Nullable | Description |
 | ---- | ---- | -------- | -------- | ----------- |
 | device | <code>String</code> | true | false | The unique identifer for the iOS device. |
-| bundle | <code>String</code> | true | false | The bundle name of a mobile application registered with APNS. |
+| bundle | <code>String</code> | true | false | The bundle name of a mobile application registered with APNs. |
 
 
 **Example**:
@@ -75,7 +75,7 @@
 ### FcmInfo :id=schemasfcminfo
 **Type**: <code>Object</code>
 
->Information regarding an APNS device (used to communicate with FCM).
+>Information regarding an APNs device (used to communicate with FCM).
 
 | Name | Type | Required | Nullable | Description |
 | ---- | ---- | -------- | -------- | ----------- |
@@ -99,7 +99,7 @@
 ### RegisterRequestForApns :id=schemasregisterrequestforapns
 **Type**: <code>Object</code>
 
->Data used to &quot;register&quot; an iOS device (for use with APNS).
+>Data used to &quot;register&quot; an iOS device (for use with APNs).
 
 | Name | Type | Required | Nullable | Description |
 | ---- | ---- | -------- | -------- | ----------- |
@@ -164,10 +164,10 @@
 
 | Name | Type | Required | Nullable | Description |
 | ---- | ---- | -------- | -------- | ----------- |
-| device | <code>String</code> | false | false | The device token (for APNS) or an IID (for FCM). |
-| bundle | <code>String</code> | false | false | The bundle name (APNS) or the package name (FCM). |
-| user | <code>String</code> | false | false | The unique identifier for the user (within the context). |
-| context | <code>String</code> | false | false | A value assigned to you by Barchart, (e.g. application or customer name). |
+| device | <code>String</code> | true | false | The device token (for APNs) or an IID (for FCM). |
+| bundle | <code>String</code> | true | false | The bundle name (APNs) or the package name (FCM). |
+| user | <code>String</code> | true | false | The unique identifier for the user (within the context). |
+| context | <code>String</code> | true | false | A value assigned to you by Barchart, (e.g. application or customer name). |
 
 
 **Example**:
@@ -190,11 +190,11 @@
 
 | Name | Type | Required | Nullable | Description |
 | ---- | ---- | -------- | -------- | ----------- |
-| user | <code>String</code> | false | false | The unique identifier for the user (within the context). |
-| context | <code>String</code> | false | false | A value assigned to you by Barchart, (e.g. application or customer name). |
-| bundle | <code>String</code> | false | false | The bundle name (APNS) or the package name (FCM). |
-| notification | [<code>NotificationContent</code>](#schemasNotificationContent) | false | false |  |
-| development | <code>Boolean</code> | false | false | If true, the APNS sandbox is used. |
+| user | <code>String</code> | true | false | The unique identifier for the user (within the context). |
+| context | <code>String</code> | true | false | A value assigned to you by Barchart, (e.g. application or customer name). |
+| bundle | <code>String</code> | true | false | The bundle name (APNs) or the package name (FCM). |
+| notification | [<code>NotificationContent</code>](#schemasNotificationContent) | true | false |  |
+| development | <code>Boolean</code> | false | false | If true, the APNs sandbox is used. |
 
 
 **Example**:
@@ -233,9 +233,9 @@
 
 | Name | Type | Required | Nullable | Description |
 | ---- | ---- | -------- | -------- | ----------- |
-| device | <code>String</code> | false | false | A device token (for APNS) or an IID (for FCM) |
-| notification | [<code>NotificationContent</code>](#schemasNotificationContent) | false | false |  |
-| development | <code>Boolean</code> | false | false | If true, the APNS sandbox is used. |
+| device | <code>String</code> | true | false | A device token (for APNs) or an IID (for FCM) |
+| notification | [<code>NotificationContent</code>](#schemasNotificationContent) | true | false |  |
+| development | <code>Boolean</code> | false | false | If true, the APNs sandbox is used. |
 
 
 **Example**:
@@ -272,9 +272,9 @@
 
 | Name | Type | Required | Nullable | Description |
 | ---- | ---- | -------- | -------- | ----------- |
-| bundle | <code>String</code> | false | false | The bundle name (APNS) or the package name (FCM). |
-| notification | [<code>NotificationContent</code>](#schemasNotificationContent) | false | false |  |
-| development | <code>Boolean</code> | false | false | If true, the APNS sandbox is used. |
+| bundle | <code>String</code> | true | false | The bundle name (APNs) or the package name (FCM). |
+| notification | [<code>NotificationContent</code>](#schemasNotificationContent) | true | false |  |
+| development | <code>Boolean</code> | false | false | If true, the APNs sandbox is used. |
 
 
 **Example**:
@@ -311,7 +311,7 @@
 
 | Name | Type | Required | Nullable | Description |
 | ---- | ---- | -------- | -------- | ----------- |
-| title | <code>String</code> | false | false | The title of the notification. |
+| title | <code>String</code> | true | false | The title of the notification. |
 | subtitle | <code>String</code> | false | false | The subtitle of the notification. |
 | body | <code>String</code> | false | false | The content of the notification. |
 | category | <code>String</code> | false | false |  |
@@ -341,6 +341,42 @@
   "data": {
     "property1": null,
     "property2": null
+  }
+}
+```
+
+* * *
+
+### JobInfo :id=schemasjobinfo
+**Type**: <code>Object</code>
+
+| Name | Type | Required | Nullable | Description |
+| ---- | ---- | -------- | -------- | ----------- |
+| id | <code>String</code> | false | false | The job identifier. |
+| status | <code>String</code> | false | false | The status of the job (CREATED/DONE/IN_PROGRESS) |
+| request | <code>String</code> | false | false | The original request which spawned the job. |
+| scan | <code>Object</code> | false | false |  |
+| scan.last | <code>String</code> | false | false | The last device processed. |
+| system | <code>Object</code> | false | false |  |
+| system.created | <code>Number</code> | false | false | Date the job was created (milliseconds since epoch). |
+| system.updated | <code>Number</code> | false | false | Date the job was updated (milliseconds since epoch). |
+| system.finished | <code>Number</code> | false | false | Date the job finished (milliseconds since epoch). |
+
+
+**Example**:
+
+```json
+{
+  "id": "497f6eca-6276-4993-bfeb-53cbbbba6f08",
+  "status": "string",
+  "request": "string",
+  "scan": {
+    "last": "string"
+  },
+  "system": {
+    "created": 0,
+    "updated": 0,
+    "finished": 0
   }
 }
 ```
