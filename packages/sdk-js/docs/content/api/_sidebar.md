@@ -1,6 +1,7 @@
 * [Overview](/content/product_overview)
 * [Quick Start](/content/quick_start)
 * Key Concepts
+  * [Workflow](/content/concepts/workflow)
   * [Security](/content/concepts/security)
   * [Providers](/content/concepts/providers)
 <!-- sdk_open -->

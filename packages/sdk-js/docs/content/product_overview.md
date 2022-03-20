@@ -2,10 +2,10 @@
 
 You can easily write code that allows your applications to:
 
-* Register a mobile "device" for push notification delivery.
-* Unregister a mobile "device" from push notification delivery.
+* Register a mobile app for push notification delivery.
+* Unregister a mobile app from push notification delivery.
 
-Also, when granted permission, your applications target:
+Also, your applications can send push notifications, targeting:
 
 * An app running on a known device.
 * An app running on all known devices.
@@ -17,7 +17,7 @@ Both **Android** and **iOS** devices are supported. Ultimately, the final leg of
 
 ## Supported Environments
 
-This SDK is written in JavaScript. Typically, this SDK will be embedded in mobile application which supports JavaScript (usually for the purpose of registering for and unregistering from push notifications). Alternately, this SDK could be used in a Node.js application (usually for the purpose to sending push notifications).
+This SDK is written in JavaScript. This SDK can be embedded in mobile application which supports JavaScript (usually for the purpose of "registering" and "unregistering"). Alternately, this SDK could be used in a Node.js application (usually for the purpose to sending push notifications).
 
 #### Direct Access
 

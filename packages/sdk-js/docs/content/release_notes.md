@@ -1,5 +1,10 @@
 # Release Notes
 
+## 1.0.5
+**Other**
+
+* Improved documentation.
+
 ## 1.0.4
 **Other**
 
