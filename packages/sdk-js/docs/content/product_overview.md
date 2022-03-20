@@ -7,9 +7,9 @@ You can easily write code that allows your applications to:
 
 Also, your applications can send push notifications, targeting:
 
-* An app running on a known device.
-* An app running on all known devices.
-* An app running on all known devices that are owned by a single user.
+* A specific device with your app installed.
+* All registered devices with your app installed.
+* ALl registered devices where a specific user has logged into your app.
 
 ## Supported Devices
 
