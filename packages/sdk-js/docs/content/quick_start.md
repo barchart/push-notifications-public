@@ -11,8 +11,7 @@ As a consumer of the Barchart Push Notification Service, you have two options:
 npm install @barchart/push-notifications-client-js -S
 ```
 
-**Otherwise, if you choose not to use the SDK**, please finish reviewing this page, then refer to
-the [API Reference](/content/api_reference) section.
+**Otherwise, if you choose not to use the SDK**, please finish reviewing this page, then refer to the [API Reference](/content/api_reference) section.
 
 ## Environments
 
@@ -20,8 +19,7 @@ Two instances of the Barchart Push Notification Service are always running:
 
 ### Staging
 
-The _staging_ environment can be used for integration and evaluation purposes. It can be accessed
-at ```https://push-notifications-stage.aws.barchart.com```.
+The _staging_ environment can be used for integration and evaluation purposes. It can be accessed at ```https://push-notifications-stage.aws.barchart.com```.
 
 ### Production
 
@@ -51,7 +49,7 @@ Regardless of environment, the token payload must include two claims:
 
 ### Using the SDK
 
-Before you can do anything meaningful with the SDK, you must obtain an instance of the ```PushNotificationGateway``` class. Use one of the static factory functions and provide a strategy for generating JSON Web Tokens, as follows:
+Before you can do anything meaningful with the SDK, you must obtain an instance of the [```PushNotificationGateway```](/content/sdk/lib-gateway?id=pushnotificationgateway) class. Use one of the static factory functions and provide a strategy for generating JSON Web Tokens, as follows:
 
 ```js
 const PushNotificationGateway = require('@barchart/push-notifications-client-js/lib/gateway/PushNotificationGateway'),
@@ -90,7 +88,7 @@ Here is a simple example for an iOS device. For an Android device, remove the `a
 }
 ```
 
-The `provider` property refers to name for your APNs or FCM keys. Read [Key Concepts: Providers](/content/concepts/providers) section for details. 
+> The value assigned to `provider` refers to your APNs ad/or FCM keys. Read [Key Concepts: Providers](/content/concepts/providers) section for details. 
 
 ### Example for APNs
 
@@ -115,6 +113,8 @@ pushNotificationGatweay.registerDevice(registrationData)
 	});
 ```
 
+> The value for `apns.device` is unique to each installation of your app. It must be extracted from the app itself.
+
 #### Using the API
 
 ```shell
@@ -128,7 +128,7 @@ curl 'https://push-notifications-stage.aws.barchart.com/v2/register' \
 
 #### Example Output
 
-The result will be a complete ```Device``` object, similar to the example below.
+The result will be a complete [```Device```](/content/sdk/lib-data?id=schemadevice) object, similar to the example below.
 
 ```json
 {
@@ -179,7 +179,7 @@ curl 'https://push-notifications-stage.aws.barchart.com/v2/register' \
 
 #### Example Output
 
-The result will be a complete ```Device``` object, similar to the example below.
+The result will be a complete [```Device```](content/sdk/lib-data?id=schemadevice) object, similar to the example below.
 
 ```json
 {
@@ -196,9 +196,11 @@ The result will be a complete ```Device``` object, similar to the example below.
 }
 ```
 
+> The value for `fcm.token` is unique to each installation of your app. It must be extracted from the app itself.
+
 ## Unregister a Device
 
-You can unregister your device, as follows:
+A registration can be deleted, as follows:
 
 #### Using the SDK
 
@@ -216,11 +218,13 @@ const registrationData = {
 
 PushNotificationGateway.unregisterDevice(registrationData)
 	.then((response) => {
-		console.log(`Unregistered`);
+		console.log(`Device registration deleted`);
 	});
 ```
 
-> `device.device` field should contain data from `apns.device` field for APNs devices, and `fcm.iid` for FCM devices.
+> The `device.device` field should contain the `apns.device` identifier used to register an iOS device or the `fcm.iid` identifier used to register an Android device.
+
+> The `device.bundle` field should contain the `apns.bundle` identifier used to register an iOS device or the `fcm.package` identifier used to register an Android device.
 
 #### Using the API
 
@@ -235,15 +239,13 @@ curl 'https://push-notifications-stage.aws.barchart.com/v2/unregister' \
 
 ## Send a Push Notification
 
-The SDK does not support sending push notifications. Please use the API [directly](/content/api_reference).
+The current version of SDK does not support sending push notifications. The next version of the SDK will include this capability. For now, please use the API [directly](/content/api_reference) to send a push notification.
 
 ## Sample Scripts
 
-Two sample scripts were built with the SDK. Reviewing it may provide some insight into SDK features and usage.
+Two sample scripts were built with the SDK. These scripts connect to the _stage_ environment, register a device, and then unregister the device. Reviewing the scripts may provide some insight into SDK features and usage.
 
 ### Node.js
-
-Simple Node.js scripts connects to the _stage_ environment, register a device, and then unregister it.
 
 Assuming you have [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) and [Node.js](https://nodejs.org/en/download/) installed, run the following:
 
@@ -254,7 +256,7 @@ npm install
 cd packages/sdk-js/example/node
 ```
 
-Then, execute the scripts (one for APNs and another for FCM) as follows:
+Then, execute the scripts — one for APNs and another for FCM — as follows:
 
 ```shell
 node apns.js {user_id}

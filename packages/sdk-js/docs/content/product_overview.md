@@ -13,7 +13,10 @@ Also, your applications can send push notifications, targeting:
 
 ## Supported Devices
 
-Both **Android** and **iOS** devices are supported. Ultimately, the final leg of delivery to mobile devices is handled by (a) Apple's APNs (Apple Push Notification Service) or (b) Google's FCM (Firebase Cloud Messaging).
+Both **Android** and **iOS** devices are supported. Depending on the type of device, the _final leg_ of delivery for a push notification message will be handled by either:
+
+* Apple's Apple Push Notification Service (APNs), or
+* Google's Firebase Cloud Messaging (FCM).
 
 ## Supported Environments
 
