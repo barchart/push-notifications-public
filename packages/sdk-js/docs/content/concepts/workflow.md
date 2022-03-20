@@ -1,5 +1,3 @@
-## Purpose
-
 Both Android and iOS devices allow alerts to be displayed on-screen when the affected application is inactive. Common examples include:
 
 * A car from a ride-hailing service is approaching.
@@ -19,7 +17,7 @@ The Barchart Push Notification Service facilitates these types of notifications 
 
 Ultimately, Apple (or Google) is responsible for delivering the alert notification to the actual device.
 
-## Registering
+## Registering for Notifications
 
 Both iOS and Android applications have unique identifiers for:
 
@@ -47,7 +45,7 @@ Invoke the [PushNotificationGateway.registerDevice](/content/sdk/lib-gateway?id=
 
 Send a ```POST``` request to the [```v2/register```](/content/api/paths?id=post-v2register) endpoint to register a mobile app installation (and user).
 
-## Unregistering
+## Unregistering from Notifications
 
 The "unregister" action deletes a record from the registry. It should be used when:
 
@@ -62,7 +60,7 @@ Invoke the [PushNotificationGateway.unregisterDevice](/content/sdk/lib-gateway?i
 
 Send a ```POST``` request to the [```v2/unregister```](/content/api/paths?id=post-v2unregister) endpoint to delete a mobile app installation (and user).
 
-## Sending Push Notifications
+## Sending Notifications
 
 After an alert notification is composed, it can be addressed to a single device or to multiple devices, using one of the three different methods:
 
