@@ -11,9 +11,9 @@
 #### Request Body
 **One of:**
 
-- [RegisterRequestForApns](/content/api/components?id&#x3D;schemasregisterrequestforapns)
+- [ApnsRegistration](/content/api/components?id&#x3D;schemasapnsregistration)
 
-- [RegisterRequestForFcm](/content/api/components?id&#x3D;schemasregisterrequestforfcm)
+- [FcmRegistration](/content/api/components?id&#x3D;schemasfcmregistration)
 
 
 #### Responses
@@ -24,9 +24,9 @@
 
 **One of:**
 
-- [RegisterRequestForApns](/content/api/components?id&#x3D;schemasregisterrequestforapns)
+- [ApnsRegistration](/content/api/components?id&#x3D;schemasapnsregistration)
 
-- [RegisterRequestForFcm](/content/api/components?id&#x3D;schemasregisterrequestforfcm)
+- [FcmRegistration](/content/api/components?id&#x3D;schemasfcmregistration)
 
 
 * * *
@@ -115,11 +115,11 @@
 #### Request Body
 **One of:**
 
-- [NotificationRequestForUser](/content/api/components?id&#x3D;schemasnotificationrequestforuser)
+- [NotificationForUser](/content/api/components?id&#x3D;schemasnotificationforuser)
 
-- [NotificationRequestForDevice](/content/api/components?id&#x3D;schemasnotificationrequestfordevice)
+- [NotificationForDevice](/content/api/components?id&#x3D;schemasnotificationfordevice)
 
-- [NotificationRequestForBundle](/content/api/components?id&#x3D;schemasnotificationrequestforbundle)
+- [NotificationnForBundle](/content/api/components?id&#x3D;schemasnotificationnforbundle)
 
 
 #### Responses

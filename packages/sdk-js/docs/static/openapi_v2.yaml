@@ -23,7 +23,7 @@ components:
       description: The JWT used to send notifications and query jobs.
 
   schemas:
-    UserInfo:
+    User:
       type: object
       description: Information that uniquely identifies a user.
       properties:
@@ -39,7 +39,7 @@ components:
         - id
         - context
 
-    ApnsInfo:
+    ApnsDevice:
       type: object
       description: Information regarding an iOS device (used to communicate with APNs).
       properties:
@@ -55,7 +55,7 @@ components:
         - device
         - bundle
 
-    FcmInfo:
+    FcmDevice:
       type: object
       description: Information regarding an APNs device (used to communicate with FCM).
       properties:
@@ -76,14 +76,14 @@ components:
         - token
         - package
 
-    RegisterRequestForApns:
+    ApnsRegistration:
       type: object
       description: Data used to "register" an iOS device (for use with APNs).
       properties:
         user:
-          $ref: '#/components/schemas/UserInfo'
+          $ref: '#/components/schemas/User'
         apns:
-          $ref: '#/components/schemas/ApnsInfo'
+          $ref: '#/components/schemas/ApnsDevice'
         provider:
           type: string
           description: A value assigned to you by Barchart, typically the same as your context.
@@ -92,14 +92,14 @@ components:
         - provider
         - apns
 
-    RegisterRequestForFcm:
+    FcmRegistration:
       type: object
       description: Data used to "register" an Android device (for use with FCM).
       properties:
         user:
-          $ref: '#/components/schemas/UserInfo'
+          $ref: '#/components/schemas/User'
         fcm:
-          $ref: '#/components/schemas/FcmInfo'
+          $ref: '#/components/schemas/FcmDevice'
         provider:
           type: string
           description: A value assigned to you by Barchart, typically the same as your context.
@@ -134,9 +134,9 @@ components:
         - user
         - context
 
-    NotificationRequestForUser:
+    NotificationForUser:
       type: object
-      description: The object required to send a notification to a specific user.
+      description: The object required to send a notification to a specific user (multiple devices).
       properties:
         user:
           type: string
@@ -162,7 +162,7 @@ components:
         - bundle
         - notification
 
-    NotificationRequestForDevice:
+    NotificationForDevice:
       type: object
       description: The object required to send a notification to a specific device.
       properties:
@@ -180,7 +180,7 @@ components:
         - device
         - notification
 
-    NotificationRequestForBundle:
+    NotificationnForBundle:
       type: object
       description: The object required to send a notification to a bundle (multiple devices).
       properties:
@@ -300,8 +300,8 @@ paths:
           application/json:
             schema:
               oneOf:
-                - $ref: '#/components/schemas/RegisterRequestForApns'
-                - $ref: '#/components/schemas/RegisterRequestForFcm'
+                - $ref: '#/components/schemas/ApnsRegistration'
+                - $ref: '#/components/schemas/FcmRegistration'
       responses:
         '200':
           description: Device has been registered.
@@ -309,8 +309,8 @@ paths:
             application/json:
               schema:
                 oneOf:
-                  - $ref: '#/components/schemas/RegisterRequestForApns'
-                  - $ref: '#/components/schemas/RegisterRequestForFcm'
+                  - $ref: '#/components/schemas/ApnsRegistration'
+                  - $ref: '#/components/schemas/FcmRegistration'
         '400':
           $ref: '#/components/responses/ErrorResponse'
         '403':
@@ -362,9 +362,9 @@ paths:
           application/json:
             schema:
               oneOf:
-                - $ref: '#/components/schemas/NotificationRequestForUser'
-                - $ref: '#/components/schemas/NotificationRequestForDevice'
-                - $ref: '#/components/schemas/NotificationRequestForBundle'
+                - $ref: '#/components/schemas/NotificationForUser'
+                - $ref: '#/components/schemas/NotificationForDevice'
+                - $ref: '#/components/schemas/NotificationnForBundle'
       responses:
         '200':
           description: The notification has been scheduled for transmission.

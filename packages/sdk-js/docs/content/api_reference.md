@@ -27,15 +27,15 @@
 
 ### Schemas 
 
-* [UserInfo](/content/api/components?id=schemasUserInfo)
-* [ApnsInfo](/content/api/components?id=schemasApnsInfo)
-* [FcmInfo](/content/api/components?id=schemasFcmInfo)
-* [RegisterRequestForApns](/content/api/components?id=schemasRegisterRequestForApns)
-* [RegisterRequestForFcm](/content/api/components?id=schemasRegisterRequestForFcm)
+* [User](/content/api/components?id=schemasUser)
+* [ApnsDevice](/content/api/components?id=schemasApnsDevice)
+* [FcmDevice](/content/api/components?id=schemasFcmDevice)
+* [ApnsRegistration](/content/api/components?id=schemasApnsRegistration)
+* [FcmRegistration](/content/api/components?id=schemasFcmRegistration)
 * [UnregisterRequest](/content/api/components?id=schemasUnregisterRequest)
-* [NotificationRequestForUser](/content/api/components?id=schemasNotificationRequestForUser)
-* [NotificationRequestForDevice](/content/api/components?id=schemasNotificationRequestForDevice)
-* [NotificationRequestForBundle](/content/api/components?id=schemasNotificationRequestForBundle)
+* [NotificationForUser](/content/api/components?id=schemasNotificationForUser)
+* [NotificationForDevice](/content/api/components?id=schemasNotificationForDevice)
+* [NotificationnForBundle](/content/api/components?id=schemasNotificationnForBundle)
 * [NotificationContent](/content/api/components?id=schemasNotificationContent)
 * [JobInfo](/content/api/components?id=schemasJobInfo)
 

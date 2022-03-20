@@ -28,7 +28,7 @@
 
 ## Schemas
 
-### UserInfo :id=schemasuserinfo
+### User :id=schemasuser
 **Type**: <code>Object</code>
 
 >Information that uniquely identifies a user.
@@ -50,7 +50,7 @@
 
 * * *
 
-### ApnsInfo :id=schemasapnsinfo
+### ApnsDevice :id=schemasapnsdevice
 **Type**: <code>Object</code>
 
 >Information regarding an iOS device (used to communicate with APNs).
@@ -72,7 +72,7 @@
 
 * * *
 
-### FcmInfo :id=schemasfcminfo
+### FcmDevice :id=schemasfcmdevice
 **Type**: <code>Object</code>
 
 >Information regarding an APNs device (used to communicate with FCM).
@@ -96,15 +96,15 @@
 
 * * *
 
-### RegisterRequestForApns :id=schemasregisterrequestforapns
+### ApnsRegistration :id=schemasapnsregistration
 **Type**: <code>Object</code>
 
 >Data used to &quot;register&quot; an iOS device (for use with APNs).
 
 | Name | Type | Required | Nullable | Description |
 | ---- | ---- | -------- | -------- | ----------- |
-| user | [<code>UserInfo</code>](#schemasUserInfo) | true | false |  |
-| apns | [<code>ApnsInfo</code>](#schemasApnsInfo) | true | false |  |
+| user | [<code>User</code>](#schemasUser) | true | false |  |
+| apns | [<code>ApnsDevice</code>](#schemasApnsDevice) | true | false |  |
 | provider | <code>String</code> | true | false | A value assigned to you by Barchart, typically the same as your context. |
 
 
@@ -126,15 +126,15 @@
 
 * * *
 
-### RegisterRequestForFcm :id=schemasregisterrequestforfcm
+### FcmRegistration :id=schemasfcmregistration
 **Type**: <code>Object</code>
 
 >Data used to &quot;register&quot; an Android device (for use with FCM).
 
 | Name | Type | Required | Nullable | Description |
 | ---- | ---- | -------- | -------- | ----------- |
-| user | [<code>UserInfo</code>](#schemasUserInfo) | true | false |  |
-| fcm | [<code>FcmInfo</code>](#schemasFcmInfo) | true | false |  |
+| user | [<code>User</code>](#schemasUser) | true | false |  |
+| fcm | [<code>FcmDevice</code>](#schemasFcmDevice) | true | false |  |
 | provider | <code>String</code> | true | false | A value assigned to you by Barchart, typically the same as your context. |
 
 
@@ -183,10 +183,10 @@
 
 * * *
 
-### NotificationRequestForUser :id=schemasnotificationrequestforuser
+### NotificationForUser :id=schemasnotificationforuser
 **Type**: <code>Object</code>
 
->The object required to send a notification to a specific user.
+>The object required to send a notification to a specific user (multiple devices).
 
 | Name | Type | Required | Nullable | Description |
 | ---- | ---- | -------- | -------- | ----------- |
@@ -226,7 +226,7 @@
 
 * * *
 
-### NotificationRequestForDevice :id=schemasnotificationrequestfordevice
+### NotificationForDevice :id=schemasnotificationfordevice
 **Type**: <code>Object</code>
 
 >The object required to send a notification to a specific device.
@@ -265,7 +265,7 @@
 
 * * *
 
-### NotificationRequestForBundle :id=schemasnotificationrequestforbundle
+### NotificationnForBundle :id=schemasnotificationnforbundle
 **Type**: <code>Object</code>
 
 >The object required to send a notification to a bundle (multiple devices).
