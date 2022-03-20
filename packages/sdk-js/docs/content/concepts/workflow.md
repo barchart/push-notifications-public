@@ -64,11 +64,11 @@ Send a ```POST``` request to the [```v2/unregister```](/content/api/paths?id=pos
 
 After an alert notification is composed, it can be addressed to a single device or to multiple devices, using one of the three different methods:
 
-| Target Name | Target Description                                            | Affected Devices | API Component                                                                      |
-|-------------|---------------------------------------------------------------|------------------|------------------------------------------------------------------------------------|
-| By Device   | A single app, installed on a single device                    | zero or one      | [NotificationForDevice](/content/api/components?id=schemasnotificationfordevice)   |
-| By User     | A single app, installed on all devices owned by a single user | zero or few      | [NotificationForUser](/content/api/components?id=schemasnotificationforuser)       |
-| By Bundle   | A single app, all known installations, regardless of user.    | many             | [NotificationnForBundle](/content/api/components?id=schemasnotificationnforbundle) |
+| Target Name | Target Description                                             | Affected Devices | API Component                                                                      |
+|-------------|----------------------------------------------------------------|------------------|------------------------------------------------------------------------------------|
+| By Device   | A single app, installed on a single device.                    | zero or one      | [NotificationForDevice](/content/api/components?id=schemasnotificationfordevice)   |
+| By User     | A single app, installed on all devices owned by a single user. | zero or few      | [NotificationForUser](/content/api/components?id=schemasnotificationforuser)       |
+| By Bundle   | A single app, all known installations, regardless of user.     | many             | [NotificationnForBundle](/content/api/components?id=schemasnotificationnforbundle) |
 
 > Push notifications should **never** be generated and sent from a mobile app. They should be generated and sent from a backend service. As a security precaution, signing secrets, different from those used to "register" and "unregister," are used for sending push notifications.
 
