@@ -44,7 +44,7 @@ PushNotificationGateway.forStaging(JwtProvider.forStaging(user.id, user.context)
 
 		console.info(`Example: Register device for [ ${user.id} ] [ ${user.context} ].`);
 
-		const registerQuery = {
+		const registerData = {
 			user: user,
 			apns: {
 				device: deviceToken,
@@ -53,8 +53,8 @@ PushNotificationGateway.forStaging(JwtProvider.forStaging(user.id, user.context)
 			provider: 'barchart'
 		};
 
-		return pushNotificationGatewayGateway.registerDevice(registerQuery)
-			.then((device) => {
+		return pushNotificationGatewayGateway.registerDevice(registerData)
+			.then((registration) => {
 				console.info(`Example: Created record for [ ${user.id} ] [ ${user.context} ].`);
 			});
 	}).then(() => {

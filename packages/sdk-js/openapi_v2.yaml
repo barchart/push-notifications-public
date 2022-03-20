@@ -29,7 +29,7 @@ components:
       properties:
         id:
           type: string
-          description: The unique identifier for the user (within the context).
+          description: The unique identifier for the user (within the context). Use "ANONYMOUS" when user is unknown.
           example: abc-12345678
         context:
           type: string
@@ -45,11 +45,11 @@ components:
       properties:
         device:
           type: string
-          description: The unique identifer for the iOS device.
+          description: The unique identifier for the iOS device (obtained from an instance of the app, installed on an actual device).
           example: 6f2dfb1ee3f636e93fad5189710d4fa92edb8ec13d1e39d1bb9d9acd1286f012
         bundle:
           type: string
-          description: The bundle name of a mobile application registered with APNs.
+          description: The bundle name of a mobile application registered with APNs (used to identify the app, the same value across all devices).
           example: com.barchart.ens
       required:
         - device
@@ -57,60 +57,63 @@ components:
 
     FcmDevice:
       type: object
-      description: Information regarding an APNs device (used to communicate with FCM).
+      description: Information regarding an Android device (used to communicate with FCM).
       properties:
         iid:
           type: string
-          description: The Firebase IID.
+          description: The Firebase IID (FCM deprecated this field, can be omitted).
           example: ca1GWEasSt-LfySsUq_qhi
         token:
           type: string
-          description: The Firebase device token.
+          description: The Firebase device token (obtained from an instance of the app, installed on an actual device).
           example: ca1GWEasSt-LfySsUq_qhi:APA91bG4YXRvS5dxzUXnDGDgvAh7aojLqZg_21XeiHloaF2Wxqfioyi7JY1sIiFN_oX2_3ye3cgj1cK2forNFIuyo-YVvDd6iwQISXOwVHeJL34j6SuKcaXqqnikn-cPdZ3gb-iSmasd
         package:
           type: string
-          description: The package name of a mobile application registered with FCM.
+          description: The package name of a mobile application registered with FCM (used to identify the app, the same value across all devices).
           example: com.barchart.com
       required:
-        - iid
         - token
         - package
 
     ApnsRegistration:
       type: object
-      description: Data used to "register" an iOS device (for use with APNs).
+      description: Information a mobile app installation on a specific iOS device.
       properties:
         user:
+          description: The user of the mobile app.
           $ref: '#/components/schemas/User'
         apns:
+          description: Data regarding the app, installed on a specific device.
           $ref: '#/components/schemas/ApnsDevice'
         provider:
           type: string
-          description: A value assigned to you by Barchart, typically the same as your context.
+          description: A value assigned to you by Barchart, used to identify keys for communication with APNs. Typically the same as the user's context.
       required:
         - user
-        - provider
         - apns
+        - provider
 
     FcmRegistration:
       type: object
-      description: Data used to "register" an Android device (for use with FCM).
+      description: Information a mobile app installation on a specific Android device.
       properties:
         user:
+          description: The user of the mobile app.
           $ref: '#/components/schemas/User'
         fcm:
+          description: Data regarding the app, installed on a specific device.
           $ref: '#/components/schemas/FcmDevice'
         provider:
           type: string
-          description: A value assigned to you by Barchart, typically the same as your context.
+          description: A value assigned to you by Barchart, used to identify keys for communication with FCM. Typically the same as the user's context.
       required:
         - user
-        - provider
         - fcm
+        - provider
 
     UnregisterRequest:
       type: object
-      description: Data used to "unregister" an iOS or Android device.
+      description: Data used identify a "registration" for deletion.
       properties:
         device:
           type: string
@@ -122,11 +125,11 @@ components:
           example: com.barchart.ens
         user:
           type: string
-          description: The unique identifier for the user (within the context).
+          description: The identifier of the user of the mobile app.
           example: abc-12345678
         context:
           type: string
-          description: A value assigned to you by Barchart, (e.g. application or customer name).
+          description: The "context" of the user of the mobile app.
           example: my-company
       required:
         - device
@@ -136,7 +139,7 @@ components:
 
     NotificationForUser:
       type: object
-      description: The object required to send a notification to a specific user (multiple devices).
+      description: The object required to send a notification to a specific user (across multiple devices).
       properties:
         user:
           type: string
@@ -182,7 +185,7 @@ components:
 
     NotificationnForBundle:
       type: object
-      description: The object required to send a notification to a bundle (multiple devices).
+      description: The object required to send a notification to a bundle (all installations of the app).
       properties:
         bundle:
           type: string

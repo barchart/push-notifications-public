@@ -3,14 +3,14 @@
 	"version": "1.0.4",
 	"description": "JavaScript SDK for Barchart's Push Notification Service",
 	"author": {
-		"name": "Dzmitry Afanasenka",
-		"email": "dzmitry.afanasenka@gmail.com"
+		"name": "Bryan Ingle",
+		"email": "bryan.ingle@barchart.com",
+		"url": "https://www.barchart.com"
 	},
 	"contributors": [
 		{
-			"name": "Bryan Ingle",
-			"email": "bryan.ingle@barchart.com",
-			"url": "https://www.barchart.com"
+			"name": "Dzmitry Afanasenka",
+			"email": "dzmitry.afanasenka@gmail.com"
 		}
 	],
 	"scripts": {
@@ -35,7 +35,7 @@
 		"SDK"
 	],
 	"dependencies": {
-		"@barchart/common-js": "^4.14.0"
+		"@barchart/common-js": "^4.19.1"
 	},
 	"devDependencies": {
 		"aws-sdk": "^2.732.0",

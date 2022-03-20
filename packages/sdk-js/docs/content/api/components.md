@@ -35,7 +35,7 @@
 
 | Name | Type | Required | Nullable | Description |
 | ---- | ---- | -------- | -------- | ----------- |
-| id | <code>String</code> | true | false | The unique identifier for the user (within the context). |
+| id | <code>String</code> | true | false | The unique identifier for the user (within the context). Use "ANONYMOUS" when user is unknown. |
 | context | <code>String</code> | true | false | A value assigned to you by Barchart, (e.g. application or customer name). |
 
 
@@ -57,8 +57,8 @@
 
 | Name | Type | Required | Nullable | Description |
 | ---- | ---- | -------- | -------- | ----------- |
-| device | <code>String</code> | true | false | The unique identifer for the iOS device. |
-| bundle | <code>String</code> | true | false | The bundle name of a mobile application registered with APNs. |
+| device | <code>String</code> | true | false | The unique identifier for the iOS device (obtained from an instance of the app, installed on an actual device). |
+| bundle | <code>String</code> | true | false | The bundle name of a mobile application registered with APNs (used to identify the app, the same value across all devices). |
 
 
 **Example**:
@@ -75,13 +75,13 @@
 ### FcmDevice :id=schemasfcmdevice
 **Type**: <code>Object</code>
 
->Information regarding an APNs device (used to communicate with FCM).
+>Information regarding an Android device (used to communicate with FCM).
 
 | Name | Type | Required | Nullable | Description |
 | ---- | ---- | -------- | -------- | ----------- |
-| iid | <code>String</code> | true | false | The Firebase IID. |
-| token | <code>String</code> | true | false | The Firebase device token. |
-| package | <code>String</code> | true | false | The package name of a mobile application registered with FCM. |
+| iid | <code>String</code> | false | false | The Firebase IID (FCM deprecated this field, can be omitted). |
+| token | <code>String</code> | true | false | The Firebase device token (obtained from an instance of the app, installed on an actual device). |
+| package | <code>String</code> | true | false | The package name of a mobile application registered with FCM (used to identify the app, the same value across all devices). |
 
 
 **Example**:
@@ -99,13 +99,13 @@
 ### ApnsRegistration :id=schemasapnsregistration
 **Type**: <code>Object</code>
 
->Data used to &quot;register&quot; an iOS device (for use with APNs).
+>Information a mobile app installation on a specific iOS device.
 
 | Name | Type | Required | Nullable | Description |
 | ---- | ---- | -------- | -------- | ----------- |
-| user | [<code>User</code>](#schemasUser) | true | false |  |
-| apns | [<code>ApnsDevice</code>](#schemasApnsDevice) | true | false |  |
-| provider | <code>String</code> | true | false | A value assigned to you by Barchart, typically the same as your context. |
+| user | [<code>User</code>](#schemasUser) | true | false | The user of the mobile app. |
+| apns | [<code>ApnsDevice</code>](#schemasApnsDevice) | true | false | Data regarding the app, installed on a specific device. |
+| provider | <code>String</code> | true | false | A value assigned to you by Barchart, used to identify keys for communication with APNs. Typically the same as the user's context. |
 
 
 **Example**:
@@ -129,13 +129,13 @@
 ### FcmRegistration :id=schemasfcmregistration
 **Type**: <code>Object</code>
 
->Data used to &quot;register&quot; an Android device (for use with FCM).
+>Information a mobile app installation on a specific Android device.
 
 | Name | Type | Required | Nullable | Description |
 | ---- | ---- | -------- | -------- | ----------- |
-| user | [<code>User</code>](#schemasUser) | true | false |  |
-| fcm | [<code>FcmDevice</code>](#schemasFcmDevice) | true | false |  |
-| provider | <code>String</code> | true | false | A value assigned to you by Barchart, typically the same as your context. |
+| user | [<code>User</code>](#schemasUser) | true | false | The user of the mobile app. |
+| fcm | [<code>FcmDevice</code>](#schemasFcmDevice) | true | false | Data regarding the app, installed on a specific device. |
+| provider | <code>String</code> | true | false | A value assigned to you by Barchart, used to identify keys for communication with FCM. Typically the same as the user's context. |
 
 
 **Example**:
@@ -160,14 +160,14 @@
 ### UnregisterRequest :id=schemasunregisterrequest
 **Type**: <code>Object</code>
 
->Data used to &quot;unregister&quot; an iOS or Android device.
+>Data used identify a &quot;registration&quot; for deletion.
 
 | Name | Type | Required | Nullable | Description |
 | ---- | ---- | -------- | -------- | ----------- |
 | device | <code>String</code> | true | false | The device token (for APNs) or an IID (for FCM). |
 | bundle | <code>String</code> | true | false | The bundle name (APNs) or the package name (FCM). |
-| user | <code>String</code> | true | false | The unique identifier for the user (within the context). |
-| context | <code>String</code> | true | false | A value assigned to you by Barchart, (e.g. application or customer name). |
+| user | <code>String</code> | true | false | The identifier of the user of the mobile app. |
+| context | <code>String</code> | true | false | The "context" of the user of the mobile app. |
 
 
 **Example**:
@@ -186,7 +186,7 @@
 ### NotificationForUser :id=schemasnotificationforuser
 **Type**: <code>Object</code>
 
->The object required to send a notification to a specific user (multiple devices).
+>The object required to send a notification to a specific user (across multiple devices).
 
 | Name | Type | Required | Nullable | Description |
 | ---- | ---- | -------- | -------- | ----------- |
@@ -268,7 +268,7 @@
 ### NotificationnForBundle :id=schemasnotificationnforbundle
 **Type**: <code>Object</code>
 
->The object required to send a notification to a bundle (multiple devices).
+>The object required to send a notification to a bundle (all installations of the app).
 
 | Name | Type | Required | Nullable | Description |
 | ---- | ---- | -------- | -------- | ----------- |

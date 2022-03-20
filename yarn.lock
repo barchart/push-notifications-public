@@ -23,10 +23,10 @@
     chalk "^2.0.0"
     js-tokens "^4.0.0"
 
-"@barchart/common-js@^4.14.0":
-  version "4.14.0"
-  resolved "https://registry.yarnpkg.com/@barchart/common-js/-/common-js-4.14.0.tgz#fe9b40b05cc00f65eb7737f34327d20dbc6e478d"
-  integrity sha512-zftWTBb3lUUP7d+exhehpkH2WWLZ9scSWN10BbfO+cRHLLb/Xth7Y81DWzN8iVtJXGrhXRtHkniZUqCnxi1HzQ==
+"@barchart/common-js@^4.19.1":
+  version "4.19.1"
+  resolved "https://registry.yarnpkg.com/@barchart/common-js/-/common-js-4.19.1.tgz#7fe6e6b6d8e538a065f742a0cb6950e64d7ef370"
+  integrity sha512-/K9EUUBETcAIS2TbsvWphUBSXtUsJZuZsSqSTi/DYYT9MtqO5cHixMj4Npn/+P1dnxiGc3ueIZqG3WSkIXkJlw==
   dependencies:
     axios "^0.21.1"
     big.js "^5.2.2"

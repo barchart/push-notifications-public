@@ -5,38 +5,91 @@
 
 * [Schema](#Schema) : <code>object</code>
     * _static_
-        * [.Device](#SchemaDevice) : <code>Object</code>
+        * [.User](#SchemaUser) : <code>Object</code>
+        * [.ApnsDevice](#SchemaApnsDevice) : <code>Object</code>
+        * [.FcmDevice](#SchemaFcmDevice) : <code>Object</code>
+        * [.ApnsRegistration](#SchemaApnsRegistration) : <code>Object</code>
+        * [.FcmRegistration](#SchemaFcmRegistration) : <code>Object</code>
         * [.UnregisterRequest](#SchemaUnregisterRequest) : <code>Object</code>
 
 
 * * *
 
-### Schema.Device :id=schemadevice
-> A device information to register for push notifications
+### Schema.User :id=schemauser
+> Information that uniquely identifies a user.
 
 **Kind**: static typedef of [<code>Schema</code>](#Schema)  
 **Properties**
 
 | Name | Type | Description |
 | --- | --- | --- |
-| device | <code>Object</code> |  |
-| device.user | <code>Object</code> | <p>An object contains user data</p> |
-| device.user.id | <code>String</code> | <p>A user id</p> |
-| device.user.context | <code>String</code> | <p>A user context</p> |
-| [device.apns] | <code>Object</code> | <p>An object contains APNs data</p> |
-| device.apns.device | <code>String</code> | <p>Unique device token</p> |
-| device.apns.bundle | <code>String</code> | <p>An application bundle name</p> |
-| [device.fcm] | <code>Object</code> | <p>An object contains FCM data</p> |
-| device.fcm.token | <code>String</code> | <p>Unique device token</p> |
-| device.fcm.package | <code>String</code> | <p>An application package name</p> |
-| device.fcm.iid | <code>String</code> | <p>Firebase IID of device</p> |
-| device.provider | <code>String</code> | <p>Provider name</p> |
+| id | <code>String</code> | <p>The unique identifier for the user (within the context). Use &quot;ANONYMOUS&quot; when user is unknown.</p> |
+| context | <code>String</code> | <p>A value assigned to you by Barchart, (e.g. application or customer name).</p> |
+
+
+* * *
+
+### Schema.ApnsDevice :id=schemaapnsdevice
+> Information regarding an iOS device (used to communicate with APNs).
+
+**Kind**: static typedef of [<code>Schema</code>](#Schema)  
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| device | <code>String</code> | <p>The unique identifier for the iOS device (obtained from an instance of the app, installed on an actual device).</p> |
+| bundle | <code>String</code> | <p>The bundle name of a mobile application registered with APNs (used to identify the app, the same value across all devices).</p> |
+
+
+* * *
+
+### Schema.FcmDevice :id=schemafcmdevice
+> Information regarding an Android device (used to communicate with FCM).
+
+**Kind**: static typedef of [<code>Schema</code>](#Schema)  
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| [iid] | <code>String</code> | <p>The Firebase IID (FCM deprecated this field, can be omitted).</p> |
+| token | <code>String</code> | <p>The Firebase device token (obtained from an instance of the app, installed on an actual device).</p> |
+| package | <code>String</code> | <p>The package name of a mobile application registered with FCM (used to identify the app, the same value across all devices).</p> |
+
+
+* * *
+
+### Schema.ApnsRegistration :id=schemaapnsregistration
+> Information a mobile app installation on a specific iOS device.
+
+**Kind**: static typedef of [<code>Schema</code>](#Schema)  
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| user | [<code>User</code>](#SchemaUser) | <p>The user of the mobile app.</p> |
+| apns | [<code>ApnsDevice</code>](#SchemaApnsDevice) | <p>Data regarding the app, installed on a specific device.</p> |
+| provider | <code>String</code> | <p>A value assigned to you by Barchart, used to identify keys for communication with APNs. Typically the same as the user's context.</p> |
+
+
+* * *
+
+### Schema.FcmRegistration :id=schemafcmregistration
+> Information a mobile app installation on a specific Android device.
+
+**Kind**: static typedef of [<code>Schema</code>](#Schema)  
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| user | [<code>User</code>](#SchemaUser) | <p>The user of the mobile app.</p> |
+| fcm | [<code>FcmDevice</code>](#SchemaFcmDevice) | <p>Data regarding the app, installed on a specific device.</p> |
+| provider | <code>String</code> | <p>A value assigned to you by Barchart, used to identify keys for communication with APNs. Typically the same as the user's context.</p> |
 
 
 * * *
 
 ### Schema.UnregisterRequest :id=schemaunregisterrequest
-> Data structure used to unregister a device.
+> Data used identify a &quot;registration&quot; for deletion.
 
 **Kind**: static typedef of [<code>Schema</code>](#Schema)  
 **Properties**
@@ -44,12 +97,12 @@
 | Name | Type | Description |
 | --- | --- | --- |
 | request | <code>Object</code> |  |
-| request.user | <code>Object</code> | <p>An object contains user data</p> |
-| request.user.id | <code>String</code> | <p>A user id</p> |
-| request.user.context | <code>String</code> | <p>A user context</p> |
-| request.device | <code>Object</code> | <p>An object contains APNs or FCM data</p> |
-| request.device.device | <code>String</code> | <p>APNs device token or FCM IID</p> |
-| request.device.bundle | <code>String</code> | <p>Bundle or Package name of the application</p> |
+| request.user | <code>Object</code> | <p>Identifiers for the user of the mobile app.</p> |
+| request.user.id | <code>String</code> | <p>The identifier of the user of the mobile app.</p> |
+| request.user.context | <code>String</code> | <p>The &quot;context&quot; of the user of the mobile app.</p> |
+| request.device | <code>Object</code> | <p>Identifiers for the mobile app installation (on a specific device).</p> |
+| request.device.device | <code>String</code> | <p>The device token (for APNs) or an IID (for FCM).</p> |
+| request.device.bundle | <code>String</code> | <p>The bundle name (APNs) or the package name (FCM).</p> |
 
 
 * * *

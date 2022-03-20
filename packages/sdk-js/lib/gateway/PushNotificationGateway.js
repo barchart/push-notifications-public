@@ -150,38 +150,38 @@ module.exports = (() => {
 		 * Registers an iOS or Android device to receive push notifications.
 		 *
 		 * @public
-		 * @param {Schema.Device} device - User information for registering device to receive push notifications.
-		 * @returns {Promise<Schema.Device>}
+		 * @param {Schema.ApnsRegistration|Schema.FcmRegistration} registration - Information regarding the installation of a mobile app, on a specific device.
+		 * @returns {Promise<Schema.ApnsRegistration|Schema.FcmRegistration>}
 		 */
-		registerDevice(device) {
+		registerDevice(registration) {
 			return Promise.resolve()
 				.then(() => {
 					checkStart.call(this);
 
-					assert.argumentIsRequired(device, 'device', Object);
-					assert.argumentIsRequired(device.user, 'device.user', Object);
-					assert.argumentIsRequired(device.user.id, 'device.user.id', String);
-					assert.argumentIsRequired(device.user.context, 'device.user.context', String);
-					assert.argumentIsRequired(device.provider, 'device.provider', String);
+					assert.argumentIsRequired(registration, 'registration', Object);
+					assert.argumentIsRequired(registration.user, 'registration.user', Object);
+					assert.argumentIsRequired(registration.user.id, 'registration.user.id', String);
+					assert.argumentIsRequired(registration.user.context, 'registration.user.context', String);
+					assert.argumentIsRequired(registration.provider, 'registration.provider', String);
 
-					if (!device.apns && !device.fcm) {
-						throw new Error('Either [ device.apns ] or [ device.fcm ] must be provided');
+					if (!registration.apns && !registration.fcm) {
+						throw new Error('Either [ registration.apns ] or [ registration.fcm ] must be provided');
 					}
 
-					if (device.apns) {
-						assert.argumentIsRequired(device.apns, 'device.apns', Object);
-						assert.argumentIsRequired(device.apns.device, 'device.apns.device', String);
-						assert.argumentIsRequired(device.apns.bundle, 'device.apns.bundle', String);
+					if (registration.apns) {
+						assert.argumentIsRequired(registration.apns, 'registration.apns', Object);
+						assert.argumentIsRequired(registration.apns.device, 'registration.apns.device', String);
+						assert.argumentIsRequired(registration.apns.bundle, 'registration.apns.bundle', String);
 					}
 
-					if (device.fcm) {
-						assert.argumentIsRequired(device.fcm, 'device.fcm', Object);
-						assert.argumentIsRequired(device.fcm.iid, 'device.fcm.iid', String);
-						assert.argumentIsRequired(device.fcm.package, 'device.fcm.package', String);
-						assert.argumentIsRequired(device.fcm.token, 'device.fcm.token', String);
+					if (registration.fcm) {
+						assert.argumentIsRequired(registration.fcm, 'registration.fcm', Object);
+						assert.argumentIsOptional(registration.fcm.iid, 'registration.fcm.iid', String);
+						assert.argumentIsRequired(registration.fcm.package, 'registration.fcm.package', String);
+						assert.argumentIsRequired(registration.fcm.token, 'registration.fcm.token', String);
 					}
 
-					return Gateway.invoke(this._registerEndpoint, device);
+					return Gateway.invoke(this._registerEndpoint, registration);
 				});
 		}
 
@@ -189,7 +189,7 @@ module.exports = (() => {
 		 * Unregisters an iOS or Android device.
 		 *
 		 * @public
-		 * @param {Schema.UnregisterRequest} data - User information for unregistering the device.
+		 * @param {Schema.UnregisterRequest} data - Information identifying the "registration" to delete.
 		 * @returns {Promise<Object>}
 		 */
 		unregisterDevice(data) {
@@ -249,6 +249,7 @@ module.exports = (() => {
 		}
 
 		_onDispose() {
+
 		}
 
 		toString() {

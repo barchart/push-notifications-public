@@ -12,7 +12,7 @@
     * _instance_
         * [.environment](#PushNotificationGatewayenvironment) ⇒ <code>String</code>
         * [.connect(jwtProvider)](#PushNotificationGatewayconnect) ⇒ [<code>Promise.&lt;PushNotificationGateway&gt;</code>](#PushNotificationGateway)
-        * [.registerDevice(device)](#PushNotificationGatewayregisterDevice) ⇒ [<code>Promise.&lt;Schema.Device&gt;</code>](/content/sdk/lib-data?id=schemadevice)
+        * [.registerDevice(registration)](#PushNotificationGatewayregisterDevice) ⇒ <code>Promise.&lt;(Schema.ApnsRegistration\|Schema.FcmRegistration)&gt;</code>
         * [.unregisterDevice(data)](#PushNotificationGatewayunregisterDevice) ⇒ <code>Promise.&lt;Object&gt;</code>
     * _static_
         * [.forStaging(jwtProvider)](#PushNotificationGatewayforStaging) ⇒ [<code>Promise.&lt;PushNotificationGateway&gt;</code>](#PushNotificationGateway)
@@ -48,16 +48,16 @@
 
 * * *
 
-### pushNotificationGateway.registerDevice(device) :id=pushnotificationgatewayregisterdevice
+### pushNotificationGateway.registerDevice(registration) :id=pushnotificationgatewayregisterdevice
 > Registers an iOS or Android device to receive push notifications.
 
 **Kind**: instance method of [<code>PushNotificationGateway</code>](#PushNotificationGateway)  
-**Returns**: [<code>Promise.&lt;Schema.Device&gt;</code>](/content/sdk/lib-data?id=schemadevice)  
+**Returns**: <code>Promise.&lt;(Schema.ApnsRegistration\|Schema.FcmRegistration)&gt;</code>  
 **Access**: public  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| device | [<code>Schema.Device</code>](/content/sdk/lib-data?id=schemadevice) | <p>User information for registering device to receive push notifications.</p> |
+| registration | [<code>Schema.ApnsRegistration</code>](/content/sdk/lib-data?id=schemaapnsregistration) \| [<code>Schema.FcmRegistration</code>](/content/sdk/lib-data?id=schemafcmregistration) | <p>Information regarding the installation of a mobile app, on a specific device.</p> |
 
 
 * * *
@@ -71,7 +71,7 @@
 
 | Param | Type | Description |
 | --- | --- | --- |
-| data | [<code>Schema.UnregisterRequest</code>](/content/sdk/lib-data?id=schemaunregisterrequest) | <p>User information for unregistering the device.</p> |
+| data | [<code>Schema.UnregisterRequest</code>](/content/sdk/lib-data?id=schemaunregisterrequest) | <p>Information identifying the &quot;registration&quot; to delete.</p> |
 
 
 * * *

@@ -45,7 +45,7 @@ PushNotificationGateway.forStaging(JwtProvider.forStaging(user.id, user.context)
 
 		console.info(`Example: Register device for [ ${user.id} ] [ ${user.context} ].`);
 
-		const registerQuery = {
+		const registerData = {
 			user: user,
 			fcm: {
 				iid: iid,
@@ -55,8 +55,8 @@ PushNotificationGateway.forStaging(JwtProvider.forStaging(user.id, user.context)
 			provider: 'barchart.test.com'
 		};
 
-		return pushNotificationGatewayGateway.registerDevice(registerQuery)
-			.then((device) => {
+		return pushNotificationGatewayGateway.registerDevice(registerData)
+			.then((registration) => {
 				console.info(`Example: Created record for [ ${user.id} ] [ ${user.context} ].`);
 			});
 	}).then(() => {

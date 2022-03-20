@@ -70,9 +70,12 @@ If you choose to work directly with the REST interface, you won't need to perfor
 
 ## Register a Device
 
-First, we must construct an object which conforms to the [```Device```](content/sdk/lib-data?id=schemadevice) schema.
+First, depending on the type of device, we must construct an object which conforms to either the:
 
-Here is a simple example for an iOS device. For an Android device, remove the `apns` property and add an `fcm` property.
+* [```ApnsRegistration```](/content/sdk/lib-data?id=schemaapnsregistration) schema, or the 
+* [```FcmRegistration```](/content/sdk/lib-data?id=schemafcmregistration) schema.
+
+Here is a simple example for an iOS device:
 
 ```json
 {
@@ -95,7 +98,7 @@ Here is a simple example for an iOS device. For an Android device, remove the `a
 #### Using the SDK
 
 ```js
-const registrationData = {
+const registerData = {
 	user: {
 		id: 'me',
 		context: 'barchart'
@@ -107,8 +110,8 @@ const registrationData = {
 	provider: 'barchart'
 };
 
-pushNotificationGatweay.registerDevice(registrationData)
-	.then((created) => {
+pushNotificationGatweay.registerDevice(registerData)
+	.then((registratio) => {
 		console.log(`Device registered`);
 	});
 ```
@@ -128,7 +131,7 @@ curl 'https://push-notifications-stage.aws.barchart.com/v2/register' \
 
 #### Example Output
 
-The result will be a complete [```Device```](/content/sdk/lib-data?id=schemadevice) object, similar to the example below.
+The result will be a complete [```ApnsRegistration```](/content/sdk/lib-data?id=schemaapnsregistration) object, similar to the example below.
 
 ```json
 {
@@ -147,7 +150,7 @@ The result will be a complete [```Device```](/content/sdk/lib-data?id=schemadevi
 ### Example for FCM
 
 ```js
-const registrationData = {
+const registerData = {
 	user: {
 		id: 'me',
 		context: 'barchart'
@@ -160,8 +163,8 @@ const registrationData = {
 	provider: 'barchart.test.com'
 };
 
-PushNotificationGateway.registerDevice(registrationData)
-	.then((created) => {
+PushNotificationGateway.registerDevice(registerData)
+	.then((registration) => {
 		console.log(`Device registered`);
 	});
 ```
@@ -179,7 +182,7 @@ curl 'https://push-notifications-stage.aws.barchart.com/v2/register' \
 
 #### Example Output
 
-The result will be a complete [```Device```](content/sdk/lib-data?id=schemadevice) object, similar to the example below.
+The result will be a complete [```FcmRegistration```](/content/sdk/lib-data?id=schemafcmregistration) object, similar to the example below.
 
 ```json
 {
