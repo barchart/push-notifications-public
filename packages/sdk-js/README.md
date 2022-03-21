@@ -1,6 +1,6 @@
 # @barchart/push-notifications-client-js
 
-### Overview
+[![NPM](https://img.shields.io/npm/v/@barchart/push-notifications-client-js)](https://www.npmjs.com/package/@barchart/push-notifications-client-js)
 
 This **JavaScript SDK** provides a mechanism to interact with the **Barchart Push Notification Service** API — a simple service for managing push notifications to iOS and Android devices.
 
