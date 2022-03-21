@@ -5,14 +5,15 @@
 	"packages/*"
   ],
   "author": {
-	"name": "Dzmitry Afanasenka",
-	"email": "dzmitry.afanasenka@gmail.com"
+	"name": "Bryan Ingle",
+	"email": "bryan.ingle@barchart.com",
+	"url": "https://www.barchart.com"
+
   },
   "contributors": [
 	{
-	  "name": "Bryan Ingle",
-	  "email": "bryan.ingle@barchart.com",
-	  "url": "https://www.barchart.com"
+	  "name": "Dzmitry Afanasenka",
+	  "email": "dzmitry.afanasenka@gmail.com"
 	}
   ],
   "private": true,
