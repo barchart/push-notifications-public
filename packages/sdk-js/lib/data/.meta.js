@@ -64,9 +64,7 @@
  * @type Object
  * @memberOf Schema
  * @property {Object} request
- * @property {Object} request.user - Identifiers for the user of the mobile app.
- * @property {String} request.user.id - The identifier of the user of the mobile app.
- * @property {String} request.user.context - The "context" of the user of the mobile app.
+ * @property {Schema.User} user - The user of the mobile app.
  * @property {Object} request.device - Identifiers for the mobile app installation (on a specific device).
  * @property {String} request.device.device - The device token (for APNs) or an IID (for FCM).
  * @property {String} request.device.bundle - The bundle name (APNs) or the package name (FCM).
