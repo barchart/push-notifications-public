@@ -183,7 +183,7 @@ components:
         - device
         - notification
 
-    NotificationnForBundle:
+    NotificationForBundle:
       type: object
       description: The object required to send a notification to a bundle (all installations of the app).
       properties:
@@ -320,9 +320,7 @@ paths:
           $ref: '#/components/responses/ErrorResponse'
         '500':
           $ref: '#/components/responses/ErrorResponse'
-
-  /v2/unregister:
-    post:
+    delete:
       summary: Unregister Device
       description: Deletes registrations for a device.
       tags:
@@ -333,7 +331,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UnregisterRequest'
+              oneOf:
+                - $ref: '#/components/schemas/ApnsRegistration'
+                - $ref: '#/components/schemas/FcmRegistration'
+                - $ref: '#/components/schemas/UnregisterRequest'
       responses:
         '200':
           description: Device has been unregistered.
@@ -367,7 +368,7 @@ paths:
               oneOf:
                 - $ref: '#/components/schemas/NotificationForUser'
                 - $ref: '#/components/schemas/NotificationForDevice'
-                - $ref: '#/components/schemas/NotificationnForBundle'
+                - $ref: '#/components/schemas/NotificationForBundle'
       responses:
         '200':
           description: The notification has been scheduled for transmission.

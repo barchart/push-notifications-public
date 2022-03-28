@@ -265,7 +265,7 @@
 
 * * *
 
-### NotificationnForBundle :id=schemasnotificationnforbundle
+### NotificationForBundle :id=schemasnotificationforbundle
 **Type**: <code>Object</code>
 
 >The object required to send a notification to a bundle (all installations of the app).

@@ -43,7 +43,7 @@
 
 * * *
 
-## POST /v2/unregister 
+## DELETE /v2/register 
 
 > Deletes registrations for a device.
 
@@ -52,21 +52,14 @@
 **Security**: 
 [Jwt-Consumer](/content/api/components?id=securityJwt-Consumer)
 #### Request Body
+**One of:**
 
-**Content Type**: application/json
+- [ApnsRegistration](/content/api/components?id=schemasapnsregistration)
 
-**Type**: [<code>UnregisterRequest</code>](/content/api/components?id=schemasUnregisterRequest)
+- [FcmRegistration](/content/api/components?id=schemasfcmregistration)
 
-**Example**:
+- [UnregisterRequest](/content/api/components?id=schemasunregisterrequest)
 
-```json
-{
-  "device": "ca1GWEasSt-LfySsUq_qhi",
-  "bundle": "com.barchart.ens",
-  "user": "abc-12345678",
-  "context": "my-company"
-}
-```
 
 #### Responses
 
@@ -119,7 +112,7 @@
 
 - [NotificationForDevice](/content/api/components?id=schemasnotificationfordevice)
 
-- [NotificationnForBundle](/content/api/components?id=schemasnotificationnforbundle)
+- [NotificationForBundle](/content/api/components?id=schemasnotificationforbundle)
 
 
 #### Responses

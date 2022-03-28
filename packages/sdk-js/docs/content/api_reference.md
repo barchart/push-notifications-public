@@ -35,7 +35,7 @@
 * [UnregisterRequest](/content/api/components?id=schemasUnregisterRequest)
 * [NotificationForUser](/content/api/components?id=schemasNotificationForUser)
 * [NotificationForDevice](/content/api/components?id=schemasNotificationForDevice)
-* [NotificationnForBundle](/content/api/components?id=schemasNotificationnForBundle)
+* [NotificationForBundle](/content/api/components?id=schemasNotificationForBundle)
 * [NotificationContent](/content/api/components?id=schemasNotificationContent)
 * [JobInfo](/content/api/components?id=schemasJobInfo)
 
@@ -48,7 +48,7 @@
 ## Paths {docsify-ignore}
 
 * [POST /v2/register](/content/api/paths?id=post-v2register)
-* [POST /v2/unregister](/content/api/paths?id=post-v2unregister)
+* [DELETE /v2/register](/content/api/paths?id=delete-v2register)
 * [POST /v2/send](/content/api/paths?id=post-v2send)
 * [GET /v2/job/{id}](/content/api/paths?id=get-v2jobid)
 * [GET /v2/service/read](/content/api/paths?id=get-v2serviceread)
