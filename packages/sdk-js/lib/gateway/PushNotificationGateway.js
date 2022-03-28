@@ -1,5 +1,6 @@
 const assert = require('@barchart/common-js/lang/assert'),
 	Disposable = require('@barchart/common-js/lang/Disposable'),
+	is = require('@barchart/common-js/lang/is'),
 	Enum = require('@barchart/common-js/lang/Enum');
 
 const EndpointBuilder = require('@barchart/common-js/api/http/builders/EndpointBuilder'),
@@ -78,6 +79,9 @@ module.exports = (() => {
 					pb.withLiteralParameter('version', 'v2')
 						.withLiteralParameter('register', 'register')
 				)
+				.withQueryBuilder((qb) =>
+					qb.withVariableParameter('preserve', 'preserve', 'preserve', true, (x) => x ? 'true' : 'false')
+				)
 				.withBody()
 				.withRequestInterceptor(requestInterceptor)
 				.withResponseInterceptor(responseInterceptor)
@@ -151,9 +155,10 @@ module.exports = (() => {
 		 *
 		 * @public
 		 * @param {Schema.ApnsRegistration|Schema.FcmRegistration} registration - Information regarding the installation of a mobile app, on a specific device.
+		 * @param {Boolean=} preserve - When true, any existing registrations for the same device/bundle (or token/package) will be preserved. Otherwise, registrations for the same device/bundle (or token/package) will be overwritten. This allows for a case when multiple users are simultaneously logged into an app (e.g. a messaging app might allow multiple accounts simultaneously).
 		 * @returns {Promise<Schema.ApnsRegistration|Schema.FcmRegistration>}
 		 */
-		registerDevice(registration) {
+		registerDevice(registration, preserve) {
 			return Promise.resolve()
 				.then(() => {
 					checkStart.call(this);
@@ -179,6 +184,12 @@ module.exports = (() => {
 						assert.argumentIsOptional(registration.fcm.iid, 'registration.fcm.iid', String);
 						assert.argumentIsRequired(registration.fcm.package, 'registration.fcm.package', String);
 						assert.argumentIsRequired(registration.fcm.token, 'registration.fcm.token', String);
+					}
+
+					assert.argumentIsOptional(preserve, preserve, Boolean);
+
+					if (is.boolean(preserve)) {
+						registration.preserve = preserve;
 					}
 
 					return Gateway.invoke(this._registerEndpoint, registration);

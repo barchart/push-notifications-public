@@ -97,7 +97,7 @@
 | Name | Type | Description |
 | --- | --- | --- |
 | request | <code>Object</code> |  |
-| user | [<code>User</code>](#SchemaUser) | <p>The user of the mobile app.</p> |
+| request.user | [<code>User</code>](#SchemaUser) | <p>The user of the mobile app.</p> |
 | request.device | <code>Object</code> | <p>Identifiers for the mobile app installation (on a specific device).</p> |
 | request.device.device | <code>String</code> | <p>The device token (for APNs) or an IID (for FCM).</p> |
 | request.device.bundle | <code>String</code> | <p>The bundle name (APNs) or the package name (FCM).</p> |

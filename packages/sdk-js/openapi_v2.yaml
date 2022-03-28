@@ -298,6 +298,16 @@ paths:
         - v2
       security:
         - Jwt-Consumer: [ ]
+      parameters:
+        - name: preserve
+          in: query
+          required: false
+          description: When "true" any existing registrations for the same device/bundle (or token/package) will be preserved. Otherwise, registrations for the same device/bundle (or token/package) will be overwritten. This allows for a case when multiple users are simultaneously logged into an app (e.g. a messaging app might allow multiple accounts simultaneously).
+          schema:
+            type: string
+            enum:
+              - true
+              - false
       requestBody:
         content:
           application/json:

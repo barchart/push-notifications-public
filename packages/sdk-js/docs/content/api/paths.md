@@ -8,12 +8,18 @@
 
 **Security**: 
 [Jwt-Consumer](/content/api/components?id=securityJwt-Consumer)
+#### Query Parameters
+
+| Name | Type | Required | Nullable | Description |
+| ---- | ---- | -------- | -------- | ----------- |
+| preserve | <code>String</code> | false | false | When "true" any existing registrations for the same device/bundle (or token/package) will be preserved. Otherwise, registrations for the same device/bundle (or token/package) will be overwritten. This allows for a case when multiple users are simultaneously logged into an app (e.g. a messaging app might allow multiple accounts simultaneously). |
+
 #### Request Body
 **One of:**
 
-- [ApnsRegistration](/content/api/components?id=schemasapnsregistration)
+- [ApnsRegistration](/content/api/components?id&#x3D;schemasapnsregistration)
 
-- [FcmRegistration](/content/api/components?id=schemasfcmregistration)
+- [FcmRegistration](/content/api/components?id&#x3D;schemasfcmregistration)
 
 
 #### Responses
@@ -24,9 +30,9 @@
 
 **One of:**
 
-- [ApnsRegistration](/content/api/components?id=schemasapnsregistration)
+- [ApnsRegistration](/content/api/components?id&#x3D;schemasapnsregistration)
 
-- [FcmRegistration](/content/api/components?id=schemasfcmregistration)
+- [FcmRegistration](/content/api/components?id&#x3D;schemasfcmregistration)
 
 
 * * *
@@ -54,11 +60,11 @@
 #### Request Body
 **One of:**
 
-- [ApnsRegistration](/content/api/components?id=schemasapnsregistration)
+- [ApnsRegistration](/content/api/components?id&#x3D;schemasapnsregistration)
 
-- [FcmRegistration](/content/api/components?id=schemasfcmregistration)
+- [FcmRegistration](/content/api/components?id&#x3D;schemasfcmregistration)
 
-- [UnregisterRequest](/content/api/components?id=schemasunregisterrequest)
+- [UnregisterRequest](/content/api/components?id&#x3D;schemasunregisterrequest)
 
 
 #### Responses
@@ -108,11 +114,11 @@
 #### Request Body
 **One of:**
 
-- [NotificationForUser](/content/api/components?id=schemasnotificationforuser)
+- [NotificationForUser](/content/api/components?id&#x3D;schemasnotificationforuser)
 
-- [NotificationForDevice](/content/api/components?id=schemasnotificationfordevice)
+- [NotificationForDevice](/content/api/components?id&#x3D;schemasnotificationfordevice)
 
-- [NotificationForBundle](/content/api/components?id=schemasnotificationforbundle)
+- [NotificationForBundle](/content/api/components?id&#x3D;schemasnotificationforbundle)
 
 
 #### Responses

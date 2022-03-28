@@ -3,14 +3,16 @@
 ## 1.1.0
 **New Features**
 
-* Updated `PushNotificationGateway.unregisterDevice` to add ``
 * Updated `PushNotificationGateway.unregisterDevice` to use new `DELETE` endpoint at `/v2/register`.
 * Updated OpenAPI definition file to reflect addition of new `DELETE` endpoint at `/v2/register`.
+* Updated `PushNotificationGateway.unregisterDevice` to accept `FcmRegistration` and `ApnsRegistration` objects.
+* Updated the OpenAPI definition file for `/v2/register` endpoint to include optional `preserve` query string parameter.
+* Updated `PushNotificationGateway.registerDevice` to accept optional `preserve` parameter.
 
 **Other**
 
-* Removed the `POST` endpoint at `/v2/unregister` from OpenAPI documentation (this endpoint does not follow REST conventions). However, the endpoint still exists.
-* Updated documentation.
+* Removed the `POST` endpoint at `/v2/unregister` from OpenAPI documentation (this endpoint does not follow REST conventions). However, the endpoint still exists (it's now undocumented).
+* Updated other aspects of documentation.
 
 ## 1.0.5
 **Other**

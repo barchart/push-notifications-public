@@ -12,8 +12,8 @@
     * _instance_
         * [.environment](#PushNotificationGatewayenvironment) ⇒ <code>String</code>
         * [.connect(jwtProvider)](#PushNotificationGatewayconnect) ⇒ [<code>Promise.&lt;PushNotificationGateway&gt;</code>](#PushNotificationGateway)
-        * [.registerDevice(registration)](#PushNotificationGatewayregisterDevice) ⇒ <code>Promise.&lt;(Schema.ApnsRegistration\|Schema.FcmRegistration)&gt;</code>
-        * [.unregisterDevice(data)](#PushNotificationGatewayunregisterDevice) ⇒ <code>Promise.&lt;Object&gt;</code>
+        * [.registerDevice(registration, [preserve])](#PushNotificationGatewayregisterDevice) ⇒ <code>Promise.&lt;(Schema.ApnsRegistration\|Schema.FcmRegistration)&gt;</code>
+        * [.unregisterDevice(registration)](#PushNotificationGatewayunregisterDevice) ⇒ <code>Promise.&lt;Object&gt;</code>
     * _static_
         * [.forStaging(jwtProvider)](#PushNotificationGatewayforStaging) ⇒ [<code>Promise.&lt;PushNotificationGateway&gt;</code>](#PushNotificationGateway)
         * [.forProduction(jwtProvider)](#PushNotificationGatewayforProduction) ⇒ [<code>Promise.&lt;PushNotificationGateway&gt;</code>](#PushNotificationGateway)
@@ -48,7 +48,7 @@
 
 * * *
 
-### pushNotificationGateway.registerDevice(registration) :id=pushnotificationgatewayregisterdevice
+### pushNotificationGateway.registerDevice(registration, [preserve]) :id=pushnotificationgatewayregisterdevice
 > Registers an iOS or Android device to receive push notifications.
 
 **Kind**: instance method of [<code>PushNotificationGateway</code>](#PushNotificationGateway)  
@@ -58,11 +58,12 @@
 | Param | Type | Description |
 | --- | --- | --- |
 | registration | [<code>Schema.ApnsRegistration</code>](/content/sdk/lib-data?id=schemaapnsregistration) \| [<code>Schema.FcmRegistration</code>](/content/sdk/lib-data?id=schemafcmregistration) | <p>Information regarding the installation of a mobile app, on a specific device.</p> |
+| [preserve] | <code>Boolean</code> | <p>When true, any existing registrations for the same device/bundle (or token/package) will be preserved. Otherwise, registrations for the same device/bundle (or token/package) will be overwritten. This allows for a case when multiple users are simultaneously logged into an app (e.g. a messaging app might allow multiple accounts simultaneously).</p> |
 
 
 * * *
 
-### pushNotificationGateway.unregisterDevice(data) :id=pushnotificationgatewayunregisterdevice
+### pushNotificationGateway.unregisterDevice(registration) :id=pushnotificationgatewayunregisterdevice
 > Unregisters an iOS or Android device.
 
 **Kind**: instance method of [<code>PushNotificationGateway</code>](#PushNotificationGateway)  
@@ -71,7 +72,7 @@
 
 | Param | Type | Description |
 | --- | --- | --- |
-| data | [<code>Schema.UnregisterRequest</code>](/content/sdk/lib-data?id=schemaunregisterrequest) | <p>Information identifying the &quot;registration&quot; to delete.</p> |
+| registration | [<code>Schema.ApnsRegistration</code>](/content/sdk/lib-data?id=schemaapnsregistration) \| [<code>Schema.FcmRegistration</code>](/content/sdk/lib-data?id=schemafcmregistration) \| [<code>Schema.UnregisterRequest</code>](/content/sdk/lib-data?id=schemaunregisterrequest) | <p>Information identifying the &quot;registration&quot; to delete.</p> |
 
 
 * * *
