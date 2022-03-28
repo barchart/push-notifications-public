@@ -85,13 +85,13 @@ module.exports = (() => {
 				.endpoint;
 
 			this._unregisterEndpoint = EndpointBuilder.for('unregister-device', 'unregister your device')
-				.withVerb(VerbType.POST)
+				.withVerb(VerbType.DELETE)
 				.withProtocol(protocolType)
 				.withHost(host)
 				.withPort(port)
 				.withPathBuilder((pb) =>
 					pb.withLiteralParameter('version', 'v2')
-						.withLiteralParameter('unregister', 'unregister')
+						.withLiteralParameter('register', 'register')
 				)
 				.withBody()
 				.withRequestInterceptor(requestInterceptor)
@@ -189,28 +189,58 @@ module.exports = (() => {
 		 * Unregisters an iOS or Android device.
 		 *
 		 * @public
-		 * @param {Schema.UnregisterRequest} data - Information identifying the "registration" to delete.
+		 * @param {Schema.ApnsRegistration|Schema.FcmRegistration|Schema.UnregisterRequest} registration - Information identifying the "registration" to delete.
 		 * @returns {Promise<Object>}
 		 */
-		unregisterDevice(data) {
+		unregisterDevice(registration) {
 			return Promise.resolve()
 				.then(() => {
+					console.log('hello');
+
 					checkStart.call(this);
 
-					assert.argumentIsRequired(data, 'data', Object);
-					assert.argumentIsRequired(data.user, 'data.user', Object);
-					assert.argumentIsRequired(data.user.id, 'data.user.id', String);
-					assert.argumentIsRequired(data.user.context, 'data.user.context', String);
-					assert.argumentIsRequired(data.device, 'data.device', Object);
-					assert.argumentIsRequired(data.device.device, 'data.device.device', String);
-					assert.argumentIsRequired(data.device.bundle, 'data.device.bundle', String);
+					assert.argumentIsRequired(registration, 'registration', Object);
+					assert.argumentIsRequired(registration.user, 'registration.user', Object);
+					assert.argumentIsRequired(registration.user.id, 'registration.user.id', String);
+					assert.argumentIsRequired(registration.user.context, 'registration.user.context', String);
 
-					return Gateway.invoke(this._unregisterEndpoint, {
-						user: data.user.id,
-						context: data.user.context,
-						device: data.device.device,
-						bundle: data.device.bundle
-					});
+					if (!registration.apns && !registration.fcm && !registration.device) {
+						throw new Error('Either [ registration.apns ] or [ registration.fcm ] or [ registration.device ] must be provided');
+					}
+
+					const payload = { };
+
+					if (registration.apns) {
+						assert.argumentIsRequired(registration.apns, 'registration.apns', Object);
+						assert.argumentIsRequired(registration.apns.device, 'registration.apns.device', String);
+						assert.argumentIsRequired(registration.apns.bundle, 'registration.apns.bundle', String);
+
+						payload.user = registration.user;
+						payload.apns = registration.apns;
+						payload.provider = registration.provider;
+					} else if (registration.fcm) {
+						assert.argumentIsRequired(registration.fcm, 'registration.fcm', Object);
+						assert.argumentIsOptional(registration.fcm.iid, 'registration.fcm.iid', String);
+						assert.argumentIsRequired(registration.fcm.package, 'registration.fcm.package', String);
+						assert.argumentIsRequired(registration.fcm.token, 'registration.fcm.token', String);
+
+						payload.user = registration.user;
+						payload.fcm = registration.fcm;
+						payload.provider = registration.provider;
+					} else if (registration.device) {
+						assert.argumentIsRequired(registration.device, 'registration.device', Object);
+						assert.argumentIsRequired(registration.device.device, 'registration.device.device', String);
+						assert.argumentIsRequired(registration.device.bundle, 'registration.device.bundle', String);
+
+						payload.user = registration.user.id;
+						payload.context = registration.user.context;
+						payload.device = registration.device.device;
+						payload.bundle = registration.device.bundle;
+					}
+
+					console.log(JSON.stringify(payload));
+
+					return Gateway.invoke(this._unregisterEndpoint, payload);
 				});
 		}
 

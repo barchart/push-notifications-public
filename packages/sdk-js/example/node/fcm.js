@@ -58,9 +58,16 @@ PushNotificationGateway.forStaging(JwtProvider.forStaging(user.id, user.context)
 		return pushNotificationGatewayGateway.registerDevice(registerData)
 			.then((registration) => {
 				console.info(`Example: Created record for [ ${user.id} ] [ ${user.context} ].`);
+
+				return registration;
 			});
-	}).then(() => {
+	}).then((registration) => {
 		console.info(`Example: Unregister device for [ ${user.id} ] [ ${user.context} ].`);
+
+		/*
+
+		// An alternate data structure that could be passed to the "unregisterDevice" function,
+		// in place of the registration itself.
 
 		const unregisterQuery = {
 			user: user,
@@ -69,8 +76,9 @@ PushNotificationGateway.forStaging(JwtProvider.forStaging(user.id, user.context)
 				bundle: bundleId
 			}
 		};
+		*/
 
-		return pushNotificationGatewayGateway.unregisterDevice(unregisterQuery)
+		return pushNotificationGatewayGateway.unregisterDevice(registration)
 			.then((deleted) => {
 				console.info(`Example: Deleted record for [ ${user.id} ] [ ${user.context} ] with message [ ${deleted.message} ].`);
 			});
