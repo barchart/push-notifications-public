@@ -64,11 +64,6 @@ PushNotificationGateway.forStaging(JwtProvider.forStaging(user.id, user.context)
 	}).then((registration) => {
 		console.info(`Example: Unregister device for [ ${user.id} ] [ ${user.context} ].`);
 
-		/*
-
-		// An alternate data structure that could be passed to the "unregisterDevice" function,
-		// in place of the registration itself.
-
 		const unregisterQuery = {
 			user: user,
 			device: {
@@ -76,7 +71,9 @@ PushNotificationGateway.forStaging(JwtProvider.forStaging(user.id, user.context)
 				bundle: bundleId
 			}
 		};
-		*/
+
+		// Alternately, the "registration" object, resulting from the "registerDevice"
+		// function can be passed to the "unregisterDevice" function.
 
 		return pushNotificationGatewayGateway.unregisterDevice(registration)
 			.then((deleted) => {
