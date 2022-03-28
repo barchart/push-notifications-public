@@ -195,8 +195,6 @@ module.exports = (() => {
 		unregisterDevice(registration) {
 			return Promise.resolve()
 				.then(() => {
-					console.log('hello');
-
 					checkStart.call(this);
 
 					assert.argumentIsRequired(registration, 'registration', Object);
@@ -237,8 +235,6 @@ module.exports = (() => {
 						payload.device = registration.device.device;
 						payload.bundle = registration.device.bundle;
 					}
-
-					console.log(JSON.stringify(payload));
 
 					return Gateway.invoke(this._unregisterEndpoint, payload);
 				});
