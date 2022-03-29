@@ -58,7 +58,7 @@ Invoke the [PushNotificationGateway.unregisterDevice](/content/sdk/lib-gateway?i
 
 #### Using the API
 
-Send a ```POST``` request to the [```v2/unregister```](/content/api/paths?id=post-v2unregister) endpoint to delete a mobile app installation (and user).
+Send a ```DELETE``` request to the [```v2/register```](/content/api/paths?id=delete-v2register) endpoint to delete a mobile app installation (and user).
 
 ## Sending Notifications
 
