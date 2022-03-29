@@ -110,7 +110,7 @@ const registerData = {
 	provider: 'barchart'
 };
 
-pushNotificationGatweay.registerDevice(registerData)
+pushNotificationGateway.registerDevice(registerData)
 	.then((registratio) => {
 		console.log(`Device registered`);
 	});
@@ -163,7 +163,7 @@ const registerData = {
 	provider: 'barchart.test.com'
 };
 
-PushNotificationGateway.registerDevice(registerData)
+pushNotificationGateway.registerDevice(registerData)
 	.then((registration) => {
 		console.log(`Device registered`);
 	});
@@ -203,12 +203,21 @@ The result will be a complete [```FcmRegistration```](/content/sdk/lib-data?id=s
 
 ## Unregister a Device
 
-A registration can be deleted, as follows:
+A registration can be deleted, which prevents further push notifications from being delivered to the device. Do this when:
+
+* The app is uninstalled from the device, or
+* The authenticated user logs out of the app.
 
 #### Using the SDK
 
+Pass any one of the following objects to [PushNotificationGateway.unregisterDevice](/content/sdk/lib-gateway?id=pushnotificationgatewayunregisterdevice) function:
+
+* [```ApnsRegistration```](/content/sdk/lib-data?id=schemaapnsregistration)
+* [```FcmRegistration```](/content/sdk/lib-data?id=schemafcmregistration)
+* [```UnregisterRequest```](/content/sdk/lib-data?id=schemaunregisterrequest)
+
 ```js
-const registrationData = {
+const unregisterRequest = {
 	user: {
 		id: 'me',
 		context: 'barchart'
@@ -219,15 +228,16 @@ const registrationData = {
 	}
 };
 
-PushNotificationGateway.unregisterDevice(registrationData)
+pushNotificationGateway.unregisterDevice(unregisterRequest)
 	.then((response) => {
 		console.log(`Device registration deleted`);
 	});
 ```
 
-> The `device.device` field should contain the `apns.device` identifier used to register an iOS device or the `fcm.iid` identifier used to register an Android device.
+If you use an [```UnregisterRequest```](/content/sdk/lib-data?id=schemaunregisterrequest) object, please note:
 
-> The `device.bundle` field should contain the `apns.bundle` identifier used to register an iOS device or the `fcm.package` identifier used to register an Android device.
+* The `device.device` field should contain either the `apns.device` identifier used to register an iOS device or the `fcm.iid` identifier used to register an Android device.
+* The `device.bundle` field should contain either the `apns.bundle` identifier used to register an iOS device or the `fcm.package` identifier used to register an Android device.
 
 #### Using the API
 
