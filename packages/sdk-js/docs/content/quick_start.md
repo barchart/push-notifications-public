@@ -242,8 +242,8 @@ If you use an [```UnregisterRequest```](/content/sdk/lib-data?id=schemaunregiste
 #### Using the API
 
 ```shell
-curl 'https://push-notifications-stage.aws.barchart.com/v2/unregister' \
-  -X 'POST' \
+curl 'https://push-notifications-stage.aws.barchart.com/v2/register' \
+  -X 'DELETE' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJtZSIsImNvbnRleHRJZCI6ImJhcmNoYXJ0IiwiaWF0IjoxNjIyNjQ3ODA4fQ.JWM85t7wmFeaWPon1-f-cGRY7cGn2H8B8VZDLaPOsXQ' \
   -H 'Content-Type: application/json;charset=UTF-8' \
