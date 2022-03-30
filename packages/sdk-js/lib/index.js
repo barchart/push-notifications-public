@@ -5,6 +5,6 @@ module.exports = (() => {
 
 	return {
 		PushNotificationGateway: PushNotificationGateway,
-		version: '1.1.0'
+		version: '1.2.0'
 	};
 })();
