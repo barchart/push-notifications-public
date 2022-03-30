@@ -290,7 +290,7 @@ servers:
   - url: 'https://push-notifications.stage.aws.barchart.com'
 
 paths:
-  /v2/register:
+  /v2/registrations:
     post:
       summary: Register Device
       description: Register a device for notifications with APNs or FCM.

@@ -43,7 +43,7 @@ Invoke the [PushNotificationGateway.registerDevice](/content/sdk/lib-gateway?id=
 
 #### Using the API
 
-Send a ```POST``` request to the [```v2/register```](/content/api/paths?id=post-v2register) endpoint to register a mobile app installation (and user).
+Send a ```POST``` request to the [```v2/registrations```](/content/api/paths?id=post-v2registrations) endpoint to register a mobile app installation (and user).
 
 ## Unregistering from Notifications
 
@@ -58,7 +58,7 @@ Invoke the [PushNotificationGateway.unregisterDevice](/content/sdk/lib-gateway?i
 
 #### Using the API
 
-Send a ```DELETE``` request to the [```v2/register```](/content/api/paths?id=delete-v2register) endpoint to delete a mobile app installation (and user).
+Send a ```DELETE``` request to the [```v2/registrations```](/content/api/paths?id=delete-v2registrations) endpoint to delete a mobile app installation (and user).
 
 ## Sending Notifications
 
@@ -68,13 +68,13 @@ After an alert notification is composed, it can be addressed to a single device 
 |-------------|----------------------------------------------------------------|------------------|------------------------------------------------------------------------------------|
 | By Device   | A single app, installed on a single device.                    | zero or one      | [NotificationForDevice](/content/api/components?id=schemasnotificationfordevice)   |
 | By User     | A single app, installed on all devices owned by a single user. | zero or few      | [NotificationForUser](/content/api/components?id=schemasnotificationforuser)       |
-| By Bundle   | A single app, all known installations, regardless of user.     | many             | [NotificationnForBundle](/content/api/components?id=schemasnotificationnforbundle) |
+| By Bundle   | A single app, all known installations, regardless of user.     | many             | [NotificationForBundle](/content/api/components?id=schemasnotificationforbundle) |
 
 > Push notifications should **never** be generated and sent from a mobile app. They should be generated and sent from a backend service. As a security precaution, signing secrets, different from those used to "register" and "unregister," are used for sending push notifications.
 
 #### Using the SDK
 
-The SDK does not currently supporting sending push notifications. It will in a future version.
+The SDK does not currently support sending push notifications. It will in a future version.
 
 #### Using the API
 

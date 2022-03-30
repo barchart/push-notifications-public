@@ -47,8 +47,8 @@
 
 ## Paths {docsify-ignore}
 
-* [POST /v2/register](/content/api/paths?id=post-v2register)
-* [DELETE /v2/register](/content/api/paths?id=delete-v2register)
+* [POST /v2/registrations](/content/api/paths?id=post-v2registrations)
+* [DELETE /v2/registrations](/content/api/paths?id=delete-v2registrations)
 * [POST /v2/send](/content/api/paths?id=post-v2send)
 * [GET /v2/job/{id}](/content/api/paths?id=get-v2jobid)
 * [GET /v2/service/read](/content/api/paths?id=get-v2serviceread)

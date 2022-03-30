@@ -1,6 +1,6 @@
 # Paths
 
-## POST /v2/register 
+## POST /v2/registrations 
 
 > Register a device for notifications with APNs or FCM.
 
@@ -17,9 +17,9 @@
 #### Request Body
 **One of:**
 
-- [ApnsRegistration](/content/api/components?id&#x3D;schemasapnsregistration)
+- [ApnsRegistration](/content/api/components?id=schemasapnsregistration)
 
-- [FcmRegistration](/content/api/components?id&#x3D;schemasfcmregistration)
+- [FcmRegistration](/content/api/components?id=schemasfcmregistration)
 
 
 #### Responses
@@ -30,9 +30,9 @@
 
 **One of:**
 
-- [ApnsRegistration](/content/api/components?id&#x3D;schemasapnsregistration)
+- [ApnsRegistration](/content/api/components?id=schemasapnsregistration)
 
-- [FcmRegistration](/content/api/components?id&#x3D;schemasfcmregistration)
+- [FcmRegistration](/content/api/components?id=schemasfcmregistration)
 
 
 * * *
@@ -49,7 +49,7 @@
 
 * * *
 
-## DELETE /v2/register 
+## DELETE /v2/registrations 
 
 > Deletes registrations for a device.
 
@@ -60,11 +60,11 @@
 #### Request Body
 **One of:**
 
-- [ApnsRegistration](/content/api/components?id&#x3D;schemasapnsregistration)
+- [ApnsRegistration](/content/api/components?id=schemasapnsregistration)
 
-- [FcmRegistration](/content/api/components?id&#x3D;schemasfcmregistration)
+- [FcmRegistration](/content/api/components?id=schemasfcmregistration)
 
-- [UnregisterRequest](/content/api/components?id&#x3D;schemasunregisterrequest)
+- [UnregisterRequest](/content/api/components?id=schemasunregisterrequest)
 
 
 #### Responses
@@ -114,11 +114,11 @@
 #### Request Body
 **One of:**
 
-- [NotificationForUser](/content/api/components?id&#x3D;schemasnotificationforuser)
+- [NotificationForUser](/content/api/components?id=schemasnotificationforuser)
 
-- [NotificationForDevice](/content/api/components?id&#x3D;schemasnotificationfordevice)
+- [NotificationForDevice](/content/api/components?id=schemasnotificationfordevice)
 
-- [NotificationForBundle](/content/api/components?id&#x3D;schemasnotificationforbundle)
+- [NotificationForBundle](/content/api/components?id=schemasnotificationforbundle)
 
 
 #### Responses

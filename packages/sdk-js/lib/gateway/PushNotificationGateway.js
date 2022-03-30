@@ -77,7 +77,7 @@ module.exports = (() => {
 				.withPort(port)
 				.withPathBuilder((pb) =>
 					pb.withLiteralParameter('version', 'v2')
-						.withLiteralParameter('register', 'register')
+						.withLiteralParameter('registrations', 'registrations')
 				)
 				.withQueryBuilder((qb) =>
 					qb.withVariableParameter('preserve', 'preserve', 'preserve', true, (x) => x ? 'true' : 'false')
@@ -95,7 +95,7 @@ module.exports = (() => {
 				.withPort(port)
 				.withPathBuilder((pb) =>
 					pb.withLiteralParameter('version', 'v2')
-						.withLiteralParameter('register', 'register')
+						.withLiteralParameter('registrations', 'registrations')
 				)
 				.withBody()
 				.withRequestInterceptor(requestInterceptor)
