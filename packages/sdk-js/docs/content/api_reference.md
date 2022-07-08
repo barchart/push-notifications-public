@@ -17,7 +17,7 @@
 ## Servers {docsify-ignore}
 
 * [https://push-notifications.aws.barchart.com](https://push-notifications.aws.barchart.com) 
-* [https://push-notifications.stage.aws.barchart.com](https://push-notifications.stage.aws.barchart.com) 
+* [https://push-notifications-stage.aws.barchart.com](https://push-notifications-stage.aws.barchart.com) 
 
 ## Components {docsify-ignore}
 
