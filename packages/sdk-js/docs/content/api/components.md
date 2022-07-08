@@ -36,7 +36,7 @@
 | Name | Type | Required | Nullable | Description |
 | ---- | ---- | -------- | -------- | ----------- |
 | id | <code>String</code> | true | false | The unique identifier for the user (within the context). Use "ANONYMOUS" when user is unknown. |
-| context | <code>String</code> | true | false | A value assigned to you by Barchart, (e.g. application or customer name). |
+| context | <code>String</code> | true | false | A value assigned to you by Barchart (e.g. application or customer name). |
 
 
 **Example**:
@@ -191,7 +191,7 @@
 | Name | Type | Required | Nullable | Description |
 | ---- | ---- | -------- | -------- | ----------- |
 | user | <code>String</code> | true | false | The unique identifier for the user (within the context). |
-| context | <code>String</code> | true | false | A value assigned to you by Barchart, (e.g. application or customer name). |
+| context | <code>String</code> | true | false | A value assigned to you by Barchart (e.g. application or customer name). |
 | bundle | <code>String</code> | true | false | The bundle name (APNs) or the package name (FCM). |
 | notification | [<code>NotificationContent</code>](#schemasNotificationContent) | true | false |  |
 | development | <code>Boolean</code> | false | false | If true, the APNs sandbox is used. |

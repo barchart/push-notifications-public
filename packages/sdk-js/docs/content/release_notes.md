@@ -8,7 +8,7 @@
 
 **Other**
 
-* Updated other aspects of reflect API endpoint `/v2/register` rename of `/v2/registrations`.
+* Updated documentation to reflect API endpoint rename from `/v2/register` to `/v2/registrations`.
 
 ## 1.1.0
 **New Features**

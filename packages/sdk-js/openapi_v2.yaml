@@ -33,7 +33,7 @@ components:
           example: abc-12345678
         context:
           type: string
-          description: A value assigned to you by Barchart, (e.g. application or customer name).
+          description: A value assigned to you by Barchart (e.g. application or customer name).
           example: my-company
       required:
         - id
@@ -147,7 +147,7 @@ components:
           example: abc-12345678
         context:
           type: string
-          description: A value assigned to you by Barchart, (e.g. application or customer name).
+          description: A value assigned to you by Barchart (e.g. application or customer name).
           example: my-company
         bundle:
           type: string
