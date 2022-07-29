@@ -35,7 +35,7 @@
 		"SDK"
 	],
 	"dependencies": {
-		"@barchart/common-js": "^4.19.1"
+		"@barchart/common-js": "^4.22.0"
 	},
 	"devDependencies": {
 		"aws-sdk": "^2.732.0",
