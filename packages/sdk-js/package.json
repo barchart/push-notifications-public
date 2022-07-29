@@ -1,6 +1,6 @@
 {
 	"name": "@barchart/push-notifications-client-js",
-	"version": "1.2.0",
+	"version": "1.2.1",
 	"description": "JavaScript SDK for Barchart's Push Notification Service",
 	"author": {
 		"name": "Bryan Ingle",
