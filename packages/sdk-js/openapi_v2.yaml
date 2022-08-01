@@ -449,7 +449,7 @@ paths:
                         example: serverless-push-gateway
                       environment:
                         type: string
-                        description: The name of the enviroment (e.g. stage or prod).
+                        description: The name of the environment (e.g. stage or prod).
                         example: prod
                       version:
                         type: string
