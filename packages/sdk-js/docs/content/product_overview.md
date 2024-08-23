@@ -9,7 +9,7 @@ Also, your applications can send push notifications, targeting:
 
 * A specific device with your app installed.
 * All registered devices with your app installed.
-* ALl registered devices where a specific user has logged into your app.
+* All registered devices where a specific user has logged into your app.
 
 ## Supported Devices
 
