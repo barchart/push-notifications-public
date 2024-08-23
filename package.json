@@ -1,5 +1,5 @@
 {
-  "name": "@barchart/push-notifications-public-js",
+  "name": "@barchart/push-notifications-public",
   "description": "Public packages for the Barchart Push Notification Service",
   "workspaces": [
 	"packages/*"

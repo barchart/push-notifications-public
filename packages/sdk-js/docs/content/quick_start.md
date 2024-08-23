@@ -263,8 +263,8 @@ Two sample scripts were built with the SDK. These scripts connect to the _stage_
 Assuming you have [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) and [Node.js](https://nodejs.org/en/download/) installed, run the following:
 
 ```shell
-git clone git@github.com:barchart/push-notifications-public-js.git
-cd push-notifications-public-js
+git clone git@github.com:barchart/push-notifications-public.git
+cd push-notifications-public
 npm install
 cd packages/sdk-js/example/node
 ```

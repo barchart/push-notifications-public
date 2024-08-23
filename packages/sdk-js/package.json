@@ -21,10 +21,10 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+ssh://git@github.com/barchart/push-notifications-public-js.git"
+		"url": "git+ssh://git@github.com/barchart/push-notifications-public.git"
 	},
 	"bugs": {
-		"url": "https://github.com/barchart/push-notifications-public-js/issues"
+		"url": "https://github.com/barchart/push-notifications-public/issues"
 	},
 	"keywords": [
 		"Barchart",
